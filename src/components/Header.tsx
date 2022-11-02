@@ -1,8 +1,9 @@
 import Image from "next/image";
 import styled from "styled-components";
-import logo from "../../public/images/logo.svg";
-import bell from "../../public/images/bell.svg";
-import bag from "../../public/images/shopping-bag.svg";
+import Logo from "../../public/images/logo.svg";
+import Bell from "../../public/images/bell.svg";
+import Bag from "../../public/images/shopping-bag.svg";
+
 
 const Container = styled.div`
   width: 100%;
@@ -10,6 +11,7 @@ const Container = styled.div`
   justify-content: space-between;
   margin: 40px 0;
   height: 24px;
+  padding: 0 20px;
 `
 
 const LogoWrapper = styled.div`
@@ -25,12 +27,12 @@ const IconWrapper = styled.div`
 export default function Header() {
   return (
     <Container>
-      <LogoWrapper>
-        <Image src={logo} alt="logo" />
+      <LogoWrapper> 
+        <Logo />
       </LogoWrapper>
       <IconWrapper>
-          <Image src={bell} alt="bell" />
-          <Image src={bag} alt="bag" />
+        <Bell />
+        <Bag />
       </IconWrapper>
     </Container>
   );

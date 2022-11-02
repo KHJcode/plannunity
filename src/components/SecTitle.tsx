@@ -1,5 +1,18 @@
-export default function SecTitle() {
+import styled from "styled-components";
+
+const Container = styled.div`
+  font-size: 20px;
+  font-family: SUIT-600;
+  margin-bottom: 20px;
+  margin-left: 5px;
+`
+
+type SecTitleProps = {
+  text: string;
+}
+
+export default function SecTitle({ text }: SecTitleProps) {
   return (
-    <div>SecTitle</div>
+    <Container>{text}</Container>
   );
 }
