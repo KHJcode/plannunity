@@ -3,6 +3,7 @@ import Home from "../../public/images/home.svg";
 import Edit from "../../public/images/edit.svg";
 import Users from "../../public/images/users.svg";
 import User from "../../public/images/user.svg";
+import { useState } from "react";
 
 const Container = styled.div`
   position: fixed;
@@ -21,7 +22,7 @@ const Container = styled.div`
 export default function Navigation() {
   return (
     <Container>
-      <Home />
+      <Home stroke="#FF833E" />
       <Edit />
       <Users />
       <User />

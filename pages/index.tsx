@@ -4,6 +4,8 @@ import Header from '../src/components/Header'
 import styles from '../styles/Home.module.css'
 import CommunityPlanContainer from '../src/Container/CommunityPlanContainer';
 import SystemPlanContainer from '../src/Container/SystemPlanContainer';
+import RankedPlanContainer from '../src/Container/RankedPlanContainer';
+import PartyListContainer from '../src/Container/PartyListContainer';
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
         <CarouselContainer />
         <CommunityPlanContainer />
         <SystemPlanContainer />
+        <RankedPlanContainer />
+        <PartyListContainer />
       </div>
     </>
   );

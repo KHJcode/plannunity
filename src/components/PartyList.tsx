@@ -5,7 +5,6 @@ export default function PartyList() {
     <>
       <PartyItem />
       <PartyItem />
-      <PartyItem />
     </>
   );
 }

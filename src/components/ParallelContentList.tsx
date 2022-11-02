@@ -5,8 +5,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   gap: 10px;
-  overflow: scroll;
-  
+  overflow: hidden;
 `
 
 export default function ParallelContentList() {
