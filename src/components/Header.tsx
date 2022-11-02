@@ -31,8 +31,8 @@ export default function Header() {
         <Logo />
       </LogoWrapper>
       <IconWrapper>
-        <Bell />
         <Bag />
+        <Bell />
       </IconWrapper>
     </Container>
   );

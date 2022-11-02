@@ -4,3 +4,7 @@
   box-sizing: border-box;
   font-family: 'SUIT-600';
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

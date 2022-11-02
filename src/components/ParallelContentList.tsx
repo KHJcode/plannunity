@@ -5,12 +5,13 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   gap: 10px;
-  overflow: hidden;
+  overflow: scroll;
 `
 
 export default function ParallelContentList() {
   return (
     <Container>
+      <ParallelContentItem />
       <ParallelContentItem />
       <ParallelContentItem />
     </Container>

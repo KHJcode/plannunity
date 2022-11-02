@@ -74,7 +74,7 @@ export default function PartyItem() {
         <Image src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
         <TextWrapper>
           <SubText>나제원님의 파티</SubText>
-          <Title>탈설린 같이 하실 분 구합니다</Title>
+          <Title>탈선린 같이 하실 분 구합니다</Title>
         </TextWrapper>
       </TopWrapper>
       <TagWrapper>
