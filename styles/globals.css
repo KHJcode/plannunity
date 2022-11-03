@@ -13,3 +13,50 @@ html, body {
 ::-webkit-scrollbar {
   display: none;
 }
+
+/* .dots li button {
+  padding: 0 !important;
+}
+
+.dots li button::before {
+  color:#EDEDED !important;
+  opacity: 1 !important;
+  padding: 0;
+}
+
+.dots li.slick-active button:before {
+  color: #FF833E !important;
+} */
+
+.dots_custom {
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.dots_custom li {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 12px 6px;
+  padding: 0;
+}
+
+.dots_custom li button {
+  border: none;
+  background: #E8E8E8;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.dots_custom li.slick-active button {
+  background: #FF833E;
+}

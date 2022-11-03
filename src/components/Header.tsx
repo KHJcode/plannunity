@@ -57,7 +57,7 @@ export default function Header({ isClicked, setIsClicked }: HeaderType) {
         {home && <Logo />}
         {plan && <TitleWrapper><PageTitle text="플랜" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
         {party && <TitleWrapper><PageTitle text="파티" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
-        {profile && <TitleWrapper><PageTitle text="마이 페이지" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
+        {profile && <TitleWrapper><PageTitle text="프로필" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
       </LogoWrapper>
       <IconWrapper>
         <img src="images/shopping-bag.svg" onClick={onClick} id="bag" />
