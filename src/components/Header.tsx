@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import Logo from "../../public/images/logo.svg";
 import { IsClicked } from "../../pages/_app";
+import { useSelector } from "react-redux";
+import { RootState } from "../modules";
+import PageTitle from "./PageTitle";
+import Dot from "../../public/images/dot.svg";
 
 type HeaderType = {
   isClicked: IsClicked;
@@ -26,7 +30,19 @@ const IconWrapper = styled.div`
   padding: 0 10px;
 `
 
+const TitleWrapper = styled.span`
+  display: flex;
+  gap: 3px;
+`
+
+const DotWrapper = styled.span`
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 3px;
+`
+
 export default function Header({ isClicked, setIsClicked }: HeaderType) {
+  const { home, plan, party, profile } = useSelector((state: RootState) => state.currentPage);
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
     document.body.style.overflowY = "hidden";
     setIsClicked({
@@ -38,7 +54,10 @@ export default function Header({ isClicked, setIsClicked }: HeaderType) {
   return (
     <Container>
       <LogoWrapper> 
-        <Logo />
+        {home && <Logo />}
+        {plan && <TitleWrapper><PageTitle text="플랜" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
+        {party && <TitleWrapper><PageTitle text="파티" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
+        {profile && <TitleWrapper><PageTitle text="마이 페이지" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
       </LogoWrapper>
       <IconWrapper>
         <img src="images/shopping-bag.svg" onClick={onClick} id="bag" />

@@ -11,7 +11,7 @@ type NotificationContainerType = {
 
 const Container = styled.div<{ isClicked: boolean }>`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 40px 20px;
   position: absolute;
   top: 0;

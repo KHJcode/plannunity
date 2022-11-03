@@ -5,13 +5,14 @@ import Navigation from '../src/components/Navigation';
 import Header from '../src/components/Header';
 import NotificationContainer from '../src/container/NotificationContainer';
 import { useState } from 'react';
+import { wrapper } from '../src/modules';
 
 export interface IsClicked {
   bag: boolean;
   bell: boolean;
 }
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   const [isClicked, setIsClicked] = useState<IsClicked>({ bag: false, bell: false });
   return (
     <div>
@@ -22,3 +23,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </div>
   );
 }
+
+export default wrapper.withRedux(App);
