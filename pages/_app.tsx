@@ -3,7 +3,7 @@ import type { AppProps } from 'next/app';
 import '../public/static/style.css';
 import Navigation from '../src/components/Navigation';
 import Header from '../src/components/Header';
-import NotificationContainer from '../src/container/NotificationContainer';
+import NotificationContainer from '../src/containers/NotificationContainer';
 import { useState } from 'react';
 import { wrapper } from '../src/modules';
 
