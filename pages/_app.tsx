@@ -6,22 +6,24 @@ import Header from '../src/components/Header';
 import NotificationContainer from '../src/containers/NotificationContainer';
 import { useState } from 'react';
 import { wrapper } from '../src/modules';
+import { Provider } from 'react-redux';
 
 export interface IsClicked {
   bag: boolean;
   bell: boolean;
 }
 
-function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   const [isClicked, setIsClicked] = useState<IsClicked>({ bag: false, bell: false });
+  const { store } = wrapper.useWrappedStore(pageProps);
   return (
-    <div>
-      <NotificationContainer isClicked={isClicked} setIsClicked={setIsClicked} />
-      <Header isClicked={isClicked} setIsClicked={setIsClicked} />
-      <Component {...pageProps} />
-      <Navigation />
-    </div>
+    <>
+      <Provider store={store}>
+        <NotificationContainer isClicked={isClicked} setIsClicked={setIsClicked} />
+        <Header isClicked={isClicked} setIsClicked={setIsClicked} />
+        <Component {...pageProps} />
+        <Navigation />
+      </Provider>
+    </>
   );
 }
-
-export default wrapper.withRedux(App);
