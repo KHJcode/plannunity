@@ -1,16 +1,16 @@
 import styled from "styled-components";
 
 const Container = styled.span`
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 22px;
   margin-left: 5px;
+  line-height: 24px;
 `
 
-type SecTitleType = {
+type PageTitleProps = {
   text: string;
 }
 
-export default function SecTitle({ text }: SecTitleType) {
+export default function PageTitle({ text }: PageTitleProps) {
   return (
     <Container>{text}</Container>
   );

@@ -3,7 +3,6 @@ import Home from "../../public/images/home.svg";
 import Edit from "../../public/images/edit.svg";
 import Users from "../../public/images/users.svg";
 import User from "../../public/images/user.svg";
-import { useState } from "react";
 
 const Container = styled.div`
   position: fixed;
@@ -16,7 +15,8 @@ const Container = styled.div`
   justify-content: space-evenly;
   align-items: center;
   background: white;
-  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px -10px 20px rgba(222, 222, 222, 0.25);
+  backdrop-filter: blur(30px);
 `
 
 export default function Navigation() {

@@ -4,6 +4,8 @@ import SecTitle from "../components/SecTitle";
 
 const Container = styled.div`
   padding: 20px 0 20px 20px;
+  display: flex;
+  flex-direction: column;
 `
 
 export default function SystemPlanContainer() {

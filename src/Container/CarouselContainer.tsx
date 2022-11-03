@@ -4,6 +4,8 @@ import CarouselView from "../components/CarouselView";
 const Container = styled.div`
   width: 100%;
   margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
 `
 
 const Text = styled.div`

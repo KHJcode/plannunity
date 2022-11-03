@@ -4,7 +4,7 @@ const Container = styled.div`
   height: 167px;
   width: 100%;
   display: flex;
-  overflow: hidden;
+  overflow: scroll;
   gap: 10px;
   justify-content: center;
   padding: 0 20px;

@@ -5,6 +5,11 @@
   font-family: 'SUIT-600';
 }
 
+html, body {
+  position: relative;
+  overflow-x: hidden;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }

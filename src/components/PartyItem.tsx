@@ -1,3 +1,4 @@
+import Image from "next/image";
 import styled from "styled-components";
 import Users from "../../public/images/users_22.svg";
 
@@ -9,6 +10,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-bottom: 10px;
 `
 
 const TopWrapper = styled.div`
@@ -16,7 +18,7 @@ const TopWrapper = styled.div`
   gap: 20px;
 `
 
-const Image = styled.img`
+const ProfileImage = styled.img`
   width: 55px;
   height: 55px;
   border-radius: 50%;
@@ -67,11 +69,13 @@ const Text = styled.span`
   border-left: 1px solid #D2D2D2;
 `
 
+const UserImg = styled.img``;
+
 export default function PartyItem() {
   return (
     <Container>
       <TopWrapper>
-        <Image src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
+        <ProfileImage src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
         <TextWrapper>
           <SubText>나제원님의 파티</SubText>
           <Title>탈선린 같이 하실 분 구합니다</Title>
@@ -83,7 +87,7 @@ export default function PartyItem() {
         <Tag>#경기도민</Tag>
       </TagWrapper>
       <BottomWrapper>
-        <Users />
+        <UserImg src="images/users_22.svg" />
         <Number>3/<Strong>2</Strong></Number>
         <Text>3명 중 <Strong>2명이 접속해있어요</Strong></Text>
       </BottomWrapper>
