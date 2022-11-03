@@ -14,21 +14,9 @@ html, body {
   display: none;
 }
 
-/* .dots li button {
-  padding: 0 !important;
-}
+/* dot-custom */
 
-.dots li button::before {
-  color:#EDEDED !important;
-  opacity: 1 !important;
-  padding: 0;
-}
-
-.dots li.slick-active button:before {
-  color: #FF833E !important;
-} */
-
-.dots_custom {
+.dots-custom {
   width: 100%;
   display: inline-block;
   margin: 0;
@@ -37,7 +25,7 @@ html, body {
   justify-content: center;
 }
 
-.dots_custom li {
+.dots-custom li {
   list-style: none;
   cursor: pointer;
   display: inline-block;
@@ -45,7 +33,7 @@ html, body {
   padding: 0;
 }
 
-.dots_custom li button {
+.dots-custom li button {
   border: none;
   background: #E8E8E8;
   color: transparent;
@@ -57,6 +45,6 @@ html, body {
   padding: 0;
 }
 
-.dots_custom li.slick-active button {
+.dots-custom li.slick-active button {
   background: #FF833E;
 }

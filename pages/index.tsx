@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import CarouselContainer from '../src/containers/CarouselContainer';
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Page.module.css'
 import CommunityPlanContainer from '../src/containers/CommunityPlanContainer';
 import SystemPlanContainer from '../src/containers/SystemPlanContainer';
 import RankedPlanContainer from '../src/containers/RankedPlanContainer';

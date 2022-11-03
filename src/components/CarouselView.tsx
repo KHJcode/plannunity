@@ -68,7 +68,7 @@ export default function CarouselView() {
         </ul>
       )
     },
-    dotsClass: 'dots_custom',
+    dotsClass: 'dots-custom',
   };
   return (
     <Container> 
