@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
-const Container = styled.span`
+const Container = styled.div`
   font-size: 20px;
   margin-bottom: 20px;
   margin-left: 5px;
-  padding-left: 20px;
 `
 
 type SecTitleType = {

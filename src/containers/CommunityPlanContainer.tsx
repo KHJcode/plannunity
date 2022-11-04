@@ -8,10 +8,16 @@ const Container = styled.div`
   flex-direction: column;
 `
 
+const TitleWrapper = styled.div`
+  padding-left: 20px;
+`
+
 export default function CommunityPlanContainer() {
   return (
     <Container>
-      <SecTitle text="커뮤니티 추천 플랜" />
+      <TitleWrapper>
+        <SecTitle text="커뮤니티 추천 플랜" />
+      </TitleWrapper>
       <ParallelContentList />
     </Container>
   );

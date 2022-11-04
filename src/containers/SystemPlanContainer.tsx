@@ -8,10 +8,17 @@ const Container = styled.div`
   flex-direction: column;
 `
 
+const TitleWrapper = styled.div`
+  padding-left: 20px;
+`
+
+
 export default function SystemPlanContainer() {
   return (
     <Container>
-      <SecTitle text="회원님께 추천드리는 플랜" />
+      <TitleWrapper>
+        <SecTitle text="회원님께 추천드리는 플랜" />
+      </TitleWrapper>
       <ParallelContentList />
     </Container>
   );
