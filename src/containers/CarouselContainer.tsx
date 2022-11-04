@@ -3,7 +3,7 @@ import CarouselView from "../components/CarouselView";
 
 const Container = styled.div`
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
 `
