@@ -5,7 +5,6 @@ const Container = styled.div`
   width: 100%; 
   border-radius: 15px;
   background: linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), url(https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png);
-  flex-shrink: 0;
   position: relative;
   background-size: 200px 165px;
   padding: 15px 10px;
@@ -14,7 +13,6 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: flex-end;
   position: absolute;
-
 `
 
 const SubText = styled.div`

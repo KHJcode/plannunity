@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ParallelContentList from "../components/ParallelContentList";
 import RankingList from "../components/RankingList";
 import SecTitle from "../components/SecTitle";
 
