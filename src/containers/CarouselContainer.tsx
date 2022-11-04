@@ -14,7 +14,7 @@ const Text = styled.div`
   font-size: 20px;
   margin-bottom: 20px;
   line-height: 30px;
-  padding: 0 20px;
+  padding-left: 20px;
 `
 
 const BoldText = styled.span`

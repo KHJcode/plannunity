@@ -11,8 +11,13 @@ const Container = styled.div`
 
 const ItemWrapper = styled.div`
   width: 200px !important;
-  height: 165px;
+  height: 165px !important;
   position: relative;
+  margin-left: 20px;
+
+  & + & {
+    margin-left: 10px;
+  }
 `
 
 export default function ParallelContentList() {
@@ -21,10 +26,9 @@ export default function ParallelContentList() {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: '-30px',
     initialSlide: 1,
     swipeToSlide: true,
+    variableWidth: true,
   };
   return (
     <Container>
@@ -38,6 +42,12 @@ export default function ParallelContentList() {
         <ItemWrapper>
           <ParallelContentItem />
         </ItemWrapper>
+         <ItemWrapper>
+          <ParallelContentItem />
+        </ItemWrapper>
+        {/* <div style={{ width: 100 }}>1</div>
+        <div style={{ width: 100 }}>2</div>
+        <div style={{ width: 100 }}>3</div> */}
       </Slider>
     </Container>
   );

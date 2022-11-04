@@ -14,8 +14,7 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: flex-end;
   position: absolute;
-  left: -100px;
-  top: 0;
+
 `
 
 const SubText = styled.div`

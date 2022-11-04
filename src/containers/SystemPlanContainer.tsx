@@ -3,7 +3,7 @@ import ParallelContentList from "../components/ParallelContentList";
 import SecTitle from "../components/SecTitle";
 
 const Container = styled.div`
-  padding: 20px 0 20px 20px;
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
 `

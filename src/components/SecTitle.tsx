@@ -4,6 +4,7 @@ const Container = styled.span`
   font-size: 20px;
   margin-bottom: 20px;
   margin-left: 5px;
+  padding-left: 20px;
 `
 
 type SecTitleType = {
