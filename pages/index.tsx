@@ -1,11 +1,10 @@
 import Head from 'next/head'
-import CarouselContainer from '../src/Container/CarouselContainer';
-import Header from '../src/components/Header'
-import styles from '../styles/Home.module.css'
-import CommunityPlanContainer from '../src/Container/CommunityPlanContainer';
-import SystemPlanContainer from '../src/Container/SystemPlanContainer';
-import RankedPlanContainer from '../src/Container/RankedPlanContainer';
-import PartyListContainer from '../src/Container/PartyListContainer';
+import CarouselContainer from '../src/containers/CarouselContainer';
+import styles from '../styles/Page.module.css'
+import CommunityPlanContainer from '../src/containers/CommunityPlanContainer';
+import SystemPlanContainer from '../src/containers/SystemPlanContainer';
+import RankedPlanContainer from '../src/containers/RankedPlanContainer';
+import PartyListContainer from '../src/containers/PartyListContainer';
 
 export default function Home() {
   return (
@@ -14,7 +13,6 @@ export default function Home() {
         <title>플래뮤니티 | 홈</title>
       </Head>
       <div className={styles.container}>
-        <Header />
         <CarouselContainer />
         <CommunityPlanContainer />
         <SystemPlanContainer />

@@ -6,11 +6,11 @@ const Container = styled.div`
   margin-left: 5px;
 `
 
-type SecTitleProps = {
+type SecTitleType = {
   text: string;
 }
 
-export default function SecTitle({ text }: SecTitleProps) {
+export default function SecTitle({ text }: SecTitleType) {
   return (
     <Container>{text}</Container>
   );

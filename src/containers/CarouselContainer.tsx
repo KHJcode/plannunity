@@ -3,7 +3,9 @@ import CarouselView from "../components/CarouselView";
 
 const Container = styled.div`
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
 `
 
 const Text = styled.div`
@@ -12,7 +14,7 @@ const Text = styled.div`
   font-size: 20px;
   margin-bottom: 20px;
   line-height: 30px;
-  padding: 0 20px;
+  padding-left: 20px;
 `
 
 const BoldText = styled.span`

@@ -4,3 +4,47 @@
   box-sizing: border-box;
   font-family: 'SUIT-600';
 }
+
+html, body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* dot-custom */
+
+.dots-custom {
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.dots-custom li {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 12px 6px;
+  padding: 0;
+}
+
+.dots-custom li button {
+  border: none;
+  background: #E8E8E8;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.dots-custom li.slick-active button {
+  background: #FF833E;
+}
