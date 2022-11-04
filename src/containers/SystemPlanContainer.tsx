@@ -8,7 +8,7 @@ const Container = styled.div`
   flex-direction: column;
 `
 
-const TitleWrapper = styled.div`
+const TitleWrapper = styled.span`
   padding-left: 20px;
 `
 
