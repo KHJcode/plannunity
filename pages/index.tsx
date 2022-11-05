@@ -16,7 +16,7 @@ export default function Home() {
         <PlanListWithConditionContainer title='커뮤니티 추천 플랜' />
         <PlanListWithConditionContainer title='회원님께 추천드리는 플랜' />
         <RankedPlanContainer />
-        <PartyListContainer />
+        <PartyListContainer title='지금 파티 참가하기' />
       </div>
     </>
   );

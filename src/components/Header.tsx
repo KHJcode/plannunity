@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../modules";
 import PageTitle from "./PageTitle";
 import Dot from "../../public/images/dot.svg";
+import { useRouter } from "next/router";
 
 type HeaderType = {
   isClicked: IsClicked;
@@ -43,6 +44,7 @@ const DotWrapper = styled.span`
 
 export default function Header({ isClicked, setIsClicked }: HeaderType) {
   const { home, plan, party, profile } = useSelector((state: RootState) => state.currentPage);
+  const router = useRouter();
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
     document.body.style.overflowY = "hidden";
     setIsClicked({
@@ -60,6 +62,7 @@ export default function Header({ isClicked, setIsClicked }: HeaderType) {
         {profile && <TitleWrapper><PageTitle text="프로필" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
       </LogoWrapper>
       <IconWrapper>
+        {(router.pathname === "/plan" || router.pathname === "/party") ? <img src="images/edit-3.svg" onClick={onClick} id="edit" /> : <></>}
         <img src="images/shopping-bag.svg" onClick={onClick} id="bag" />
         <img src="images/bell.svg" onClick={onClick} id="bell" />
       </IconWrapper>

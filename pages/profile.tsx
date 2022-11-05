@@ -1,4 +1,5 @@
 import Head from "next/head";
+import ProfileInfoContainer from "../src/containers/ProfileContainer";
 
 export default function Porfile() {
   return (
@@ -6,6 +7,7 @@ export default function Porfile() {
       <Head>
         <title>플래뮤니티 | 프로필</title>
       </Head>
+      <ProfileInfoContainer />
     </>
   );
 }

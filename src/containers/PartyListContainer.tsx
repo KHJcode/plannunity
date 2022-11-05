@@ -1,6 +1,11 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import PartyList from "../components/PartyList";
 import SecTitle from "../components/SecTitle";
+
+type PartyListContainerType = {
+  title: string;
+}
 
 const Conatiner = styled.div`
   padding: 20px;
@@ -15,14 +20,16 @@ const Button = styled.button`
   color: #FFFFFF;
   border: none;
   border-radius: 10px;
+  margin-top: 10px;
 `
 
-export default function PartyListContainer() {
+export default function PartyListContainer({ title }: PartyListContainerType) {
+  const router = useRouter();
   return (
     <Conatiner>
-      <SecTitle text="지금 파티 참가하기" />
+      <SecTitle text={title} />
       <PartyList />
-      <Button>더 많은 파티 리스트 보기</Button>
+      {router.pathname === "/" && <Button>더 많은 파티 리스트 보기</Button>}
     </Conatiner>
   );
 }
