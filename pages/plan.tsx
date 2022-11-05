@@ -1,4 +1,6 @@
 import Head from "next/head";
+import HighParticipationPlanContainer from "../src/containers/HighParticipationPlanContainer";
+import PopularPlanContainer from "../src/containers/PopularPlanContainer";
 import RecentPlanContainer from "../src/containers/RecentPlanContainer";
 import SearchBarContainer from "../src/containers/SearchBarContainer";
 import SearchWithCategoryContainer from "../src/containers/SearchWithCategoryContainer";
@@ -13,6 +15,8 @@ export default function Plan() {
       <SearchBarContainer />
       <RecentPlanContainer />
       <SearchWithCategoryContainer />
+      <PopularPlanContainer />
+      <HighParticipationPlanContainer />
     </div>
   );
 }

@@ -19,9 +19,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Provider store={store}>
-        {/* <NotificationContainer isClicked={isClicked} setIsClicked={setIsClicked} />
+        <NotificationContainer isClicked={isClicked} setIsClicked={setIsClicked} />
         <Header isClicked={isClicked} setIsClicked={setIsClicked} />
-        <Navigation /> */}
+        <Navigation />
         <Component {...pageProps} />
       </Provider>
     </>
