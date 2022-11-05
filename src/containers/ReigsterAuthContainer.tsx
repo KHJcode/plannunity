@@ -18,7 +18,7 @@ const Container = styled.div<{ visible: boolean }>`
   top: 0;
   background: #FFFFFF;
   opacity: ${props => props.visible ? 1 : 0};
-  transition: ${props => props.visible ? 0 : ".5s"};
+  transition: ${props => props.visible ? 0 : ".3s"};
   z-index: ${props => props.visible ? 999 : 997};
 `
 
