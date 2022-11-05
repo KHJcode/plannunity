@@ -1,6 +1,5 @@
 import Head from "next/head";
-import HighParticipationPlanContainer from "../src/containers/HighParticipationPlanContainer";
-import PopularPlanContainer from "../src/containers/PopularPlanContainer";
+import PlanListWithConditionContainer from "../src/containers/PlanListWithConditionContainer";
 import RecentPlanContainer from "../src/containers/RecentPlanContainer";
 import SearchBarContainer from "../src/containers/SearchBarContainer";
 import SearchWithCategoryContainer from "../src/containers/SearchWithCategoryContainer";
@@ -15,8 +14,8 @@ export default function Plan() {
       <SearchBarContainer />
       <RecentPlanContainer />
       <SearchWithCategoryContainer />
-      <PopularPlanContainer />
-      <HighParticipationPlanContainer />
+      <PlanListWithConditionContainer title='현재 인기 플랜' />
+      <PlanListWithConditionContainer title='참여율이 높은 플랜' />
     </div>
   );
 }

@@ -6,7 +6,6 @@ const Conatiner = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
 `
 
 const Button = styled.button`

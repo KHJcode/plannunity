@@ -1,10 +1,9 @@
 import Head from 'next/head'
 import CarouselContainer from '../src/containers/CarouselContainer';
 import styles from '../styles/Page.module.css'
-import CommunityPlanContainer from '../src/containers/CommunityPlanContainer';
-import SystemPlanContainer from '../src/containers/SystemPlanContainer';
 import RankedPlanContainer from '../src/containers/RankedPlanContainer';
 import PartyListContainer from '../src/containers/PartyListContainer';
+import PlanListWithConditionContainer from '../src/containers/PlanListWithConditionContainer';
 
 export default function Home() {
   return (
@@ -14,8 +13,8 @@ export default function Home() {
       </Head>
       <div className={styles.container}>
         <CarouselContainer />
-        <CommunityPlanContainer />
-        <SystemPlanContainer />
+        <PlanListWithConditionContainer title='커뮤니티 추천 플랜' />
+        <PlanListWithConditionContainer title='회원님께 추천드리는 플랜' />
         <RankedPlanContainer />
         <PartyListContainer />
       </div>
