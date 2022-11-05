@@ -11,6 +11,11 @@ const Container = styled.div`
   padding: 0 20px;
   height: 100vh;
   width: 100%;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  z-index: 998;
+  background: #FFFFFF;
 `
 
 const TopWrapper = styled.div`

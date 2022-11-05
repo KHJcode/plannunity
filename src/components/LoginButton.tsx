@@ -17,11 +17,7 @@ const Container = styled.div`
 `
 
 export default function LoginButton({ text, onClickNextButton }: LoginButtonType) {
-  const onClick = () => {
-    console.log("aaa");
-    onClickNextButton();
-  }
   return (
-    <Container onClick={onClick}>{text}</Container>
+    <Container onClick={onClickNextButton}>{text}</Container>
   );
 }

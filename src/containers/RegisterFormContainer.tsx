@@ -4,18 +4,22 @@ import LoginInput from "../components/LoginInput";
 import LoginSubText from "../components/LoginSubText";
 import Logo from "../../public/images/logo.svg";
 import LoginMainText from "../components/LoginMainText";
+import { useState } from "react";
 
-type RegisterFormContainerType = {
-  onClickNextButton: () => void;
-}
-
-const Container = styled.div`
+const Container = styled.div<{ visible: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 20px;
   height: 100vh;
   width: 100%;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  opacity: ${props => props.visible ? 1 : 0};
+  transition: ${props => props.visible ? 0 : ".5s"};
+  z-index: ${props => props.visible ? 1000 : 997};
+  background: #FFFFFF;
 `
 
 const TopWrapper = styled.div`
@@ -38,9 +42,13 @@ const Box = styled.div`
 
 const InputWrapper = styled.div``;
 
-export default function RegisterFormContainer({ onClickNextButton }: RegisterFormContainerType) {
+export default function RegisterFormContainer() {
+  const [visible, setVisible] = useState(true);
+  const onClick = () => {
+    setVisible(false);
+  }
   return (
-    <Container>
+    <Container visible={visible}>
       <TopWrapper>
         <Logo />
         <LoginMainText text1="회원가입을 위한" text2="정보를 입력해주세요" />
@@ -61,7 +69,7 @@ export default function RegisterFormContainer({ onClickNextButton }: RegisterFor
           <LoginInput placeholder="비밀번호를 확인" />
         </InputWrapper>
       </FormWrapper>
-      <LoginButton text="다음" onClickNextButton={onClickNextButton} />
+      <LoginButton text="다음" onClickNextButton={onClick} />
     </Container>
   );
 }
