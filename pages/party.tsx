@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from '../styles/Page.module.css'
 
-export default function party() {
+export default function Party() {
   return (
     <>
       <Head>

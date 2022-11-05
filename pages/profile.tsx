@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-export default function porfile() {
+export default function Porfile() {
   return (
     <>
       <Head>

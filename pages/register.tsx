@@ -3,7 +3,7 @@ import RegisterFormContainer from "../src/containers/RegisterFormContainer";
 import RegisterSuccessContainer from "../src/containers/RegisterSuccessContainer";
 import RegisterAuthContainer from "../src/containers/ReigsterAuthContainer";
 
-export default function register() {
+export default function Register() {
   const [translateHeight, setTranslateHeight] = useState<number>(-100);
   const container = useRef<HTMLDivElement>(null);
   const onClickNextButton = () => {
