@@ -11,16 +11,19 @@ export const unsetActive = (name: string) => ({
   payload: name,
 });
 
-export type isActiveAction = ReturnType<typeof setActive> | ReturnType<typeof unsetActive>;
+export type isActiveAction = 
+  | ReturnType<typeof setActive> 
+  | ReturnType<typeof unsetActive>;
 
 export type isActiveState = {
   bell: boolean;
   bag: boolean;
-  edit: boolean;
+  planEdit: boolean;
+  partyEdit: boolean;
   partyItem: boolean;
 }
 
-const initialState: isActiveState = { bell: false, bag: false, edit: false, partyItem: false };
+const initialState: isActiveState = { bell: false, bag: false, planEdit: false, partyEdit: false, partyItem: false };
 
 export default function isClicked(
   state: isActiveState = initialState,

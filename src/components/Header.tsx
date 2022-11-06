@@ -43,7 +43,13 @@ export default function Header() {
   const dispatch = useDispatch();
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
     document.body.style.overflowY = "hidden";
-    dispatch(setActive(e.currentTarget.id));
+    if(router.pathname === "/plan" && e.currentTarget.id === "edit") {
+      dispatch(setActive("planEdit"));
+    } else if(router.pathname === "/party" && e.currentTarget.id === "edit") {
+      dispatch(setActive("/partyEdit"));
+    } else {
+      dispatch(setActive(e.currentTarget.id));
+    }
   }
 
   return (

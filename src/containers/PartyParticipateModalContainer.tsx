@@ -29,10 +29,6 @@ export default function PartyParticipateModalContainer() {
   const { partyItem } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(partyItem);
-  }, [])
-
   const onClick = () => {
     dispatch(unsetActive("partyItem"));
   }

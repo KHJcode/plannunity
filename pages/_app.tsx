@@ -8,6 +8,8 @@ import { useState } from "react";
 import { wrapper } from "../src/modules";
 import { Provider } from "react-redux";
 import PartyParticipateModalContainer from '../src/containers/PartyParticipateModalContainer';
+import CreatePlanContainer from "../src/containers/CreatePlanContainer";
+import { useRouter } from "next/router";
 
 export interface IsClicked {
   bag: boolean;
@@ -16,16 +18,18 @@ export interface IsClicked {
 
 export default function App({ Component, pageProps }: AppProps) {
   const [isLogined, setIsLogined] = useState(false);
+  const router = useRouter();
 
   const { store } = wrapper.useWrappedStore(pageProps);
   return (
     <>
       <Provider store={store}>
-        <NotificationContainer />
+      <NotificationContainer />
+        {router.pathname === "/plan" && <CreatePlanContainer />}
         <Header />
         <Navigation />
-        <Component {...pageProps} />
         <PartyParticipateModalContainer />
+        <Component {...pageProps} />
       </Provider>
     </>
   );

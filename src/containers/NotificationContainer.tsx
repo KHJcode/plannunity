@@ -2,21 +2,23 @@ import styled from "styled-components";
 import PageTitle from "../components/PageTitle";
 import Dot from "../../public/images/dot.svg";
 import NotificationList from "../components/NotificationList";
-import { IsClicked } from "../../pages/_app";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules";
 import { unsetActive } from "../modules/isActive";
+import { useEffect } from "react";
 
-const Container = styled.div<{ isClicked: boolean }>`
+const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
-  height: 100%;
+  height: fit-content;
+  min-height: 100vh;
   padding: 40px 20px;
   position: absolute;
   top: 0;
-  left: ${props => props.isClicked ? 0 : "100vw"};
+  left: ${props => props.isActive ? 0 : "100vw"};
+  opacity: ${props => props.isActive ? 1 : 0};
   background: #FFFFFF;
   z-index: 1000;
-  transition: .3s;
+  transition: .5s;
   touch-action: none;
 `
 
@@ -47,12 +49,11 @@ const Number = styled.span`
 export default function NotificationContainer() {
   const { bell } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
-  const onClick = (e: React.MouseEvent<HTMLElement>) => {
+  const onClick = () => {
     dispatch(unsetActive("bell"));
   }
-
   return (
-    <Container isClicked={bell}>
+    <Container isActive={bell}>
       <TopWrapper>
         <TitleWrapper>
           <img src="images/arrow-left.svg" onClick={onClick} />
