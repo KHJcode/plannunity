@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setActive } from "../modules/isActive";
 
 const Container = styled.div<{ width: number }>`
   width: ${props => props.width}px;
@@ -71,11 +73,19 @@ const UserImg = styled.img``;
 
 export default function PartyItem() {
   const [width, setWidth] = useState<number>(0);
+  const dispatch = useDispatch();
+
+  const onClick = () => {
+    console.log("aaa");
+    dispatch(setActive("partyItem"))
+  }
+  
   useEffect(() => {
     setWidth(screen.width - 40);
   }, []);
+
   return (
-    <Container width={width}>
+    <Container width={width} onClick={onClick}>
       <TopWrapper>
         <ProfileImage src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
         <TextWrapper>

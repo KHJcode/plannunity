@@ -1,13 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../modules";
 
-const Container = styled.div`
+const Container = styled.div<{ isActive: boolean }>`
   padding: 20px;
   width: 100%;
   background: #FFFFFF;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  position: absolute;
+  bottom: ${props => props.isActive ? 0 : "-100px"};
+  transition: .5s;
 `
 
 const TopWrapper = styled.div`
@@ -80,8 +81,9 @@ const Button = styled.button`
 `
 
 export default function PartyParticipateModal() {
+  const { partyItem } = useSelector((state: RootState) => state.isActive);
   return (
-    <Container>
+    <Container isActive={partyItem}>
       <TopWrapper>
         <HeadText>김도윤님의 파티</HeadText>
         <Profile src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />

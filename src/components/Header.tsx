@@ -1,16 +1,11 @@
 import styled from "styled-components";
 import Logo from "../../public/images/logo.svg";
-import { IsClicked } from "../../pages/_app";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules";
 import PageTitle from "./PageTitle";
 import Dot from "../../public/images/dot.svg";
 import { useRouter } from "next/router";
-
-type HeaderType = {
-  isClicked: IsClicked;
-  setIsClicked: ($: IsClicked) => void;
-}
+import { setActive } from "../modules/isActive";
 
 const Container = styled.div`
   width: 100%;
@@ -42,15 +37,13 @@ const DotWrapper = styled.span`
   padding-bottom: 3px;
 `
 
-export default function Header({ isClicked, setIsClicked }: HeaderType) {
+export default function Header() {
   const { home, plan, party, profile } = useSelector((state: RootState) => state.currentPage);
   const router = useRouter();
+  const dispatch = useDispatch();
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
     document.body.style.overflowY = "hidden";
-    setIsClicked({
-      ...isClicked,
-      [e.currentTarget.id]: true
-    })
+    dispatch(setActive(e.currentTarget.id));
   }
 
   return (

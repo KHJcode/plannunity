@@ -3,11 +3,9 @@ import PageTitle from "../components/PageTitle";
 import Dot from "../../public/images/dot.svg";
 import NotificationList from "../components/NotificationList";
 import { IsClicked } from "../../pages/_app";
-
-type NotificationContainerType = {
-  isClicked: IsClicked;
-  setIsClicked: ($: IsClicked) => void;
-}
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../modules";
+import { unsetActive } from "../modules/isActive";
 
 const Container = styled.div<{ isClicked: boolean }>`
   width: 100%;
@@ -46,19 +44,18 @@ const Number = styled.span`
   line-height: 24px;
 `
 
-export default function NotificationContainer({ isClicked, setIsClicked }: NotificationContainerType) {
+export default function NotificationContainer() {
+  const { bell } = useSelector((state: RootState) => state.isActive);
+  const dispatch = useDispatch();
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
-    setIsClicked({
-      ...isClicked,
-      [e.currentTarget.id]: false
-    });
+    dispatch(unsetActive("bell"));
   }
 
   return (
-    <Container isClicked={isClicked.bell}>
+    <Container isClicked={bell}>
       <TopWrapper>
         <TitleWrapper>
-          <img src="images/arrow-left.svg" onClick={onClick} id="bell" />
+          <img src="images/arrow-left.svg" onClick={onClick} />
           <PageTitle text="알림" />
           <DotWrapper>
             <Dot />

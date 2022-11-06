@@ -1,10 +1,11 @@
 import { createWrapper, MakeStore } from "next-redux-wrapper";
-import { Middleware } from "next/dist/lib/load-custom-routes";
-import { applyMiddleware, combineReducers, createStore, StoreEnhancer } from "redux";
+import { combineReducers, createStore } from "redux";
 import currentPage from "./currentPage";
+import isActive from "./isActive";
 
 const rootReducer = combineReducers({
-  currentPage
+  currentPage,
+  isActive,
 });
 
 const makeStore: MakeStore<any> = () => {

@@ -24,7 +24,7 @@ const Container = styled.div<{ visible: boolean }>`
   background: #FFFFFF;
   opacity: ${props => props.visible ? 1 : 0};
   transition: opacity .75s, ${props => props.visible ? "transform .75s" : ""};
-  transform: ${props => props.visible ? "translateY(0)" : "translateY(100px)"};
+  transform: ${props => props.visible ? "translateY(0)" : "translateY(50px)"};
 `
 
 const TopWrapper = styled.div`
