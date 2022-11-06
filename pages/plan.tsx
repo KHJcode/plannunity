@@ -5,7 +5,7 @@ import SearchBarContainer from "../src/containers/SearchBarContainer";
 import SearchWithCategoryContainer from "../src/containers/SearchWithCategoryContainer";
 import styles from '../styles/Page.module.css'
 
-export default function Plan() {
+export default function PlanPage() {
   return (
     <div className={styles.container}>
       <Head>

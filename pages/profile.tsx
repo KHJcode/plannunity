@@ -1,7 +1,7 @@
 import Head from "next/head";
 import ProfileInfoContainer from "../src/containers/ProfileContainer";
 
-export default function Porfile() {
+export default function PorfilePage() {
   return (
     <>
       <Head>

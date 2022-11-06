@@ -1,9 +1,8 @@
-import Image from "next/image";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Users from "../../public/images/users_22.svg";
 
-const Container = styled.div`
-  width: 100%;
+const Container = styled.div<{ width: number }>`
+  width: ${props => props.width}px;
   border-radius: 15px;
   background: #F5F5F5;
   padding: 15px;
@@ -71,8 +70,12 @@ const Text = styled.span`
 const UserImg = styled.img``;
 
 export default function PartyItem() {
+  const [width, setWidth] = useState<number>(0);
+  useEffect(() => {
+    setWidth(screen.width - 40);
+  }, []);
   return (
-    <Container>
+    <Container width={width}>
       <TopWrapper>
         <ProfileImage src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
         <TextWrapper>

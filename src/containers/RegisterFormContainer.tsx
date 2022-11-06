@@ -4,7 +4,12 @@ import LoginInput from "../components/LoginInput";
 import LoginSubText from "../components/LoginSubText";
 import Logo from "../../public/images/logo.svg";
 import LoginMainText from "../components/LoginMainText";
-import { useState } from "react";
+import { useEffect } from "react";
+
+type RegisterFormContainerType = {
+  visible: boolean[];
+  setVisible: ($: boolean[]) => void;
+}
 
 const Container = styled.div<{ visible: boolean }>`
   display: flex;
@@ -16,10 +21,16 @@ const Container = styled.div<{ visible: boolean }>`
   position: absolute;
   top: 0;
   height: 100vh;
-  opacity: ${props => props.visible ? 1 : 0};
-  transition: ${props => props.visible ? 0 : ".3s"};
   z-index: ${props => props.visible ? 1000 : 997};
+  opacity: ${props => props.visible ? 1 : 0};
+  transition: opacity .75s, ${props => props.visible ? "transform .75s" : ""};
   background: #FFFFFF;
+  transform: ${props => props.visible ? "translateY(0)" : "translateY(100px)"};
+
+  &:first-child {
+    transition-delay: 1s;
+  }
+}
 `
 
 const TopWrapper = styled.div`
@@ -42,13 +53,16 @@ const Box = styled.div`
 
 const InputWrapper = styled.div``;
 
-export default function RegisterFormContainer() {
-  const [visible, setVisible] = useState(true);
+export default function RegisterFormContainer({ visible, setVisible }: RegisterFormContainerType) {
+  useEffect(() => {
+    setTimeout(() => setVisible([true, false, false]), 100);
+  }, []);
+
   const onClick = () => {
-    setVisible(false);
+    setTimeout(() => setVisible([false, true, false]), 100);
   }
   return (
-    <Container visible={visible}>
+    <Container visible={visible[0]}>
       <TopWrapper>
         <Logo />
         <LoginMainText text1="회원가입을 위한" text2="정보를 입력해주세요" />

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.div`
   font-size: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   margin-left: 5px;
 `
 

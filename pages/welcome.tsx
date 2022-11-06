@@ -1,7 +1,7 @@
 import Head from "next/head";
 import WelcomeContainer from "../src/containers/WelcomeContainer";
 
-export default function Welcome() {
+export default function WelcomePage() {
   return (
     <>
       <Head>

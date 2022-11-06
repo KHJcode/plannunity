@@ -4,7 +4,12 @@ import LoginSubText from "../components/LoginSubText";
 import Logo from "../../public/images/logo.svg";
 import LoginInput from "../components/LoginInput";
 import LoginButton from "../components/LoginButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+type RegisterAuthContainerType = {
+  visible: boolean[];
+  setVisible: ($: boolean[]) => void;
+}
 
 const Container = styled.div<{ visible: boolean }>`
   display: flex;
@@ -17,9 +22,10 @@ const Container = styled.div<{ visible: boolean }>`
   position: absolute;
   top: 0;
   background: #FFFFFF;
-  opacity: ${props => props.visible ? 1 : 0};
-  transition: ${props => props.visible ? 0 : ".3s"};
   z-index: ${props => props.visible ? 999 : 997};
+  opacity: ${props => props.visible ? 1 : 0};
+  transition: opacity .75s, ${props => props.visible ? "transform .75s" : ""};
+  transform: ${props => props.visible ? "translateY(0)" : "translateY(100px)"};
 `
 
 const TopWrapper = styled.div`
@@ -33,13 +39,12 @@ const Box = styled.div`
   height: 20px;
 `
 
-export default function RegisterAuthContainer() {
-  const [visible, setVisible] = useState(true);
+export default function RegisterAuthContainer({ visible, setVisible }: RegisterAuthContainerType) {
   const onClick = () => {
-    setVisible(false);
+    setVisible([false, false, true]);
   }
   return (
-    <Container visible={visible}>
+    <Container visible={visible[1]}>
       <TopWrapper>
         <Logo />
         <LoginMainText text1="입력하신 이메일로" text2="인증 코드를 발송했어요" />

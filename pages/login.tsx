@@ -1,7 +1,7 @@
 import Head from "next/head";
 import LoginFormContainer from "../src/containers/LoginFormContainer";
 
-export default function Login() {
+export default function LoginPage() {
   return (
     <>
       <Head>

@@ -3,8 +3,14 @@ import LoginMainText from "../components/LoginMainText";
 import Logo from "../../public/images/logo.svg";
 import LoginButton from "../components/LoginButton";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-const Container = styled.div`
+type RegisterSuccessContainerType = {
+  visible: boolean[];
+  setVisible: ($: boolean[]) => void;
+}
+
+const Container = styled.div<{ visible: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,6 +22,9 @@ const Container = styled.div`
   height: 100vh;
   z-index: 998;
   background: #FFFFFF;
+  opacity: ${props => props.visible ? 1 : 0};
+  transition: opacity .75s, ${props => props.visible ? "transform .75s" : ""};
+  transform: ${props => props.visible ? "translateY(0)" : "translateY(100px)"};
 `
 
 const TopWrapper = styled.div`
@@ -25,14 +34,15 @@ const TopWrapper = styled.div`
   margin-bottom: 40px;
 `
 
-export default function RegisterSuccessContainer() {
+export default function RegisterSuccessContainer({ visible, setVisible }: RegisterSuccessContainerType) {
   const router = useRouter();
   const onClick = () => {
+    setVisible([false, false, false]);
     router.push("/");
   }
 
   return (
-    <Container>
+    <Container visible={visible[2]}>
       <TopWrapper>
         <Logo />
         <LoginMainText text1="가입 완료! 이제" text2="플랜 생활을 시작해보세요!" />

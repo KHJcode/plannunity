@@ -19,7 +19,7 @@ const Container = styled.div<{ isClicked: boolean }>`
   background: #FFFFFF;
   z-index: 1000;
   transition: .3s;
-  overflow-y: hidden;
+  touch-action: none;
 `
 
 const TopWrapper = styled.div`
