@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 type LoginButtonType = {
   text: string;
-  onClickNextButton: () => void;
+  onClick: () => void;
 }
 
 const Container = styled.div`
@@ -16,8 +16,8 @@ const Container = styled.div`
   padding: 16px;
 `
 
-export default function LoginButton({ text, onClickNextButton }: LoginButtonType) {
+export default function LoginButton({ text, onClick }: LoginButtonType) {
   return (
-    <Container onClick={onClickNextButton}>{text}</Container>
+    <Container onClick={onClick}>{text}</Container>
   );
 }

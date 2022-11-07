@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 type LoginInputType = {
   placeholder: string;
+  text: string;
+  setText: ($: string) => void;
+  inputType: string;
 }
 
 const Container = styled.input`
@@ -19,8 +22,13 @@ const Container = styled.input`
   }
 `
 
-export default function LoginInput({ placeholder }: LoginInputType) {
+export default function LoginInput({ placeholder, text, setText, inputType }: LoginInputType) {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    setText(e.target.value);
+  }
+
   return (
-    <Container placeholder={placeholder} />
+    <Container placeholder={placeholder} type={inputType} onChange={onChange} value={text} />
   );  
 }

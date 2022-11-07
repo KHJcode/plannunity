@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
+import {getUser, logout} from "../firebase/firebase"
 
 const Container = styled.div`
   padding: 10px 20px 0 20px;
@@ -95,6 +97,11 @@ const RedText = styled.div`
 `
 
 export default function ProfileInfoContainer() {
+  const router = useRouter();
+  const onClickLogoutButton = () => {
+    logout();
+    router.push("/welcome");
+  }
   return (
     <Container>
       <ProfileInfoWrapper>
@@ -122,7 +129,7 @@ export default function ProfileInfoContainer() {
         <OptionItem>내가 만든 플랜 리스트 보기</OptionItem>
         <OptionItem>참가한 파티 리스트 보기</OptionItem>
         <OptionItem>계정 정보 설정 및 변경</OptionItem>
-        <OptionItem><RedText>로그아웃하기</RedText></OptionItem>
+        <OptionItem onClick={onClickLogoutButton}><RedText>로그아웃하기</RedText></OptionItem>
       </OptionWrapper>
     </Container>
   );

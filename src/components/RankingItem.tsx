@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const Conatiner = styled.div`
@@ -42,8 +43,14 @@ const Desc = styled.div`
 `
 
 export default function RankingItem() {
+  const planURL = `plan/${3}`;
+  const router = useRouter();
+  const onClick = () => {
+    router.push(planURL);
+  }
+
   return (
-    <Conatiner>
+    <Conatiner onClick={onClick}>
       <Ranking>1</Ranking>
       <Image src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
       <TextWrapper>

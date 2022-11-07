@@ -10,7 +10,7 @@ const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
   height: fit-content;
   padding: 40px 20px 20px 20px;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: ${props => props.isActive ? 0 : "100vw"};
   opacity: ${props => props.isActive ? 1 : 0};

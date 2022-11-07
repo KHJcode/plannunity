@@ -3,7 +3,6 @@ import LoginMainText from "../components/LoginMainText";
 import Logo from "../../public/images/logo.svg";
 import LoginButton from "../components/LoginButton";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 
 type RegisterSuccessContainerType = {
   visible: boolean[];
@@ -47,7 +46,7 @@ export default function RegisterSuccessContainer({ visible, setVisible }: Regist
         <Logo />
         <LoginMainText text1="가입 완료! 이제" text2="플랜 생활을 시작해보세요!" />
       </TopWrapper>
-      <LoginButton text="시작하기" onClickNextButton={onClick} />
+      <LoginButton text="시작하기" onClick={onClick} />
     </Container>
   );
 }

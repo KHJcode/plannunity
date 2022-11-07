@@ -40,7 +40,7 @@ export default function WelcomeContainer() {
         <LoginMainText text1="당신의 여행을" text2="플래뮤니티로 채우세요" />
         <Text>지금 시작해보세요!</Text>
       </TopWrapper>
-      <LoginButton text="지금 시작하기" onClickNextButton={onClick} />
+      <LoginButton text="지금 시작하기" onClick={onClick} />
     </Container>
   );
 }

@@ -4,7 +4,8 @@ import LoginInput from "../components/LoginInput";
 import LoginSubText from "../components/LoginSubText";
 import Logo from "../../public/images/logo.svg";
 import LoginMainText from "../components/LoginMainText";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createUser } from "../firebase/firebase";
 
 type RegisterFormContainerType = {
   visible: boolean[];
@@ -47,6 +48,14 @@ const FormWrapper = styled.div`
   margin-bottom: 20px;
 `
 
+const ErrorMessage = styled.div<{ isActive: string }>`
+  font-size: 15px;
+  line-height: 20px;
+  color: #ff2525;
+  margin-bottom: 20px;
+  display: ${props => props.isActive === "" ? "none" : "auto"};
+`;
+
 const Box = styled.div`
   height: 10px;
 `
@@ -58,9 +67,34 @@ export default function RegisterFormContainer({ visible, setVisible }: RegisterF
     setTimeout(() => setVisible([true, false, false]), 100);
   }, []);
 
-  const onClick = () => {
-    setTimeout(() => setVisible([false, true, false]), 100);
+  const onClick = async () => {
+    if(password !== confirmPassword) {
+      setErrMsg("비밀번호를 다시 확인해주세요");
+    } else {
+        const e = await createUser(email, password, nickName);
+        if(e.code) {
+          switch (e.code) {
+            case "auth/user-not-found":
+              setErrMsg("계정을 찾을 수 없습니다");
+              break;
+            case "auth/wrong-password":
+              setErrMsg("비밀번호를 다시 확인해주세요");
+              break;
+            default:
+              setErrMsg("잘못된 요청입니다");
+          };
+        } else {
+          setTimeout(() => setVisible([false, false, true]), 100);
+        }
+    }
   }
+
+  const [email, setEmail] = useState("");
+  const [nickName, setNickName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+
   return (
     <Container visible={visible[0]}>
       <TopWrapper>
@@ -70,20 +104,21 @@ export default function RegisterFormContainer({ visible, setVisible }: RegisterF
       <FormWrapper>
         <InputWrapper>
           <LoginSubText text="이메일을 입력해주세요" />
-          <LoginInput placeholder="이메일 주소 입력" />
+          <LoginInput placeholder="이메일 주소 입력" text={email} setText={setEmail} inputType="text" />
         </InputWrapper>
         <InputWrapper>
           <LoginSubText text="닉네임을 입력해주세요" />
-          <LoginInput placeholder="닉네임을 입력해주세요(10자 이내)" />
+          <LoginInput placeholder="닉네임을 입력해주세요(10자 이내)" text={nickName} setText={setNickName} inputType="text" />
         </InputWrapper>
         <InputWrapper>
           <LoginSubText text="비밀번호를 입력해주세요" />
-          <LoginInput placeholder="비밀번호를 입력해주세요(8자 이상)" />
+          <LoginInput placeholder="비밀번호를 입력해주세요(8자 이상)" text={password} setText={setPassword} inputType="password" />
           <Box />
-          <LoginInput placeholder="비밀번호를 확인" />
+          <LoginInput placeholder="비밀번호 확인" text={confirmPassword} setText={setConfirmPassword} inputType="password" />
         </InputWrapper>
       </FormWrapper>
-      <LoginButton text="다음" onClickNextButton={onClick} />
+      <ErrorMessage isActive={errMsg}>{errMsg}</ErrorMessage>
+      <LoginButton text="회원가입" onClick={onClick} />
     </Container>
   );
 }

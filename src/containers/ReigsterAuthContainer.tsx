@@ -40,9 +40,11 @@ const Box = styled.div`
 `
 
 export default function RegisterAuthContainer({ visible, setVisible }: RegisterAuthContainerType) {
+  const [authCode, setAuthCode] = useState("");
   const onClick = () => {
     setVisible([false, false, true]);
   }
+
   return (
     <Container visible={visible[1]}>
       <TopWrapper>
@@ -50,9 +52,9 @@ export default function RegisterAuthContainer({ visible, setVisible }: RegisterA
         <LoginMainText text1="입력하신 이메일로" text2="인증 코드를 발송했어요" />
       </TopWrapper>
       <LoginSubText text="받으신 인증 코드를 입력해주세요" />
-      <LoginInput placeholder="인증 코드 입력" />
+      <LoginInput placeholder="인증 코드 입력" text={authCode} setText={setAuthCode} inputType="text" />
       <Box />
-      <LoginButton text="다음" onClickNextButton={onClick} />
+      <LoginButton text="다음" onClick={onClick} />
     </Container>
   );
 }
