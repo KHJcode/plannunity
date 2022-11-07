@@ -1,3 +1,4 @@
+import Head from "next/head";
 import styled from "styled-components";
 import PlanDetailContainer from "../../src/containers/PlanDetailContainer";
 
@@ -7,8 +8,13 @@ const Container = styled.div`
 
 export default function Plan() {
   return (
-    <Container>
-      <PlanDetailContainer />
-    </Container>
+    <>
+      <Head>
+        <title>플랜 | [플랜 타이틀]</title>
+      </Head>
+      <Container>
+        <PlanDetailContainer />
+      </Container>
+    </>
   );
 }

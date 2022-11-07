@@ -48,3 +48,38 @@ html, body {
 .dots-custom-1 li.slick-active button {
   background: #FF833E;
 }
+
+.dots-custom-2 {
+  width: 100%;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 10px;
+}
+
+.dots-custom-2 li {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 12px 8px;
+  padding: 0;
+}
+
+.dots-custom-2 li button {
+  border: none;
+  background: rgba(255, 255, 255, 0.49);;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.dots-custom-2 li.slick-active button {
+  background: #FFFFFF;
+}

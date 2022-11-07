@@ -20,6 +20,7 @@ const BackButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 `
 
 const PlanDetailWrapper = styled.div`
