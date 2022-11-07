@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import ButtonTemplate from "../components/ButtonTemplate";
 import PartyList from "../components/PartyList";
 import SecTitle from "../components/SecTitle";
 
