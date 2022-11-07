@@ -149,7 +149,7 @@ export default function CreatePlanContainer() {
         </OptionWrapper>
         <OptionWrapper>
           <OptionName>지역</OptionName>
-          <OptionSelectBox>서울특별시 강남구, 역삼동</OptionSelectBox>
+          <OptionSelectBox>서울특별시 강남구 역삼동</OptionSelectBox>
         </OptionWrapper>
       </OptionsWrapper>
       <PlanDesc placeholder="플랜을 소개할 내용을&#13;&#10;간단히 적어주세요 (1000자 이내)" />

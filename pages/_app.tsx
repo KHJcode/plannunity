@@ -19,16 +19,21 @@ export interface IsClicked {
 export default function App({ Component, pageProps }: AppProps) {
   const [isLogined, setIsLogined] = useState(false);
   const router = useRouter();
+  const route = router.pathname;
 
   const { store } = wrapper.useWrappedStore(pageProps);
   return (
     <>
       <Provider store={store}>
-      <NotificationContainer />
-        {router.pathname === "/plan" && <CreatePlanContainer />}
-        <Header />
-        <Navigation />
-        <PartyParticipateModalContainer />
+        {route === "/plan" && <CreatePlanContainer />}
+        {(route === "/" || route === "/plan" || route === "/party" || route === "/profile") && (
+          <>
+            <NotificationContainer />
+            <Header />
+            <Navigation />
+          </>
+        )}
+        {(route === "/" || route === "/party") && <PartyParticipateModalContainer />}
         <Component {...pageProps} />
       </Provider>
     </>

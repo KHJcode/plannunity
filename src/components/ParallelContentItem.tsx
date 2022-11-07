@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -36,10 +39,16 @@ const MainText = styled.div`
 `
 
 export default function ParallelContentItem() {
+  const planURL = `plan/${3}`;
+  const router = useRouter();
+  const onClick = () => {
+    router.push(planURL);
+  }
+  
   return (
-    <Container>
-      <SubText>강력 추천 플랜</SubText>
-      <MainText>부산 당일치기 플랜</MainText>
-    </Container>
+      <Container onClick={onClick}>
+        <SubText>강력 추천 플랜</SubText>
+        <MainText>부산 당일치기 플랜</MainText>
+      </Container>
   );
 }

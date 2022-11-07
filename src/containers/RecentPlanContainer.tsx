@@ -1,3 +1,4 @@
+import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import PlanThumbnail from "../components/PlanThumbnail"
@@ -27,13 +28,18 @@ const Button = styled.button<{ btnColor: string }>`
 
 export default function RecentPlanContainer() {
   const dispatch = useDispatch();
+  const planURL = `plan/${3}`;
+  const router = useRouter();
+  const onClick = () => {
+    router.push(planURL);
+  }
 
   const onClickCreateButton = () => {
     dispatch(setActive("planEdit"));
   }
 
   return (
-    <Container>
+    <Container onClick={onClick}>
       <SecTitle text="회원님께서 제작하신 플랜" />
       <PlanThumbnail />
       <ButtonWrapper>

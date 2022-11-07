@@ -12,7 +12,7 @@ export default function RegisterPage() {
       <Head>
         <title>플래뮤니티 | 회원가입</title>
       </Head>
-      <div style={{ "height": "100vh" }}>
+      <div style={{ "height": "100vh", "touchAction": "none" }}>
         <RegisterSuccessContainer visible={visible} setVisible={setVisible} />
         <RegisterAuthContainer visible={visible} setVisible={setVisible} />
         <RegisterFormContainer visible={visible} setVisible={setVisible} />

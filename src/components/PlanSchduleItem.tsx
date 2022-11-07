@@ -25,7 +25,7 @@ const Desc = styled.div`
 export default function PlanSchduleItem() {
   return (
     <Container>
-      <img src="images/circle.svg" style={{ "minWidth": "50px" }} />
+      <img src="/images/circle.svg" style={{ "minWidth": "50px" }} />
       <TextWrapper>
           <Title>관악산역 하차</Title>
           <Desc>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Desc>
