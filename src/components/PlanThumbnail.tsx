@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const Conatiner = styled.div`
@@ -37,8 +38,14 @@ const MainText = styled.div`
 `
 
 export default function PlanThumbnail() {
+  const planURL = `plan/${3}`;
+  const router = useRouter();
+  const onClick = () => {
+    router.push(planURL);
+  }
+
   return (
-    <Conatiner>
+    <Conatiner onClick={onClick}>
       <LeftWrapper>
         <SubText>최근 회원님께서 작성하셨어요</SubText>
         <MainText>강남 간단 여행 플랜</MainText>

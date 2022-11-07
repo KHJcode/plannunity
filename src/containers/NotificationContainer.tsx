@@ -5,14 +5,12 @@ import NotificationList from "../components/NotificationList";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../modules";
 import { unsetActive } from "../modules/isActive";
-import { useEffect } from "react";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
   height: fit-content;
   min-height: 100vh;
   padding: 40px 20px;
-  position: absolute;
   top: 0;
   left: ${props => props.isActive ? 0 : "100vw"};
   opacity: ${props => props.isActive ? 1 : 0};
@@ -20,6 +18,7 @@ const Container = styled.div<{ isActive: boolean }>`
   z-index: 1000;
   transition: .5s;
   touch-action: none;
+  position: fixed;
 `
 
 const TopWrapper = styled.div`

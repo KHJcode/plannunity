@@ -2,6 +2,8 @@ import styled from "styled-components";
 
 const Container = styled.div`
   padding: 10px 20px 0 20px;
+  height: 100vh;
+  touch-action: none;
 `
 
 const ProfileInfoWrapper = styled.div`

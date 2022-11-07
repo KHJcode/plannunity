@@ -28,18 +28,13 @@ const Button = styled.button<{ btnColor: string }>`
 
 export default function RecentPlanContainer() {
   const dispatch = useDispatch();
-  const planURL = `plan/${3}`;
-  const router = useRouter();
-  const onClick = () => {
-    router.push(planURL);
-  }
 
   const onClickCreateButton = () => {
     dispatch(setActive("planEdit"));
   }
 
   return (
-    <Container onClick={onClick}>
+    <Container>
       <SecTitle text="회원님께서 제작하신 플랜" />
       <PlanThumbnail />
       <ButtonWrapper>

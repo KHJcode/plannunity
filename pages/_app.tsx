@@ -28,9 +28,9 @@ export default function App({ Component, pageProps }: AppProps) {
         {route === "/plan" && <CreatePlanContainer />}
         {(route === "/" || route === "/plan" || route === "/party" || route === "/profile") && (
           <>
-            <NotificationContainer />
             <Header />
             <Navigation />
+            <NotificationContainer />
           </>
         )}
         {(route === "/" || route === "/party") && <PartyParticipateModalContainer />}
