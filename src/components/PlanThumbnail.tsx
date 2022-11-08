@@ -1,6 +1,10 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 
+type PlanThumbnailType = {
+  isShared: boolean;
+}
+
 const Conatiner = styled.div`
   width: 100%;
   height: 185px;
@@ -37,7 +41,7 @@ const MainText = styled.div`
   line-height: 25px;
 `
 
-export default function PlanThumbnail() {
+export default function PlanThumbnail({ isShared }: PlanThumbnailType) {
   const planURL = `plan/${3}`;
   const router = useRouter();
   const onClick = () => {
@@ -47,13 +51,17 @@ export default function PlanThumbnail() {
   return (
     <Conatiner onClick={onClick}>
       <LeftWrapper>
-        <SubText>최근 회원님께서 작성하셨어요</SubText>
+        <SubText>최근 회원님께서 {isShared ? "공유" : "작성"}하셨어요</SubText>
         <MainText>강남 간단 여행 플랜</MainText>
       </LeftWrapper>
-      <RightWrapper>
-        <SubText>123 저장</SubText>
-        <SubText>32 추천</SubText>
-      </RightWrapper>
+      {isShared && 
+      <>
+        <RightWrapper>
+          <SubText>123 저장</SubText>
+          <SubText>32 추천</SubText>
+        </RightWrapper>
+      </>
+      }
     </Conatiner>
   );
 }

@@ -1,8 +1,10 @@
 import { useRouter } from "next/router"
-import { useDispatch } from "react-redux"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
 import PlanThumbnail from "../components/PlanThumbnail"
 import SecTitle from "../components/SecTitle"
+import { RootState } from "../modules"
 import { setActive } from "../modules/isActive"
 
 const Container = styled.div`
@@ -26,20 +28,25 @@ const Button = styled.button<{ btnColor: string }>`
   background: ${props => props.btnColor === "white" ? "#F9F9F9": "#FFDFCD"};
 `
 
-export default function RecentPlanContainer() {
+export default function RecentSharedPlanContainer() {
   const dispatch = useDispatch();
+  const { planShare } = useSelector((state: RootState) => state.isActive);
+
+  useEffect(() => {
+    console.log(planShare);
+  })
 
   const onClickCreateButton = () => {
-    dispatch(setActive("planEdit"));
+    dispatch(setActive("planShare"));
   }
 
   return (
     <Container>
-      <SecTitle text="회원님께서 제작하신 플랜" />
-      <PlanThumbnail />
+      <SecTitle text="회원님께서 공유하신 플랜" />
+      <PlanThumbnail isShared={true} />
       <ButtonWrapper>
-        <Button btnColor="white">모든 리스트 보기</Button>
-        <Button btnColor="orange" onClick={onClickCreateButton}>플랜 만들기</Button>
+        <Button btnColor="white">공유한 플랜 보기</Button>
+        <Button btnColor="orange" onClick={onClickCreateButton}>플랜 공유하기</Button>
       </ButtonWrapper>
     </Container>
   )

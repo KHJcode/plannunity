@@ -34,10 +34,10 @@ export const sign = async (
   } else if (type === "email") {
     try {
       const user = (await signInWithEmailAndPassword(auth, email, password!))
-        .user;
+      console.log(user);
       await setPersistence(auth, browserLocalPersistence);
 
-      return user;
+      return user.user;
     } catch (err: any) {
       return err;
     }

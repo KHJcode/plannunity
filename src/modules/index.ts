@@ -2,10 +2,12 @@ import { createWrapper, MakeStore } from "next-redux-wrapper";
 import { combineReducers, createStore } from "redux";
 import currentPage from "./currentPage";
 import isActive from "./isActive";
+import userInfo from "./userInfo";
 
 const rootReducer = combineReducers({
   currentPage,
   isActive,
+  userInfo,
 });
 
 const makeStore: MakeStore<any> = () => {

@@ -1,5 +1,8 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import CarouselView from "../components/CarouselView";
+import { RootState } from "../modules";
 
 const Container = styled.div`
   width: 100%;
@@ -22,9 +25,14 @@ const BoldText = styled.span`
 `
 
 export default function Carousel() {
+  // const { name } = useSelector((state: RootState) => state.userInfo);
+  const [name, setName] = useState("");
+  useEffect(() => {
+    setName(localStorage.getItem("name")!);
+  });
   return (
     <Container>
-      <Text>환영합니다, <BoldText>나제원 회원님!</BoldText></Text>
+      <Text>환영합니다, <BoldText>{name} 회원님!</BoldText></Text>
       <CarouselView />
     </Container>
   );

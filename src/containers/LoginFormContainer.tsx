@@ -9,8 +9,10 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { sign } from "../firebase/firebase";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../modules/userInfo";
 
-const Container = styled.div`
+const Container = styled.div<{ visible: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,6 +21,9 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   background: #ffffff;
+  opacity: ${props => props.visible ? 1 : 0};
+  transition: opacity .75s, ${props => props.visible ? "transform .75s" : ""};
+  transform: ${props => props.visible ? "translateY(0)" : "translateY(50px)"};
 `;
 
 const TopWrapper = styled.div`
@@ -84,12 +89,21 @@ export default function LoginFormContainer() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setVisible(true), 100);
+  });
+
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const onClickSubmitButton = async () => {
-    const e = await sign("email", email, password);
-    if(e.code) {
-      switch (e.code) {
+    const data = await sign("email", email, password);
+    console.log(data);
+    if(data.code) {
+      console.log(data.code);
+      switch (data.code) {
         case "auth/user-not-found":
           setErrMsg("계정을 찾을 수 없습니다");
           break;
@@ -100,13 +114,16 @@ export default function LoginFormContainer() {
           setErrMsg("잘못된 요청입니다");
       };
     } else {
-
+      localStorage.setItem("name", data.displayName!);
+      localStorage.setItem("email", data.email!);
+      localStorage.setItem("imgURL", (data.imgURL ? data.imgURL! : "https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png"));
+      // dispatch(setLogin(data.displayName!, data.email!, data.photoURL!));
       router.push("/");
     }
   };
 
   return (
-    <Container>
+    <Container visible={visible}>
       <TopWrapper>
         <Logo />
         <LoginMainText

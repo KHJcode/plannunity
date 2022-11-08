@@ -21,9 +21,10 @@ export type isActiveState = {
   planEdit: boolean;
   partyEdit: boolean;
   partyItem: boolean;
+  planShare: boolean;
 }
 
-const initialState: isActiveState = { bell: false, bag: false, planEdit: false, partyEdit: false, partyItem: false };
+const initialState: isActiveState = { bell: false, bag: false, planEdit: false, partyEdit: false, partyItem: false, planShare: false };
 
 export default function isClicked(
   state: isActiveState = initialState,

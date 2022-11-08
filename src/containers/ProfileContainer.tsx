@@ -1,6 +1,10 @@
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import {getUser, logout} from "../firebase/firebase"
+import { logout } from "../firebase/firebase"
+import { RootState } from "../modules";
+import { setCurrentPage } from "../modules/currentPage";
 
 const Container = styled.div`
   padding: 10px 20px 0 20px;
@@ -95,21 +99,42 @@ const OptionItem = styled.div`
 const RedText = styled.div`
   color: #FF2525;
 `
+interface UserInfo {
+  name: string | null
+  email: string | null
+  imgURL: string | null
+}
 
 export default function ProfileInfoContainer() {
   const router = useRouter();
-  const onClickLogoutButton = () => {
-    logout();
-    router.push("/welcome");
+  const dispatch = useDispatch();
+  // const { name, email, imgURL } = useSelector((state: RootState) => state.userInfo);
+  const [{ name, email, imgURL }, setUserInfo] = useState<UserInfo>({ name: "", email: "", imgURL: "" })
+
+  useEffect(() => {
+    console.log(localStorage.getItem("imgURL"));
+    setUserInfo({
+      name: localStorage.getItem("name"),
+      email: localStorage.getItem("email"),
+      imgURL: localStorage.getItem("imgURL"),
+    });
+  }, [])
+
+  const onClickLogoutButton = async () => {
+    await logout();
+    router.replace("/welcome", undefined, { shallow: true });
+    // dispatch(setCurrentPage("home"));
+    localStorage.clear();
   }
+
   return (
     <Container>
       <ProfileInfoWrapper>
         <ProfileInfoLeftWrapper>
-          <ProfileImage src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
+          <ProfileImage src={imgURL!} />
           <ProfileTextWrapper>
-            <Name>나제원</Name>
-            <Email>jewon.rha@gmail.com</Email>
+            <Name>{name}</Name>
+            <Email>{email}</Email>
           </ProfileTextWrapper>
         </ProfileInfoLeftWrapper>
         <img src="images/edit-3.svg" />

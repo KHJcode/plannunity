@@ -6,6 +6,8 @@ import Logo from "../../public/images/logo.svg";
 import LoginMainText from "../components/LoginMainText";
 import { useEffect, useState } from "react";
 import { createUser } from "../firebase/firebase";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../modules/userInfo";
 
 type RegisterFormContainerType = {
   visible: boolean[];
@@ -63,27 +65,37 @@ const Box = styled.div`
 const InputWrapper = styled.div``;
 
 export default function RegisterFormContainer({ visible, setVisible }: RegisterFormContainerType) {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     setTimeout(() => setVisible([true, false, false]), 100);
   }, []);
 
   const onClick = async () => {
     if(password !== confirmPassword) {
-      setErrMsg("비밀번호를 다시 확인해주세요");
+      setErrMsg("비밀번호가 일치하지 않습니다");
     } else {
-        const e = await createUser(email, password, nickName);
-        if(e.code) {
-          switch (e.code) {
-            case "auth/user-not-found":
-              setErrMsg("계정을 찾을 수 없습니다");
+        const data = await createUser(email, password, nickName);
+        if(data.code) {
+          console.log(data.code);
+          switch (data.code) {
+            case "auth/weak-password":
+              setErrMsg("비밀번호가 너무 짧습니다");
               break;
-            case "auth/wrong-password":
-              setErrMsg("비밀번호를 다시 확인해주세요");
+            case "auth/invalid-email":
+              setErrMsg("유효하지 않은 이메일입니다");
+              break;
+            case "auth/email-already-in-use":
+              setErrMsg("이미 사용된 이메일입니다");
               break;
             default:
               setErrMsg("잘못된 요청입니다");
           };
         } else {
+          // dispatch(setLogin(data.displayName!, data.email!, data.photoURL!))
+          localStorage.setItem("name", data.displayName!);
+          localStorage.setItem("email", data.email!);
+          localStorage.setItem("imgURL", (data.imgURL ? data.imgURL! : "https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png"));
           setTimeout(() => setVisible([false, false, true]), 100);
         }
     }

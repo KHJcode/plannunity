@@ -19,7 +19,8 @@ const CategoryItemWrapper = styled.div`
 `
 
 const CategoryItem = styled.div`
-  height: 100%;
+  height: 62px;
+  width: 62px;
   background: #F9F9F9;
   border: 1px solid #EDEDED;
   border-radius: 15px;
@@ -38,7 +39,8 @@ const CategoryList = styled.div`
   width: 100%;
   height: 22.5vw;
   display: flex;
-  gap: 2.5vw;
+  gap: 10px;
+  overflow: scroll;
 `
 
 export default function SearchWithCategoryContainer() {
@@ -47,24 +49,56 @@ export default function SearchWithCategoryContainer() {
       <SecTitle text="카테고리로 찾아보세요" />
       <CategoryList>
         <CategoryItemWrapper>
-          <CategoryItem><Bag /></CategoryItem>
-          <CategoryName>간단 여행</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Plane /></CategoryItem>
-          <CategoryName>해외 여행</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Car /></CategoryItem>
-          <CategoryName>국내 여행</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Backpack /></CategoryItem>
-          <CategoryName>배낭 여행</CategoryName>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>내 주변</CategoryName>
         </CategoryItemWrapper>
         <CategoryItemWrapper>
           <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>기타</CategoryName>
+          <CategoryName>당일치기</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>맛집</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>대중교통만</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>핫플레이스</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>알찬</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>힐링</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>자연</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>축제</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>가성비</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>럭셔리</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>이색적인</CategoryName>
+        </CategoryItemWrapper>
+        <CategoryItemWrapper>
+          <CategoryItem><Etc /></CategoryItem>
+          <CategoryName>익스트림</CategoryName>
         </CategoryItemWrapper>
       </CategoryList>
     </Conatiner>
