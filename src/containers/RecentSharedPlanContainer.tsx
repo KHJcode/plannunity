@@ -30,12 +30,6 @@ const Button = styled.button<{ btnColor: string }>`
 
 export default function RecentSharedPlanContainer() {
   const dispatch = useDispatch();
-  const { planShare } = useSelector((state: RootState) => state.isActive);
-
-  useEffect(() => {
-    console.log(planShare);
-  })
-
   const onClickCreateButton = () => {
     dispatch(setActive("planShare"));
   }

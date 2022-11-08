@@ -1,9 +1,15 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useEffect } from "react";
 import LoginFormContainer from "../src/containers/LoginFormContainer";
 
 export default function LoginPage() {
-
+  const router = useRouter();
+  useEffect(() => {
+    if(localStorage.getItem("name")) {
+      router.replace("/");
+    }
+  }, []);
   return (
     <>
       <Head>

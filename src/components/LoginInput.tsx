@@ -24,7 +24,6 @@ const Container = styled.input`
 
 export default function LoginInput({ placeholder, text, setText, inputType }: LoginInputType) {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
     setText(e.target.value);
   }
 

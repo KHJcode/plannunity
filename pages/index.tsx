@@ -4,8 +4,15 @@ import styles from '../styles/Page.module.css'
 import RankedPlanContainer from '../src/containers/RankedPlanContainer';
 import PartyListContainer from '../src/containers/PartyListContainer';
 import PlanListWithConditionContainer from '../src/containers/PlanListWithConditionContainer';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setCurrentPage } from '../src/modules/currentPage';
 
 export default function HomePage() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setCurrentPage("home"));
+  }, []);
   return (
     <>
       <Head>

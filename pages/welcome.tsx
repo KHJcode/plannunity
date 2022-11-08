@@ -1,7 +1,15 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import WelcomeContainer from "../src/containers/WelcomeContainer";
 
 export default function WelcomePage() {
+  const router = useRouter();
+  useEffect(() => {
+    if(localStorage.getItem("name")) {
+      router.replace("/");
+    }
+  }, []);
   return (
     <>
       <Head>
