@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { createUser } from "../firebase/firebase";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../modules/userInfo";
+import Link from "next/link";
 
 type RegisterFormContainerType = {
   visible: boolean[];
@@ -40,7 +41,7 @@ const TopWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
 `
 
 const FormWrapper = styled.div`
@@ -61,6 +62,24 @@ const ErrorMessage = styled.div<{ isActive: string }>`
 const Box = styled.div`
   height: 10px;
 `
+
+const BottomTextWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 20px;
+`;
+
+const Text = styled.span<{ color: string }>`
+  font-size: 15px;
+  line-height: 19px;
+  color: ${(props) =>
+    props.color === "white"
+      ? "#979797"
+      : props.color === "orange"
+      ? "#FF833E"
+      : "#000000"};
+`;
 
 const InputWrapper = styled.div``;
 
@@ -131,6 +150,18 @@ export default function RegisterFormContainer({ visible, setVisible }: RegisterF
       </FormWrapper>
       <ErrorMessage isActive={errMsg}>{errMsg}</ErrorMessage>
       <LoginButton text="회원가입" onClick={onClick} />
+      <BottomTextWrapper>
+        <Text color="black">계정이 이미 있으신가요?</Text>
+        <Text color="black">
+          <Link
+            href="/login"
+            style={{ textDecoration: "none", color: "#FF833E" }}
+          >
+            로그인
+          </Link>
+          하기
+        </Text>
+      </BottomTextWrapper>
     </Container>
   );
 }

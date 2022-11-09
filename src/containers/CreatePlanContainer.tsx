@@ -132,7 +132,7 @@ export default function CreatePlanContainer() {
             <Dot />
           </DotWrapper>
         </TitleWrapper>
-        <RegisterButton>등록</RegisterButton>
+        <RegisterButton>생성</RegisterButton>
       </TopWrapper>
       <PhotoButton>
         <img src="images/camera.svg" style={{ "padding": "20px" }} />

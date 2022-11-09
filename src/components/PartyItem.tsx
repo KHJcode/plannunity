@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -105,4 +106,3 @@ export default function PartyItem() {
     </Container>
   );
 }
-

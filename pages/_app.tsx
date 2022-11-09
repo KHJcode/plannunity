@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { auth } from "../src/firebase/firebase";
 import { setLogin } from "../src/modules/userInfo";
 import SharePlanContainer from "../src/containers/SharePlanContainer";
+import CreatePartyContainer from "../src/containers/CreatePartyContainer";
 
 export interface IsClicked {
   bag: boolean;
@@ -41,6 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Provider store={store}>
         {route === "/plan" && <><CreatePlanContainer /><SharePlanContainer /></>}
+        {route === "/party" && <><CreatePartyContainer /></>}
         {(route === "/" || route === "/plan" || route === "/party" || route === "/profile") && (
           <>
             <Header />

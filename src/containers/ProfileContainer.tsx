@@ -122,9 +122,8 @@ export default function ProfileInfoContainer() {
 
   const onClickLogoutButton = async () => {
     await logout();
-    router.replace("/welcome", undefined, { shallow: true });
-    // dispatch(setCurrentPage("home"));
     localStorage.clear();
+    // dispatch(setCurrentPage("home"));
   }
 
   return (

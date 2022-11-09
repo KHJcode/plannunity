@@ -46,7 +46,8 @@ export default function Header() {
     if(router.pathname === "/plan" && e.currentTarget.id === "edit") {
       dispatch(setActive("planEdit"));
     } else if(router.pathname === "/party" && e.currentTarget.id === "edit") {
-      dispatch(setActive("/partyEdit"));
+      console.log("aaaa");
+      dispatch(setActive("partyEdit"));
     } else {
       dispatch(setActive(e.currentTarget.id));
     }

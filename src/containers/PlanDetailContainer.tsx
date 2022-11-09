@@ -6,6 +6,7 @@ import PlanDetailFooterBar from "../components/PlanDetailFooterBar";
 import SecTitle from "../components/SecTitle";
 import PlanSchduleList from "../components/PlanSchduleList";
 import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
 
 const Container = styled.div``
 
@@ -120,11 +121,11 @@ export default function PlanDetailContainer() {
         </Desc2Wrapper>
         <PlanInfoBoxWrapper>
           <PlanInfoBox>
-            <InfoTitle>플랜 정보</InfoTitle>
-            <InfoText> 6시간, 지역 핫플레이스,<br />서울특별시 강남구 역삼동</InfoText>
+            <InfoTitle>플랜 소개</InfoTitle>
+            <InfoText> <br />서울특별시 강남구 역삼동</InfoText>
           </PlanInfoBox>
           <PlanInfoBox>
-            <InfoTitle>플랜 정보</InfoTitle>
+            <InfoTitle>카테고리</InfoTitle>
             <InfoText> 6시간, 지역 핫플레이스,<br />서울특별시 강남구 역삼동</InfoText>
           </PlanInfoBox>
         </PlanInfoBoxWrapper>
@@ -137,4 +138,12 @@ export default function PlanDetailContainer() {
       <Box />
     </Container>
   );
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return { 
+    props: {
+
+    }
+  }
 }
