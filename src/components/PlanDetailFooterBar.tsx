@@ -9,6 +9,7 @@ const Container = styled.div`
   bottom: 0;
   box-shadow: 0px -10px 20px rgba(222, 222, 222, 0.25);
   background: #FFFFFF;
+  padding-bottom: 32px;
 `
 
 const Button = styled.button<{ color: string }>`

@@ -11,9 +11,10 @@ import PartyParticipateModalContainer from '../src/containers/PartyParticipateMo
 import CreatePlanContainer from "../src/containers/CreatePlanContainer";
 import { useRouter } from "next/router";
 import { auth } from "../src/firebase/firebase";
-import { setLogin } from "../src/modules/userInfo";
 import SharePlanContainer from "../src/containers/SharePlanContainer";
 import CreatePartyContainer from "../src/containers/CreatePartyContainer";
+import PlanSchduleDeatilContainer from "../src/containers/PlanScheduleDetailContainer";
+import axios from "axios";
 
 export interface IsClicked {
   bag: boolean;
@@ -21,21 +22,32 @@ export interface IsClicked {
 }
 
 export default function App({ Component, pageProps }: AppProps) {
+  const [logined, setLogined] = useState(false);
   const router = useRouter();
   const route = router.pathname;
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if(user) {
+        setLogined(true);
       } else {
         if(route !== "/register" && route !== "/login" && route !== "/welcome") {
           router.push("/welcome");
-        } else {
-
         }
       }
-    })
+    });
   }, []);
+
+  // useEffect(() => {
+  //   console.log(localStorage.getItem("name"));
+  //   if(localStorage.getItem("name")) {
+  //     setLogined(true);
+  //   } else {
+  //     if(route !== "/register" && route !== "/login" && route !== "/welcome") {
+  //       router.push("/welcome");
+  //     }
+  //   }
+  // }, []);
 
   const { store } = wrapper.useWrappedStore(pageProps);
   return (
@@ -43,16 +55,17 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         {route === "/plan" && <><CreatePlanContainer /><SharePlanContainer /></>}
         {route === "/party" && <><CreatePartyContainer /></>}
-        {(route === "/" || route === "/plan" || route === "/party" || route === "/profile") && (
+        {((route === "/" || route === "/plan" || route === "/party" || route === "/profile") && logined) && (
           <>
             <Header />
             <Navigation />
             <NotificationContainer />
+            <PartyParticipateModalContainer />
+            <PlanSchduleDeatilContainer />
           </>
         )}
-        {(route === "/" || route === "/party") && <PartyParticipateModalContainer />}
         <Component {...pageProps} />
       </Provider>
     </>
-  );
+  )
 }

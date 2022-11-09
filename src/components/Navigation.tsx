@@ -21,6 +21,7 @@ const Container = styled.div`
   background: white;
   box-shadow: 0px -10px 20px rgba(222, 222, 222, 0.25);
   backdrop-filter: blur(30px);
+  padding-bottom: 13px;
 `
 
 export default function Navigation() {

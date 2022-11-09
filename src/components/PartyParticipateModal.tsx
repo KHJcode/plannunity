@@ -10,6 +10,7 @@ const Container = styled.div<{ isActive: boolean }>`
   position: absolute;
   bottom: ${(props) => (props.isActive ? 0 : "-100px")};
   transition: 0.5s;
+  padding-bottom: 27px;
 `;
 
 const TopWrapper = styled.div`

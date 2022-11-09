@@ -45,6 +45,50 @@ const RegisterButton = styled.button`
   background: #FFFFFF;
 `
 
+const OptionsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+`
+
+const OptionWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+`
+
+const OptionName = styled.div`
+  font-size: 18px;
+  line-height: 20px;
+`
+
+const OptionSelectBox = styled.div`
+  background: #F9F9F9;
+  border: 1px solid #EDEDED;
+  border-radius: 12px;
+  padding: 15px;
+  color: #454545;
+`
+
+const PlanDesc = styled.textarea`
+  width: 100%;
+  height: 218px;
+  padding: 15px;
+  background: #F9F9F9;
+  border: 1px solid #EDEDED;
+  border-radius: 15px;
+  font-size: 15px;
+  line-height: 25px;
+  margin-bottom: 40px;
+
+  &::placeholder {
+    color: #9A9A9A;
+    font-family: 'SUIT-500';
+  }
+`
+
 export default function SharePlanContainer() {
   const { planShare } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
@@ -61,6 +105,21 @@ export default function SharePlanContainer() {
         </TitleWrapper>
         <RegisterButton>공유</RegisterButton>
       </TopWrapper>
+      <OptionsWrapper>
+        <OptionWrapper>
+          <OptionName>카테고리</OptionName>
+          <OptionSelectBox>지역 핫플레이스</OptionSelectBox>
+        </OptionWrapper>
+        <OptionWrapper>
+          <OptionName>소요 시간</OptionName>
+          <OptionSelectBox>6시간</OptionSelectBox>
+        </OptionWrapper>
+        <OptionWrapper>
+          <OptionName>지역</OptionName>
+          <OptionSelectBox>서울특별시 강남구 역삼동</OptionSelectBox>
+        </OptionWrapper>
+      </OptionsWrapper>
+      <PlanDesc placeholder="플랜을 소개할 내용을&#13;&#10;간단히 적어주세요 (1000자 이내)" />
     </Container>
   );
 }

@@ -1,4 +1,6 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setActive } from "../modules/isActive";
 
 const Container = styled.div`
   display: flex;
@@ -23,8 +25,13 @@ const Desc = styled.div`
 `
 
 export default function PlanSchduleItem() {
+  const dispatch = useDispatch();
+  const onClick = () => {
+    dispatch(setActive("planDetail"));
+  }
+
   return (
-    <Container>
+    <Container onClick={onClick}>
       <img src="/images/circle.svg" style={{ "minWidth": "50px" }} />
       <TextWrapper>
           <Title>관악산역 하차</Title>

@@ -9,7 +9,6 @@ import { setCurrentPage } from "../modules/currentPage";
 const Container = styled.div`
   padding: 10px 20px 0 20px;
   height: 100vh;
-  touch-action: none;
 `
 
 const ProfileInfoWrapper = styled.div`
@@ -121,8 +120,8 @@ export default function ProfileInfoContainer() {
   }, [])
 
   const onClickLogoutButton = async () => {
-    await logout();
     localStorage.clear();
+    await logout();
     // dispatch(setCurrentPage("home"));
   }
 

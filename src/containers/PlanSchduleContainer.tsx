@@ -4,6 +4,7 @@ import SecTitle from "../components/SecTitle";
 
 const Container = styled.div`
   width: 100%;
+  margin-top: 40px;
 `
 
 const ButtonWrapper = styled.div`
@@ -27,7 +28,6 @@ export default function PlanSchduleContainer() {
       <SecTitle text="플랜 일정" />
       <PlanSchduleList />
       <ButtonWrapper>
-        <Button btnColor="white" >일정 수정하기</Button>
         <Button btnColor="orange" >일정 추가하기</Button>
       </ButtonWrapper>
     </Container>
