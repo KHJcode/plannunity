@@ -7,23 +7,32 @@ import NotificationContainer from "../src/containers/NotificationContainer";
 import { useEffect, useState } from "react";
 import { wrapper } from "../src/modules";
 import { Provider, useDispatch } from "react-redux";
-import PartyParticipateModalContainer from '../src/containers/PartyParticipateModalContainer';
+import PartyParticipateModalContainer from "../src/containers/PartyParticipateModalContainer";
 import CreatePlanContainer from "../src/containers/CreatePlanContainer";
 import { useRouter } from "next/router";
 import { auth } from "../src/firebase/firebase";
 import SharePlanContainer from "../src/containers/SharePlanContainer";
 import CreatePartyContainer from "../src/containers/CreatePartyContainer";
-import PlanSchduleDeatilContainer from "../src/containers/PlanScheduleDetailContainer";
 import axios from "axios";
-
+import SchduleAddModalContainer from "../src/containers/SchduleAddModalContainer";
+import SchduleEditSelectionModalContainer from "../src/containers/SchduleEditModalSelectionContainer";
+import SchduleEditModalContainer from "../src/containers/SchduleEditModalSelectionContainer";
+import BudgetAddModalContainer from "../src/containers/BudgetAddModalContainer";
+import BudgetEditModalContainer from "../src/containers/BudgetEditModalContainer";
+import SearchInfoAddModalContainer from "../src/containers/SearchInfoAddModalContainer";
+import SearchInfoEditModalContainer from "../src/containers/SearchInfoEditModalContainer";
 export const getMap = (local: string = "서울시") => {
-  axios.get(`https://dapi.kakao.com/v2/local/search/address?query=${local}`, {
-      headers: { Authorization: `KakaoAK ${"4741cf75cb47cc7e86543bd2a76f9b48"}` },
+  axios
+    .get(`https://dapi.kakao.com/v2/local/search/address?query=${local}`, {
+      headers: {
+        Authorization: `KakaoAK ${"4741cf75cb47cc7e86543bd2a76f9b48"}`,
+      },
     })
     .then((value) => {
       console.log(value);
-    }).catch((err) => console.log(err))
-}
+    })
+    .catch((err) => console.log(err));
+};
 
 export interface IsClicked {
   bag: boolean;
@@ -37,10 +46,14 @@ export default function App({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
-      if(user) {
+      if (user) {
         setLogined(true);
       } else {
-        if(route !== "/register" && route !== "/login" && route !== "/welcome") {
+        if (
+          route !== "/register" &&
+          route !== "/login" &&
+          route !== "/welcome"
+        ) {
           router.push("/welcome");
         }
       }
@@ -66,19 +79,38 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Provider store={store}>
-        {route === "/plan" && <><CreatePlanContainer /><SharePlanContainer /></>}
-        {route === "/party" && <><CreatePartyContainer /></>}
-        {((route === "/" || route === "/plan" || route === "/party" || route === "/profile") && logined) && (
+        {route === "/plan" && (
           <>
-            <Header />
-            <Navigation />
-            <NotificationContainer />
-            <PartyParticipateModalContainer />
-            <PlanSchduleDeatilContainer />
+            <CreatePlanContainer />
+            <SharePlanContainer />
+            <SchduleAddModalContainer />
+            <SchduleEditSelectionModalContainer />
+            <SchduleEditModalContainer />
+            <BudgetAddModalContainer />
+            <BudgetEditModalContainer />
+            <SearchInfoAddModalContainer />
+            <SearchInfoEditModalContainer />
           </>
         )}
+        {route === "/party" && (
+          <>
+            <CreatePartyContainer />
+          </>
+        )}
+        {(route === "/" ||
+          route === "/plan" ||
+          route === "/party" ||
+          route === "/profile") &&
+          logined && (
+            <>
+              <Header />
+              <Navigation />
+              <NotificationContainer />
+              <PartyParticipateModalContainer />
+            </>
+          )}
         <Component {...pageProps} />
       </Provider>
     </>
-  )
+  );
 }

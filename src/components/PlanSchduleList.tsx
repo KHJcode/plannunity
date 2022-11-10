@@ -15,14 +15,11 @@ const Container = styled.div`
 `
 
 export default function PlanSchduleList() {
-  const planSchdules = useSelector((state: RootState) => state.planSchdule);
-  console.log(planSchdules);
-  if(planSchdules.length === 0) { return <></> };
   return (
     <Container>
-      {planSchdules.map(item => (
-          <PlanSchduleItem key={item.id} schdule={item} />
-      ))}
+      <PlanSchduleItem />
+      <PlanSchduleItem />
+      <PlanSchduleItem />
     </Container>
   );
 }

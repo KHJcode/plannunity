@@ -1,13 +1,14 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import EditAndCreateButton from "../components/EditAndCreateButton";
-import PlanSchduleList from "../components/PlanSchduleList";
+import InfoLinkList from "../components/InfoLinkList";
 import SecTitle from "../components/SecTitle";
 import { setActive } from "../modules/isActive";
 
 const Container = styled.div`
   width: 100%;
   margin-top: 40px;
+  margin-bottom: 60px;
 `;
 
 const ButtonWrapper = styled.div`
@@ -16,28 +17,27 @@ const ButtonWrapper = styled.div`
   margin-top: 10px;
 `;
 
-export default function PlanSchduleContainer() {
+export default function PlanSearchInfoContainer() {
   const dispatch = useDispatch();
   const onClickEdit = () => {
-    dispatch(setActive("schduleEdit"));
+    dispatch(setActive("searchInfoEdit"));
   };
 
   const onClickAdd = () => {
-    dispatch(setActive("schduleAdd"));
+    dispatch(setActive("searchInfoAdd"));
   };
-
   return (
     <Container>
-      <SecTitle text="플랜 일정" />
-      <PlanSchduleList />
+      <SecTitle text="플랜 탐색 정보" />
+      <InfoLinkList />
       <ButtonWrapper>
         <EditAndCreateButton
-          text="일정 수정하기"
+          text="정보 수정하기"
           btnColor="white"
           onClick={onClickEdit}
         />
         <EditAndCreateButton
-          text="일정 추가하기"
+          text="정보 추가하기"
           btnColor="orange"
           onClick={onClickAdd}
         />

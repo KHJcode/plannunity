@@ -11,8 +11,8 @@ export const unsetActive = (name: string) => ({
   payload: name,
 });
 
-export type isActiveAction = 
-  | ReturnType<typeof setActive> 
+export type isActiveAction =
+  | ReturnType<typeof setActive>
   | ReturnType<typeof unsetActive>;
 
 export type isActiveState = {
@@ -23,33 +23,45 @@ export type isActiveState = {
   partyItem: boolean;
   planShare: boolean;
   planDetail: boolean;
-}
+  schduleAdd: boolean;
+  schduleEdit: boolean;
+  budgetAdd: boolean;
+  budgetEdit: boolean;
+  searchInfoAdd: boolean;
+  searchInfoEdit: boolean;
+};
 
-const initialState: isActiveState = { 
-  bell: false, 
-  bag: false, 
-  planEdit: false, 
-  partyEdit: false, 
-  partyItem: false, 
+const initialState: isActiveState = {
+  bell: false,
+  bag: false,
+  planEdit: false,
+  partyEdit: false,
+  partyItem: false,
   planShare: false,
   planDetail: false,
+  schduleAdd: false,
+  schduleEdit: false,
+  budgetAdd: false,
+  budgetEdit: false,
+  searchInfoAdd: false,
+  searchInfoEdit: false,
 };
 
 export default function isClicked(
   state: isActiveState = initialState,
   action: isActiveAction
 ): isActiveState {
-  switch(action.type) {
+  switch (action.type) {
     case SET_ACTIVE:
       return {
         ...state,
         [action.payload]: true,
-      }
+      };
     case UNSET_ACTIVE:
       return {
         ...state,
         [action.payload]: false,
-      }
+      };
     default:
       return state;
   }
