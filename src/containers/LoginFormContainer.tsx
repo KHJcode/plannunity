@@ -7,7 +7,7 @@ import LoginMainText from "../components/LoginMainText";
 import CheckBox from "../../public/images/check-square.svg";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { sign } from "../firebase/firebase";
+import { sign } from "../firebase/auth";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../modules/userInfo";

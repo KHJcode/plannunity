@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../modules";
 import { unsetActive } from "../modules/isActive";
+import { setUpdatePlanSchdule } from "../modules/planSchdule";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -14,6 +15,7 @@ const Container = styled.div<{ isActive: boolean }>`
   background: #FFFFFF;
   z-index: 1000;
   transition: .5s;
+  overflow-y: scroll;
 `
 
 const BackButton = styled.div`
@@ -40,41 +42,18 @@ const Wrapper = styled.div`
   padding: 0 20px;
 `
 
-const TitleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-`
-
-const Title = styled.input<{ isActive: boolean }>`
-  font-size: 20px;
-  line-height: 24px;
-  background: ${props => props.isActive ? "#F9F9F9": "#FFFFFF"};
-  border: ${props => props.isActive ? "1px solid #EDEDED" : "none"};
-  border-radius: 12px;
-  height: 50px;
-  padding: 10px;
-  touch-action: none;
-  width: 100%;
-`
-
 const ButtonWrapper = styled.div`
   padding: 0 20px;
   width: 100%;
   display: flex;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
   margin-bottom: 35px;
 `
 
 const OptionsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 25px 0;
   gap: 15px;
-  margin-bottom: 25px;
 `
 
 const OptionWrapper = styled.div`
@@ -89,12 +68,41 @@ const OptionName = styled.div`
   line-height: 20px;
 `
 
-const OptionSelectBox = styled.div`
+const MemoWrapper = styled.div`
+  margin: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+`
+
+const PlanDesc = styled.textarea`
+  width: 100%;
+  height: 218px;
+  padding: 15px;
+  background: #F9F9F9;
+  border: 1px solid #EDEDED;
+  border-radius: 15px;
+  font-size: 15px;
+  line-height: 25px;
+  margin-bottom: 40px;
+
+  &::placeholder {
+    color: #9A9A9A;
+    font-family: 'SUIT-500';
+  }
+`
+
+const OptionSelectBox = styled.input`
   background: #F9F9F9;
   border: 1px solid #EDEDED;
   border-radius: 12px;
   padding: 15px;
   color: #454545;
+
+  &::placeholder {
+    color: #9A9A9A;
+    font-family: 'SUIT-500';
+  }
 `
 
 const Button = styled.button<{ isActive: boolean }>`
@@ -107,33 +115,29 @@ const Button = styled.button<{ isActive: boolean }>`
   color: #FFFFFF;
   border: none;
   flex: 1;
-  display: ${props => props.isActive ? "unset" : "none"};;
 `
 
 export default function PlanSchduleDeatilContainer() {
   const { planDetail } = useSelector((state: RootState) => state.isActive);
+  const schdules = useSelector((state: RootState) => state.planSchdule);
+  const { id } = useSelector((state: RootState) => state.currentId);
+  const schdule = schdules.filter(item => item.id === id);
   const dispatch = useDispatch();
-  const [edit, setEdit] = useState({ title: false, time: false });
-  const [inputs, setInputs] = useState({ title: "관악산역 하차" });
+  const [inputs, setInputs] = useState({ title: "", date: "", loc: "", memo: "" });
   const onClickBackButton = () => {
     dispatch(unsetActive("planDetail"));
   }
 
-  const onClickInput = (e: React.MouseEvent<HTMLInputElement>) => {
-    setEdit({
-      ...edit,
-      [e.currentTarget.id]: true
+  useEffect(() => {
+    setInputs({
+      title: schdule[0] ? schdule[0]?.title : "",
+      date: schdule[0] ? schdule[0]?.date : "",
+      loc: schdule[0] ? schdule[0]?.loc : "",
+      memo : schdule[0] ? schdule[0]?.loc : ""
     });
-  }
+  }, [])
 
-  const onBlurInput = (e: React.FocusEvent<HTMLInputElement>) => {
-    setEdit({
-      ...edit,
-      [e.currentTarget.id]: false
-    })
-  }
-
-  const onChangeInputs = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeInputs = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
     setInputs({
       ...inputs,
       [e.currentTarget.id]: e.target.value,
@@ -141,7 +145,10 @@ export default function PlanSchduleDeatilContainer() {
   }
 
   const onClickStoreButton = () => {
+    console.log(inputs);
+    dispatch(setUpdatePlanSchdule(id, inputs.title, inputs.date, inputs.loc, inputs.memo));
     dispatch(unsetActive("planDetail"));
+    setInputs({ title: "", date: "", loc: "", memo: "" });
   }
 
   return (
@@ -149,20 +156,27 @@ export default function PlanSchduleDeatilContainer() {
       <BackButton>
         <img src="/images/arrow-left.svg" onClick={onClickBackButton} />
       </BackButton>
-      <Map />
+      <Map>
+        
+      </Map>
       <Wrapper>
-        <TitleWrapper>
-          <Title value={inputs.title} onChange={onChangeInputs} id="title" onClick={onClickInput} isActive={edit.title} onBlur={onBlurInput} />
-        </TitleWrapper>
         <OptionsWrapper>
+        <OptionWrapper>
+            <OptionName>스케줄 제목</OptionName>
+            <OptionSelectBox id="title" placeholder="스케줄 제목을 입력해보세요" onChange={onChangeInputs} />
+          </OptionWrapper>
           <OptionWrapper>
             <OptionName>날짜</OptionName>
-            <OptionSelectBox>11/22 (수) 9:00</OptionSelectBox>
+            <OptionSelectBox id="date" placeholder="날짜를 입력해보세요" onChange={onChangeInputs} />
           </OptionWrapper>
           <OptionWrapper>
             <OptionName>장소</OptionName>
-            <OptionSelectBox>서울 관악구 신림동 211</OptionSelectBox>
+            <OptionSelectBox id="loc" placeholder="장소를 입력해보세요" onChange={onChangeInputs} />
           </OptionWrapper>
+          <MemoWrapper>
+            <OptionName>메모</OptionName>
+            <PlanDesc id="memo" placeholder="간단한 메모를 입력해보세요" onChange={onChangeInputs} />
+          </MemoWrapper>
         </OptionsWrapper>
       </Wrapper>
       <ButtonWrapper>

@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { logout } from "../firebase/firebase"
+import { logout } from "../firebase/auth"
 import { RootState } from "../modules";
 import { setCurrentPage } from "../modules/currentPage";
 

@@ -5,7 +5,7 @@ import LoginSubText from "../components/LoginSubText";
 import Logo from "../../public/images/logo.svg";
 import LoginMainText from "../components/LoginMainText";
 import { useEffect, useState } from "react";
-import { createUser } from "../firebase/firebase";
+import { createUser } from "../firebase/auth";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../modules/userInfo";
 import Link from "next/link";

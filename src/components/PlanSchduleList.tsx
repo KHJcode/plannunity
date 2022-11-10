@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../modules";
 import PlanSchduleItem from "./PlanSchduleItem";
 
 const Container = styled.div`
@@ -13,11 +15,14 @@ const Container = styled.div`
 `
 
 export default function PlanSchduleList() {
+  const planSchdules = useSelector((state: RootState) => state.planSchdule);
+  console.log(planSchdules);
+  if(planSchdules.length === 0) { return <></> };
   return (
     <Container>
-      <PlanSchduleItem />
-      <PlanSchduleItem />
-      <PlanSchduleItem />
+      {planSchdules.map(item => (
+          <PlanSchduleItem key={item.id} schdule={item} />
+      ))}
     </Container>
   );
 }

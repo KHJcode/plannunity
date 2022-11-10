@@ -3,11 +3,15 @@ import { combineReducers, createStore } from "redux";
 import currentPage from "./currentPage";
 import isActive from "./isActive";
 import userInfo from "./userInfo";
+import planSchdule from "./planSchdule";
+import currentId from "./currentId";
 
 const rootReducer = combineReducers({
   currentPage,
   isActive,
   userInfo,
+  planSchdule,
+  currentId
 });
 
 const makeStore: MakeStore<any> = () => {

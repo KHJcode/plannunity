@@ -16,6 +16,15 @@ import CreatePartyContainer from "../src/containers/CreatePartyContainer";
 import PlanSchduleDeatilContainer from "../src/containers/PlanScheduleDetailContainer";
 import axios from "axios";
 
+export const getMap = (local: string = "서울시") => {
+  axios.get(`https://dapi.kakao.com/v2/local/search/address?query=${local}`, {
+      headers: { Authorization: `KakaoAK ${"4741cf75cb47cc7e86543bd2a76f9b48"}` },
+    })
+    .then((value) => {
+      console.log(value);
+    }).catch((err) => console.log(err))
+}
+
 export interface IsClicked {
   bag: boolean;
   bell: boolean;
@@ -36,6 +45,10 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       }
     });
+  }, []);
+
+  useEffect(() => {
+    getMap();
   }, []);
 
   // useEffect(() => {

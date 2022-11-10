@@ -1,6 +1,11 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { setActive } from "../modules/isActive";
+import { planSchduleState } from "../modules/planSchdule";
+
+type PlanSchduleProps = {
+  schdule: planSchduleState
+}
 
 const Container = styled.div`
   display: flex;
@@ -18,13 +23,19 @@ const Title = styled.div`
   line-height: 20px;
 `
 
-const Desc = styled.div`
+const Desc1 = styled.div`
   font-size: 14px;
   line-height: 20px;
   color: #9A9A9A;
 `
 
-export default function PlanSchduleItem() {
+const Desc2 = styled.div`
+  font-size: 14px;
+  line-height: 20px;
+  color: #9A9A9A;
+`
+
+export default function PlanSchduleItem({ schdule }: PlanSchduleProps) {
   const dispatch = useDispatch();
   const onClick = () => {
     dispatch(setActive("planDetail"));
@@ -34,8 +45,9 @@ export default function PlanSchduleItem() {
     <Container onClick={onClick}>
       <img src="/images/circle.svg" style={{ "minWidth": "50px" }} />
       <TextWrapper>
-          <Title>관악산역 하차</Title>
-          <Desc>Lorem ipsum dolor sit amet consectetur adipisicing elit.</Desc>
+          <Title>{schdule.title}</Title>
+          <Desc1>{schdule.date}</Desc1>
+          <Desc2>{schdule.loc}</Desc2>
       </TextWrapper>
     </Container>
   );
