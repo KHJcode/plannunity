@@ -6,6 +6,7 @@ import PartyListContainer from "../src/containers/PartyListContainer";
 import SearchBarContainer from "../src/containers/SearchBarContainer";
 import { setCurrentPage } from "../src/modules/currentPage";
 import styles from "../styles/Page.module.css";
+import CreatePartyContainer from "../src/containers/CreatePartyContainer";
 
 export default function PartyPage() {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ export default function PartyPage() {
       <SearchBarContainer searchType="party" />
       <MyPartyContainer />
       <PartyListContainer title="현재 온라인인 파티" />
+      <CreatePartyContainer />
     </div>
   );
 }

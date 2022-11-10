@@ -8,6 +8,15 @@ import SearchBarContainer from "../src/containers/SearchBarContainer";
 import SearchWithCategoryContainer from "../src/containers/SearchWithCategoryContainer";
 import { setCurrentPage } from "../src/modules/currentPage";
 import styles from "../styles/Page.module.css";
+import SchduleAddModalContainer from "../src/containers/SchduleAddModalContainer";
+import SchduleEditSelectionModalContainer from "../src/containers/SchduleEditModalSelectionContainer";
+import SchduleEditModalContainer from "../src/containers/SchduleEditModalSelectionContainer";
+import BudgetAddModalContainer from "../src/containers/BudgetAddModalContainer";
+import BudgetEditModalContainer from "../src/containers/BudgetEditModalContainer";
+import SearchInfoAddModalContainer from "../src/containers/SearchInfoAddModalContainer";
+import SearchInfoEditModalContainer from "../src/containers/SearchInfoEditModalContainer";
+import SharePlanContainer from "../src/containers/SharePlanContainer";
+import CreatePlanContainer from "../src/containers/CreatePlanContainer";
 
 export default function PlanPage() {
   const dispatch = useDispatch();
@@ -25,6 +34,15 @@ export default function PlanPage() {
       <SearchWithCategoryContainer />
       <PlanListWithConditionContainer title="현재 인기 플랜" />
       <PlanListWithConditionContainer title="추천수가 높은 플랜" />
+      <CreatePlanContainer />
+      <SharePlanContainer />
+      <SchduleAddModalContainer />
+      <SchduleEditSelectionModalContainer />
+      <SchduleEditModalContainer />
+      <BudgetAddModalContainer />
+      <BudgetEditModalContainer />
+      <SearchInfoAddModalContainer />
+      <SearchInfoEditModalContainer />
     </div>
   );
 }

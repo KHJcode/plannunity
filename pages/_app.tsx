@@ -6,21 +6,12 @@ import Header from "../src/components/Header";
 import NotificationContainer from "../src/containers/NotificationContainer";
 import { useEffect, useState } from "react";
 import { wrapper } from "../src/modules";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import PartyParticipateModalContainer from "../src/containers/PartyParticipateModalContainer";
-import CreatePlanContainer from "../src/containers/CreatePlanContainer";
 import { useRouter } from "next/router";
 import { auth } from "../src/firebase/firebase";
-import SharePlanContainer from "../src/containers/SharePlanContainer";
-import CreatePartyContainer from "../src/containers/CreatePartyContainer";
 import axios from "axios";
-import SchduleAddModalContainer from "../src/containers/SchduleAddModalContainer";
-import SchduleEditSelectionModalContainer from "../src/containers/SchduleEditModalSelectionContainer";
-import SchduleEditModalContainer from "../src/containers/SchduleEditModalSelectionContainer";
-import BudgetAddModalContainer from "../src/containers/BudgetAddModalContainer";
-import BudgetEditModalContainer from "../src/containers/BudgetEditModalContainer";
-import SearchInfoAddModalContainer from "../src/containers/SearchInfoAddModalContainer";
-import SearchInfoEditModalContainer from "../src/containers/SearchInfoEditModalContainer";
+
 export const getMap = (local: string = "서울시") => {
   axios
     .get(`https://dapi.kakao.com/v2/local/search/address?query=${local}`, {
@@ -51,8 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
       } else {
         if (
           route !== "/register" &&
-          route !== "/login" &&
-          route !== "/welcome"
+          route !== "/login" 
         ) {
           router.push("/welcome");
         }
@@ -64,44 +54,14 @@ export default function App({ Component, pageProps }: AppProps) {
     getMap();
   }, []);
 
-  // useEffect(() => {
-  //   console.log(localStorage.getItem("name"));
-  //   if(localStorage.getItem("name")) {
-  //     setLogined(true);
-  //   } else {
-  //     if(route !== "/register" && route !== "/login" && route !== "/welcome") {
-  //       router.push("/welcome");
-  //     }
-  //   }
-  // }, []);
-
   const { store } = wrapper.useWrappedStore(pageProps);
   return (
     <>
       <Provider store={store}>
-        {route === "/plan" && (
-          <>
-            <CreatePlanContainer />
-            <SharePlanContainer />
-            <SchduleAddModalContainer />
-            <SchduleEditSelectionModalContainer />
-            <SchduleEditModalContainer />
-            <BudgetAddModalContainer />
-            <BudgetEditModalContainer />
-            <SearchInfoAddModalContainer />
-            <SearchInfoEditModalContainer />
-          </>
-        )}
-        {route === "/party" && (
-          <>
-            <CreatePartyContainer />
-          </>
-        )}
         {(route === "/" ||
           route === "/plan" ||
           route === "/party" ||
-          route === "/profile") &&
-          logined && (
+          route === "/profile") && (
             <>
               <Header />
               <Navigation />
