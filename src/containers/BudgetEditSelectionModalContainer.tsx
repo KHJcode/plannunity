@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import SearchInfoAddModal from "../components/SearchInfoAddModal";
+import BudgetEditSelectionModal from "../components/BudgetEditSelectionModal";
 import { RootState } from "../modules";
 
 const Container = styled.div<{ isActive: boolean }>`
@@ -18,11 +18,11 @@ const Container = styled.div<{ isActive: boolean }>`
   opacity: ${(props) => (props.isActive ? 1 : 0)};
 `;
 
-export default function SearchInfoAddModalContainer() {
-  const { searchInfoAdd } = useSelector((state: RootState) => state.isActive);
+export default function BudgetEditSelectionModalContainer() {
+  const { budgetEdit } = useSelector((state: RootState) => state.isActive);
   return (
-    <Container isActive={searchInfoAdd}>
-      <SearchInfoAddModal />
+    <Container isActive={budgetEdit}>
+      <BudgetEditSelectionModal />
     </Container>
   );
 }

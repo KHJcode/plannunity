@@ -25,10 +25,13 @@ export type isActiveState = {
   planDetail: boolean;
   schduleAdd: boolean;
   schduleEdit: boolean;
+  schduleEditOne: boolean;
   budgetAdd: boolean;
   budgetEdit: boolean;
+  budgetEditOne: boolean;
   searchInfoAdd: boolean;
   searchInfoEdit: boolean;
+  searchInfoEditOne: boolean;
 };
 
 const initialState: isActiveState = {
@@ -41,10 +44,13 @@ const initialState: isActiveState = {
   planDetail: false,
   schduleAdd: false,
   schduleEdit: false,
+  schduleEditOne: false,
   budgetAdd: false,
   budgetEdit: false,
+  budgetEditOne: false,
   searchInfoAdd: false,
   searchInfoEdit: false,
+  searchInfoEditOne: false,
 };
 
 export default function isClicked(

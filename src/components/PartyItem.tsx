@@ -77,7 +77,7 @@ export default function PartyItem() {
   const dispatch = useDispatch();
 
   const onClick = () => {
-    dispatch(setActive("partyItem"))
+    dispatch(setActive("partyItem"));
   }
   
   useEffect(() => {

@@ -1,10 +1,10 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import BudgetEditModal from "../components/BudgetEditModal";
+
 import { RootState } from "../modules";
 
 const Container = styled.div<{ isActive: boolean }>`
-  transition: 0.3s;
   position: fixed;
   bottom: 0;
   height: 100vh;
@@ -25,9 +25,9 @@ const Box = styled.div`
 `;
 
 export default function BudgetEditModalContainer() {
-  const { budgetEdit } = useSelector((state: RootState) => state.isActive);
+  const { budgetEditOne } = useSelector((state: RootState) => state.isActive);
   return (
-    <Container isActive={budgetEdit}>
+    <Container isActive={budgetEditOne}>
       <Box />
       <BudgetEditModal />
     </Container>

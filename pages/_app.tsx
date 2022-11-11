@@ -62,12 +62,12 @@ export default function App({ Component, pageProps }: AppProps) {
           route === "/plan" ||
           route === "/party" ||
           route === "/profile") && (
-            <>
+            <div style={{ "visibility": logined ? "visible" : "hidden" }}>
               <Header />
               <Navigation />
               <NotificationContainer />
               <PartyParticipateModalContainer />
-            </>
+            </div>
           )}
         <Component {...pageProps} />
       </Provider>

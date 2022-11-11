@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { RootState } from "../modules";
 import EditAndCreateButton from "./EditAndCreateButton";
 import { unsetActive } from "../modules/isActive";
+import { useState } from "react";
+import { addLink } from "../modules/linkInfo";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
-  transition: 0.5s;
   padding: 25px;
   bottom: ${(props) => (props.isActive ? 0 : "-100px")};
 `;
@@ -57,27 +58,39 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function SearchInfoAddModal() {
-  const { budgetAdd } = useSelector((state: RootState) => state.isActive);
+  const { searchInfoAdd } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
+  const [link, setLink] = useState("");
+
   const onClickCancelButton = () => {
     dispatch(unsetActive("searchInfoAdd"));
   };
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLink(e.target.value);
+  }
+
+  const onClickSubmitButton = () => {
+    dispatch(addLink(link));
+    dispatch(unsetActive("searchInfoAdd"));
+    setLink("");
+  }
+
   return (
-    <Container isActive={budgetAdd}>
+    <Container isActive={searchInfoAdd}>
       <TopWrapper>
         <MainText>탐색 링크 추가</MainText>
         <img src="images/cancel.svg" onClick={onClickCancelButton} />
       </TopWrapper>
       <InputWrapper>
         <Label>정보에 사용할 링크</Label>
-        <Input placeholder="링크를 입력해주세요(예: https://naver.com)" />
+        <Input placeholder="링크를 입력해주세요(예: https://naver.com)" onChange={onChange} value={link} />
       </InputWrapper>
       <ButtonWrapper>
         <EditAndCreateButton
           text="해당 추가 적용하기"
           btnColor="orange"
-          onClick={() => {}}
+          onClick={onClickSubmitButton}
         />
       </ButtonWrapper>
     </Container>

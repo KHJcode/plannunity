@@ -1,4 +1,6 @@
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../modules";
 import InfoLink from "./InfoLink";
 
 const Container = styled.div`
@@ -9,10 +11,12 @@ const Container = styled.div`
 `;
 
 export default function InfoLinkList() {
+  const links = useSelector((state: RootState) => state.linkInfo);
   return (
     <Container>
-      <InfoLink />
-      <InfoLink />
+      {links.map(link => (
+        <InfoLink key={link.id} />
+      ))}
     </Container>
   );
 }

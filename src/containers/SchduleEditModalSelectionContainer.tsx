@@ -4,7 +4,6 @@ import SchduleEditSelectionModal from "../components/SchduleEditSelectionModal";
 import { RootState } from "../modules";
 
 const Container = styled.div<{ isActive: boolean }>`
-  transition: 0.3s;
   position: fixed;
   bottom: 0;
   height: 100vh;
@@ -19,16 +18,10 @@ const Container = styled.div<{ isActive: boolean }>`
   opacity: ${(props) => (props.isActive ? 1 : 0)};
 `;
 
-const Box = styled.div`
-  width: 100%;
-  height: 100%;
-`;
-
-export default function SchduleEditModalContainer() {
+export default function SchduleEditSelectionModalContainer() {
   const { schduleEdit } = useSelector((state: RootState) => state.isActive);
   return (
     <Container isActive={schduleEdit}>
-      <Box />
       <SchduleEditSelectionModal />
     </Container>
   );

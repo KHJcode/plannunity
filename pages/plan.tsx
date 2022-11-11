@@ -10,13 +10,14 @@ import { setCurrentPage } from "../src/modules/currentPage";
 import styles from "../styles/Page.module.css";
 import SchduleAddModalContainer from "../src/containers/SchduleAddModalContainer";
 import SchduleEditSelectionModalContainer from "../src/containers/SchduleEditModalSelectionContainer";
-import SchduleEditModalContainer from "../src/containers/SchduleEditModalSelectionContainer";
+import SchduleEditModalContainer from "../src/containers/SchduleEditModalContainer";
 import BudgetAddModalContainer from "../src/containers/BudgetAddModalContainer";
-import BudgetEditModalContainer from "../src/containers/BudgetEditModalContainer";
+import BudgetEditSelectionModalContainer from "../src/containers/BudgetEditSelectionModalContainer";
 import SearchInfoAddModalContainer from "../src/containers/SearchInfoAddModalContainer";
-import SearchInfoEditModalContainer from "../src/containers/SearchInfoEditModalContainer";
+import SearchInfoEditSelectionModalContainer from "../src/containers/SearchInfoEditSelectionModalContainer";
 import SharePlanContainer from "../src/containers/SharePlanContainer";
 import CreatePlanContainer from "../src/containers/CreatePlanContainer";
+import BudgetEditModalContainer from "../src/containers/BudgetEditModalContainer";
 
 export default function PlanPage() {
   const dispatch = useDispatch();
@@ -37,12 +38,13 @@ export default function PlanPage() {
       <CreatePlanContainer />
       <SharePlanContainer />
       <SchduleAddModalContainer />
-      <SchduleEditSelectionModalContainer />
       <SchduleEditModalContainer />
+      <SchduleEditSelectionModalContainer />
       <BudgetAddModalContainer />
       <BudgetEditModalContainer />
+      <BudgetEditSelectionModalContainer />
       <SearchInfoAddModalContainer />
-      <SearchInfoEditModalContainer />
+      <SearchInfoEditSelectionModalContainer />
     </div>
   );
 }

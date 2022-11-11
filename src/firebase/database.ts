@@ -15,14 +15,18 @@ export interface schdule {
   seq: number;
   title: string;
   desc: string;
+  isSelected: boolean;
 }
 
 export interface budget {
+  id: number;
   title: string;
-  amount: number;
+  budget: number;
+  isSelected: boolean;
 }
 
 export interface info {
+  id:number;
   link: string;
 }
 
@@ -37,6 +41,7 @@ export const addPlan = async (
 ) => {
   try {
     const newPlan = await addDoc(planCollection, {
+      author,
       planTitle,
       schdules,
       budgets,

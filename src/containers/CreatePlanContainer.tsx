@@ -1,9 +1,14 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Dot from "../../public/images/dot.svg";
 import PageTitle from "../components/PageTitle";
+import { addPlan } from "../firebase/database";
 import { RootState } from "../modules";
+import { clearBudget } from "../modules/budget";
 import { unsetActive } from "../modules/isActive";
+import { clearLink } from "../modules/linkInfo";
+import { clearSchdule } from "../modules/schdule";
 import PlanBudgetContainer from "./PlanBudgetContainer";
 import PlanSchduleContainer from "./PlanSchduleContainer";
 import PlanSearchInfoContainer from "./PlanSearchInfoContainer";
@@ -80,6 +85,27 @@ const PhotoButton = styled.button`
 export default function CreatePlanContainer() {
   const { planEdit } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
+  const [title, setTitle] = useState("");
+  const [username, setUsername] = useState("");
+  const schdules = useSelector((state: RootState) => state.schdule);
+  const budgets = useSelector((state: RootState) => state.budget);
+  const links = useSelector((state: RootState) => state.linkInfo);
+  
+  useEffect(() => {
+    setUsername(localStorage.getItem("name")!);
+  })
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTitle(e.target.value);
+  }
+
+  const onClick = () => {
+    addPlan(title, username, schdules, budgets, links);
+    dispatch(clearBudget());
+    dispatch(clearLink());
+    dispatch(clearSchdule());
+    dispatch(unsetActive("planEdit"));
+  }
 
   return (
     <Container isActive={planEdit}>
@@ -94,9 +120,9 @@ export default function CreatePlanContainer() {
             <Dot />
           </DotWrapper>
         </TitleWrapper>
-        <RegisterButton>등록</RegisterButton>
+        <RegisterButton onClick={onClick}>등록</RegisterButton>
       </TopWrapper>
-      <TitleInput placeholder="플랜 제목을 입력해주세요" />
+      <TitleInput placeholder="플랜 제목을 입력해주세요" value={title} onChange={onChange} />
       {/* <PhotoButton>
         <img src="images/camera.svg" style={{ "padding": "20px" }} />
       </PhotoButton> */}

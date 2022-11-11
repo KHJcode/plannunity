@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { RootState } from "../modules";
 import EditAndCreateButton from "./EditAndCreateButton";
 import { unsetActive } from "../modules/isActive";
+import { useState } from "react";
+import { addBudget } from "../modules/budget";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
-  transition: 0.5s;
   padding: 25px;
   bottom: ${(props) => (props.isActive ? 0 : "-100px")};
 `;
@@ -45,6 +46,12 @@ const BudgetInput = styled.input`
   background: #FFFFFF;
   padding: 15px;
   border-bottom: 1.5px solid #E0E0E0;
+
+  &::placeholder {
+    color: #BFBFBF;
+    font-family: 'SUIT-500';
+    font-size: 15px;
+  }
 `
 
 const Input = styled.input`
@@ -76,6 +83,21 @@ export default function BudgetAddModal() {
     dispatch(unsetActive("budgetAdd"));
   };
 
+  const [title, setTitle] = useState("");
+  const [budget, setBudget] = useState(""); 
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if(e.currentTarget.id === "title") setTitle(e.target.value);
+    else if(e.currentTarget.id === "amount") setBudget(e.target.value);
+  }
+
+  const onClickSubmitButton = () => {
+    dispatch(addBudget(title, Number(budget)));
+    dispatch(unsetActive("budgetAdd"));
+    setTitle("");
+    setBudget("");
+  }
+
   return (
     <Container isActive={budgetAdd}>
       <TopWrapper>
@@ -84,14 +106,14 @@ export default function BudgetAddModal() {
       </TopWrapper>
       <SumWrapper>
         <SubText>해당 예산안 금액</SubText>
-        <BudgetInput />
+        <BudgetInput placeholder="금액을 입력해주세요" onChange={onChange} id="amount" value={budget} />
       </SumWrapper>
-      <Input placeholder="예산안 제목을 입력해주세요" />
+      <Input placeholder="예산안 제목을 입력해주세요" onChange={onChange} id="title" value={title} />
       <ButtonWrapper>
         <EditAndCreateButton
           text="해당 추가 적용하기"
           btnColor="orange"
-          onClick={() => {}}
+          onClick={onClickSubmitButton}
         />
       </ButtonWrapper>
     </Container>

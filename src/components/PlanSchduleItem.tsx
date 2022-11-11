@@ -1,6 +1,9 @@
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { setActive } from "../modules/isActive";
+import { SchduleState } from "../modules/schdule";
+
+type SchduleItemProps = {
+  schdule: SchduleState;
+}
 
 const Container = styled.div`
   display: flex;
@@ -38,13 +41,13 @@ const Number = styled.div`
   align-items: center;
 `;
 
-export default function PlanSchduleItem() {
+export default function PlanSchduleItem({ schdule }: SchduleItemProps) {
   return (
     <Container>
-      <Number>1</Number>
+      <Number>{schdule.seq}</Number>
       <TextWrapper>
-        <Title>관악산역 도착</Title>
-        <Desc1>신림선을 통해 탑승하세요</Desc1>
+        <Title>{schdule.title}</Title>
+        <Desc1>{schdule.desc}</Desc1>
       </TextWrapper>
     </Container>
   );

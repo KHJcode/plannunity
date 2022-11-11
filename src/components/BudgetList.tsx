@@ -1,5 +1,8 @@
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../modules";
 
 const Container = styled.div`
   
@@ -14,6 +17,7 @@ const BudgetBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  min-height: 102px;
 `;
 
 const SumBox = styled.div`
@@ -64,28 +68,32 @@ const SubText = styled.div`
 
 export default function BudgetList() {
   const router = useRouter();
+  const budgets = useSelector((state: RootState) => state.budget);
+  const [sum, setSum] = useState(0);
+
+  useEffect(() => {
+    setSum(0);
+    budgets.map(budget => {
+      setSum(sum + budget.budget);
+    });
+  }, [budgets.length]);
+
   return (
     <Container>
       <SumBox>
         <BoxLeftWrapper>
           <GrayText>총 예산 금액</GrayText>
-          <Sum>15000원</Sum>
+          <Sum>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Sum>
         </BoxLeftWrapper>
         {router.pathname === "/plan" && <img src="/images/edit-3.svg" />}
       </SumBox>
       <BudgetBox>
-        <TextWrapper>
-          <MainText>교통비</MainText>
-          <SubText>2400원</SubText>
-        </TextWrapper>
-        <TextWrapper>
-          <MainText>생수 2L</MainText>
-          <SubText>1600원</SubText>
-        </TextWrapper>
-        <TextWrapper>
-          <MainText>라면</MainText>
-          <SubText>1500원</SubText>
-        </TextWrapper>
+        {budgets.map(budget => (
+          <TextWrapper key={budget.id}>
+            <MainText>{budget.title}</MainText>
+            <SubText>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</SubText>
+          </TextWrapper>
+        ))}
       </BudgetBox>
     </Container>
     

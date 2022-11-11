@@ -4,7 +4,6 @@ import BudgetAddModal from "../components/BudgetAddModal";
 import { RootState } from "../modules";
 
 const Container = styled.div<{ isActive: boolean }>`
-  transition: 0.3s;
   position: fixed;
   bottom: 0;
   height: 100vh;

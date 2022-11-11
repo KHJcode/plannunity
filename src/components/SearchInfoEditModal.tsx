@@ -3,10 +3,11 @@ import styled from "styled-components";
 import { RootState } from "../modules";
 import EditAndCreateButton from "./EditAndCreateButton";
 import { unsetActive } from "../modules/isActive";
+import { useState } from "react";
+import { addLink } from "../modules/linkInfo";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
-  transition: 0.5s;
   padding: 25px;
   bottom: ${(props) => (props.isActive ? 0 : "-100px")};
 `;
@@ -23,31 +24,33 @@ const MainText = styled.div`
   line-height: 35px;
 `;
 
-const LinkList = styled.div`
+const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   margin-bottom: 25px;
-`;
+`
 
-const LinkItem = styled.div`
-  padding: 16px 20px;
-  display: flex;
-  justify-content: space-between;
-  background: #f9f9f9;
-  border: 1px solid #f6f6f6;
-  border-radius: 15px;
-`;
-
-const LinkText = styled.div`
+const Label = styled.div`
   font-size: 18px;
   line-height: 20px;
-`;
+`
 
-const IconWrapper = styled.div`
-  display: flex;
-  gap: 15px;
-`;
+const Input = styled.input`
+  background: #F9F9F9;
+  border: 1px solid #EDEDED;
+  border-radius: 12px;
+  width: 100%;
+  height: 50px;
+  padding: 15px;
+  font-size: 15px;
+  line-height: 20px;
+
+  &::placeholder {
+    color: #BFBFBF;
+    font-family: 'SUIT-500';
+  }
+`
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -55,46 +58,39 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function SearchInfoEditModal() {
-  const { budgetAdd } = useSelector((state: RootState) => state.isActive);
+  const { searchInfoEditOne } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
+  const [link, setLink] = useState("");
+
   const onClickCancelButton = () => {
-    dispatch(unsetActive("searchInfoEdit"));
+    dispatch(unsetActive("searchInfoEditOne"));
   };
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLink(e.target.value);
+  }
+
+  const onClickSubmitButton = () => {
+    dispatch(addLink(link));
+    dispatch(unsetActive("searchInfoEditOne"));
+    setLink("");
+  }
+
   return (
-    <Container isActive={budgetAdd}>
+    <Container isActive={searchInfoEditOne}>
       <TopWrapper>
-        <MainText>탐색 정보 수정</MainText>
+        <MainText>탐색 링크 추가</MainText>
         <img src="images/cancel.svg" onClick={onClickCancelButton} />
       </TopWrapper>
-      <LinkList>
-        <LinkItem>
-          <LinkText>링크 1</LinkText>
-          <IconWrapper>
-            <img src="images/cancel_gray.svg" />
-            <img src="images/hamburger_gray.svg" />
-          </IconWrapper>
-        </LinkItem>
-        <LinkItem>
-          <LinkText>링크 2</LinkText>
-          <IconWrapper>
-            <img src="images/cancel_gray.svg" />
-            <img src="images/hamburger_gray.svg" />
-          </IconWrapper>
-        </LinkItem>
-        <LinkItem>
-          <LinkText>링크 3</LinkText>
-          <IconWrapper>
-            <img src="images/cancel_gray.svg" />
-            <img src="images/hamburger_gray.svg" />
-          </IconWrapper>
-        </LinkItem>
-      </LinkList>
+      <InputWrapper>
+        <Label>정보에 사용할 링크</Label>
+        <Input placeholder="링크를 입력해주세요(예: https://naver.com)" onChange={onChange} value={link} />
+      </InputWrapper>
       <ButtonWrapper>
         <EditAndCreateButton
-          text="해당 수정 적용하기"
+          text="해당 추가 적용하기"
           btnColor="orange"
-          onClick={() => {}}
+          onClick={onClickSubmitButton}
         />
       </ButtonWrapper>
     </Container>

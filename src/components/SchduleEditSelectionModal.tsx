@@ -3,7 +3,9 @@ import { RootState } from "../modules";
 import styled from "styled-components";
 import PlanSchduleItem from "./PlanSchduleItem";
 import EditAndCreateButton from "./EditAndCreateButton";
-import { unsetActive } from "../modules/isActive";
+import { setActive, unsetActive } from "../modules/isActive";
+import { clickSchdule, deleteSchdule, SchduleState } from "../modules/schdule";
+import { useState } from "react";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
@@ -48,10 +50,28 @@ const ButtonWrapper = styled.div`
 
 export default function SchduleEditSelectionModal() {
   const { schduleEdit } = useSelector((state: RootState) => state.isActive);
+  const schdules = useSelector((state: RootState) => state.schdule);
   const dispatch = useDispatch();
+
   const onClickCancelButton = () => {
     dispatch(unsetActive("schduleEdit"));
   };
+
+  const onClickDeleteButton = (seq: number) => {
+    dispatch(deleteSchdule(seq));
+  }
+
+  const onClickSchdule = (seq: number) => {
+    console.log(seq);
+    dispatch(clickSchdule(seq));
+    dispatch(setActive("schduleEditOne"));
+    dispatch(unsetActive("schduleEdit"));
+  }
+
+  const onClickSubmitButton = () => {
+    dispatch(unsetActive("schduleEdit"));
+  }
+
   return (
     <Container isActive={schduleEdit}>
       <TopWrapper>
@@ -59,24 +79,20 @@ export default function SchduleEditSelectionModal() {
         <img src="images/cancel.svg" onClick={onClickCancelButton} />
       </TopWrapper>
       <SchduleItemList>
-        <SchduleItemWrapper>
-          <PlanSchduleItem />
-          <img src="images/hamburger.svg" />
-        </SchduleItemWrapper>
-        <SchduleItemWrapper>
-          <PlanSchduleItem />
-          <img src="images/hamburger.svg" />
-        </SchduleItemWrapper>
-        <SchduleItemWrapper>
-          <PlanSchduleItem />
-          <img src="images/hamburger.svg" />
-        </SchduleItemWrapper>
+        {schdules.map((schdule: SchduleState) => (
+          <SchduleItemWrapper key={schdule.seq}>
+            <div onClick={() => onClickSchdule(schdule.seq)} style={{ "width": "100%" }}>
+              <PlanSchduleItem schdule={schdule} />
+            </div>
+            <img src="images/cancel_gray.svg" onClick={() => onClickDeleteButton(schdule.seq)} />
+          </SchduleItemWrapper>
+        ))}
       </SchduleItemList>
       <ButtonWrapper>
         <EditAndCreateButton
-          text="해당 정보 수정하기"
+          text="수정 완료"
           btnColor="orange"
-          onClick={() => {}}
+          onClick={onClickSubmitButton}
         />
       </ButtonWrapper>
     </Container>
