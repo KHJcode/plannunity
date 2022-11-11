@@ -1,8 +1,14 @@
+import { useRouter } from "next/router";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../modules";
-import { SchduleState } from "../modules/schdule";
+import { SchdulesState, SchduleState } from "../modules/schdule";
 import PlanSchduleItem from "./PlanSchduleItem";
+
+type PlanSchduleListProps = {
+  schduleData?: SchdulesState
+}
 
 const Container = styled.div`
   width: 100%;
@@ -16,13 +22,24 @@ const Container = styled.div`
   min-height: 182px;
 `
 
-export default function PlanSchduleList() {
-  const schdules = useSelector((state: RootState) => state.schdule);
-  return (
-    <Container>
-      {schdules.map((schdule: SchduleState) => (
-        <PlanSchduleItem schdule={schdule} key={schdule.seq} />
-      ))}
-    </Container>
-  );
+export default function PlanSchduleList({ schduleData }: PlanSchduleListProps) {
+  const router = useRouter();
+  const schdules = useSelector((state: RootState) => state.schdule)
+  if(router.pathname === "/plan") {
+    return (
+      <Container>
+        {schdules.map((schdule: SchduleState) => (
+          <PlanSchduleItem schdule={schdule} key={schdule.seq} />
+        ))}
+      </Container>
+    );
+  } else {
+    return (
+      <Container>
+        {schduleData!.map((schdule: SchduleState) => (
+          <PlanSchduleItem schdule={schdule} key={schdule.seq} />
+        ))}
+      </Container>
+    )
+  }
 }

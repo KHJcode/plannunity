@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type InfoLinkProps = {
+  link: string;
+}
+
 const Container = styled.div`
   width 100%;
   height: 282px;
@@ -49,9 +53,9 @@ const Link = styled.span``;
 
 const LinkTitle = styled.span``;
 
-export default function InfoLink() {
+export default function InfoLink({ link }: InfoLinkProps) {
   return (
-    <Container>
+    <Container onClick={() => location.href = link}>
       <Image src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
       <BottomWrapper>
         <TextWrapper>

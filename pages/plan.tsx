@@ -18,8 +18,19 @@ import SearchInfoEditSelectionModalContainer from "../src/containers/SearchInfoE
 import SharePlanContainer from "../src/containers/SharePlanContainer";
 import CreatePlanContainer from "../src/containers/CreatePlanContainer";
 import BudgetEditModalContainer from "../src/containers/BudgetEditModalContainer";
+import { GetStaticProps } from "next";
+import { getAllPlans } from "../src/firebase/database";
 
-export default function PlanPage() {
+export const getStaticProps: GetStaticProps = async () => {
+  const planData: any = await getAllPlans();
+  return {
+    props: {
+      planData
+    }
+  }
+}
+
+export default function PlanPage({ planData }: any) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setCurrentPage("plan"));
@@ -33,8 +44,8 @@ export default function PlanPage() {
       <RecentCreatedPlanContainer />
       <RecentSharedPlanContainer />
       <SearchWithCategoryContainer />
-      <PlanListWithConditionContainer title="현재 인기 플랜" />
-      <PlanListWithConditionContainer title="추천수가 높은 플랜" />
+      <PlanListWithConditionContainer title="현재 인기 플랜" plans={planData} />
+      <PlanListWithConditionContainer title="추천수가 높은 플랜" plans={planData} />
       <CreatePlanContainer />
       <SharePlanContainer />
       <SchduleAddModalContainer />

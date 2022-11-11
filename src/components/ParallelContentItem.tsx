@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
 import styled from "styled-components";
+import { PlanData } from "../../pages";
+
+type ParallelContentItemType = {
+  plan: PlanData
+}
 
 const Container = styled.div`
   height: 165px;
   width: 200px; 
   border-radius: 15px;
-  background: linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), url(https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png);
+  background: linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), url(https://cdn.pixabay.com/photo/2021/02/07/18/38/bridge-5992305_1280.jpg);
   background-size: 200px 165px;
   padding: 15px 10px;
   display: flex;
@@ -36,10 +40,14 @@ const MainText = styled.div`
   color: #FFFFFF;
   font-size: 20px;
   line-height: 25px;
+  text-overflow: ellipsis;
+  height: 25px;
+  width: 100%;
+  overflow: hidden;
 `
 
-export default function ParallelContentItem() {
-  const planURL = `plan/${3}`;
+export default function ParallelContentItem({ plan }: ParallelContentItemType) {
+  const planURL = `plan/${plan.id}`;
   const router = useRouter();
   const onClick = () => {
     router.push(planURL);
@@ -47,8 +55,8 @@ export default function ParallelContentItem() {
   
   return (
       <Container onClick={onClick}>
-        <SubText>강력 추천 플랜</SubText>
-        <MainText>부산 당일치기 플랜</MainText>
+        <SubText>{plan.author}</SubText>
+        <MainText>{plan.planTitle}</MainText>
       </Container>
   );
 }

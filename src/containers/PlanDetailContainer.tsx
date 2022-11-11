@@ -10,6 +10,11 @@ import { GetServerSideProps } from "next";
 import PlanBudgetContainer from "./PlanBudgetContainer";
 import BudgetList from "../components/BudgetList";
 import InfoLinkList from "../components/InfoLinkList";
+import { PlanData } from "../../pages";
+
+type PlanDetailContainerProps = {
+  plan: PlanData
+}
 
 const Container = styled.div``;
 
@@ -103,7 +108,7 @@ const Box = styled.div`
   height: 100px;
 `;
 
-export default function PlanDetailContainer() {
+export default function PlanDetailContainer({ plan }: PlanDetailContainerProps) {
   const router = useRouter();
   return (
     <Container>
@@ -115,29 +120,24 @@ export default function PlanDetailContainer() {
         <Desc1Wrapper>
           <Desc1>현재 핫한 플랜</Desc1>
           <Dot />
-          <Desc1>By 김길동</Desc1>
+          <Desc1>By {plan.author}</Desc1>
         </Desc1Wrapper>
-        <Title>반나절 강남 한바퀴 돌기</Title>
+        <Title>{plan.planTitle}</Title>
         <Desc2Wrapper>
-          <Desc2>2780 추천, 저장시 10p</Desc2>
+          <Desc2>0 추천, 저장시 10p</Desc2>
           <Stars />
         </Desc2Wrapper>
         <PlanInfoBoxWrapper>
           <PlanInfoBox>
             <InfoTitle>플랜 소개</InfoTitle>
             <InfoText>
-              {" "}
-              <br />
-              서울특별시 강남구 역삼동
+              Lorem ipsum dolor sit amet.
             </InfoText>
           </PlanInfoBox>
           <PlanInfoBox>
             <InfoTitle>카테고리</InfoTitle>
             <InfoText>
-              {" "}
-              6시간, 지역 핫플레이스,
-              <br />
-              서울특별시 강남구 역삼동
+              Lorem ipsum dolor sit amet.
             </InfoText>
           </PlanInfoBox>
         </PlanInfoBoxWrapper>
@@ -145,15 +145,15 @@ export default function PlanDetailContainer() {
       <PlanDetailFooterBar />
       <Wrapper>
         <SecTitle text="플랜 일정" />
-        <PlanSchduleList />
+        <PlanSchduleList schduleData={plan.schdules} />
       </Wrapper>
       <Wrapper>
         <SecTitle text="플랜 예산" />
-        <BudgetList />
+        <BudgetList budgetData={plan.budgets} />
       </Wrapper>
       <Wrapper>
         <SecTitle text="플랜 탐색 정보" />
-        <InfoLinkList />
+        <InfoLinkList linkData={plan.infos}  />
       </Wrapper>
       <Box />
     </Container>

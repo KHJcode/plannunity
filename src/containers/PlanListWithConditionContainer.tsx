@@ -4,6 +4,7 @@ import SecTitle from "../components/SecTitle";
 
 type PlanListWithConditionContainerType = {
   title: string;
+  plans: any;
 }
 
 const Container = styled.div`
@@ -16,13 +17,13 @@ const TitleWrapper = styled.div`
   padding-left: 20px;
 `
 
-export default function PlanListWithConditionContainer({ title }: PlanListWithConditionContainerType) {
+export default function PlanListWithConditionContainer({ title, plans }: PlanListWithConditionContainerType) {
   return (
     <Container>
       <TitleWrapper>
         <SecTitle text={title} />
       </TitleWrapper>
-      <ParallelContentList />
+      <ParallelContentList plans={plans} />
     </Container>
   );
 }

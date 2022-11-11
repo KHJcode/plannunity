@@ -3,6 +3,11 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../modules";
+import { BudgetsState } from "../modules/budget";
+
+type BudgetListProps = {
+  budgetData?: BudgetsState
+}
 
 const Container = styled.div`
   
@@ -66,17 +71,22 @@ const SubText = styled.div`
   color: #969696;
 `;
 
-export default function BudgetList() {
+export default function BudgetList({ budgetData }: BudgetListProps) {
   const router = useRouter();
   const budgets = useSelector((state: RootState) => state.budget);
   const [sum, setSum] = useState(0);
 
   useEffect(() => {
-    setSum(0);
-    budgets.map(budget => {
-      setSum(sum + budget.budget);
-    });
-  }, [budgets.length]);
+    if(budgetData) {
+      budgetData.map(budget => {
+        setSum(sum + budget.budget);
+      });
+    } else {
+      budgets.map(budget => {
+        setSum(sum + budget.budget);
+      });
+    }
+  }, [budgetData ? budgetData.length : budgets.length]);
 
   return (
     <Container>
@@ -88,12 +98,25 @@ export default function BudgetList() {
         {router.pathname === "/plan" && <img src="/images/edit-3.svg" />}
       </SumBox>
       <BudgetBox>
-        {budgets.map(budget => (
-          <TextWrapper key={budget.id}>
-            <MainText>{budget.title}</MainText>
-            <SubText>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</SubText>
-          </TextWrapper>
-        ))}
+        {router.pathname === "/plan" ? 
+          <>
+            {budgets.map(budget => (
+              <TextWrapper key={budget.id}>
+                <MainText>{budget.title}</MainText>
+                <SubText>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</SubText>
+              </TextWrapper>
+            ))}
+          </>
+        :
+          <>
+            {budgetData?.map(budget => (
+              <TextWrapper key={budget.id}>
+                <MainText>{budget.title}</MainText>
+                <SubText>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</SubText>
+              </TextWrapper>
+            ))}
+          </>
+        }
       </BudgetBox>
     </Container>
     

@@ -65,7 +65,14 @@ export const deletePlan = async (planId: string) => {
 export const getAllPlans = async () => {
   try {
     const planSnapshot = await getDocs(planCollection);
-    return planSnapshot;
+    const planData: any[] = [];
+    planSnapshot.forEach(plan => {
+      planData.push({
+        ...plan.data(),
+        id: plan.id
+      })
+     });
+    return planData;
   } catch (e) {
     return e;
   }
@@ -77,7 +84,7 @@ export const getPlan = async (planId: string) => {
     const planSnap = await getDoc(plan);
 
     if (planSnap.exists()) {
-      return plan;
+      return planSnap.data();
     } else {
       return;
     }
