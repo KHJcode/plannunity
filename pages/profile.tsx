@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import ProfileInfoContainer from "../src/containers/ProfileContainer";
+import ProfileInfoContainer from "../src/components/profile/ProfileContainer";
 import { setCurrentPage } from "../src/modules/currentPage";
 
 export default function PorfilePage() {

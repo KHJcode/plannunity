@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import RegisterFormContainer from "../src/containers/RegisterFormContainer";
-import RegisterSuccessContainer from "../src/containers/RegisterSuccessContainer";
-import RegisterAuthContainer from "../src/containers/ReigsterAuthContainer";
+import RegisterFormContainer from "../src/components/login_register/RegisterFormContainer";
+import RegisterSuccessContainer from "../src/components/login_register/RegisterSuccessContainer";
+import RegisterAuthContainer from "../src/components/login_register/ReigsterAuthContainer";
 
 export default function RegisterPage() {
   const [visible, setVisible] = useState([false, false, false]);

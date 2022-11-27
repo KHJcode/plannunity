@@ -1,7 +1,7 @@
 import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import styled from "styled-components";
-import PlanDetailContainer from "../../src/containers/PlanDetailContainer";
+import PlanDetailContainer from "../../src/components/plan/planDetail/PlanDetailContainer";
 import { getPlan } from "../../src/firebase/database";
 
 const Container = styled.div`

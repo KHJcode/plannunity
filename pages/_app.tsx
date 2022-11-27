@@ -1,13 +1,12 @@
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
 import "../public/static/style.css";
-import Navigation from "../src/components/Navigation";
-import Header from "../src/components/Header";
-import NotificationContainer from "../src/containers/NotificationContainer";
+import Navigation from "../src/components/templates/Navigation";
+import Header from "../src/components/templates/Header";
+import NotificationContainer from "../src/components/notification/NotificationContainer";
 import { useEffect, useState } from "react";
 import { wrapper } from "../src/modules";
 import { Provider } from "react-redux";
-import PartyParticipateModalContainer from "../src/containers/PartyParticipateModalContainer";
 import { useRouter } from "next/router";
 import { auth } from "../src/firebase/firebase";
 import axios from "axios";
@@ -66,7 +65,6 @@ export default function App({ Component, pageProps }: AppProps) {
               <Header />
               <Navigation />
               <NotificationContainer />
-              <PartyParticipateModalContainer />
             </div>
           )}
         <Component {...pageProps} />

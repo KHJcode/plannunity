@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import LoginFormContainer from "../src/containers/LoginFormContainer";
+import LoginFormContainer from "../src/components/login_register/LoginFormContainer";
 
 export default function LoginPage() {
   const router = useRouter();

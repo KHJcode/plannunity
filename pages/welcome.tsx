@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import WelcomeContainer from "../src/containers/WelcomeContainer";
+import WelcomeContainer from "../src/components/login_register/WelcomeContainer";
 
 export default function WelcomePage() {
   const router = useRouter();
