@@ -4,12 +4,17 @@ import { RootState } from "../../../../modules";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import { setActive, unsetActive } from "../../../../modules/isActive";
 import { useEffect, useState } from "react";
-import { clickBudget } from "../../../../modules/budget";
+import { BudgetsState, clickBudget, deleteBudget } from "../../../../modules/budget";
 
 const Container = styled.div<{ isActive: boolean }>`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   background: #ffffff;
   padding: 25px;
-  bottom: ${(props) => (props.isActive ? 0 : "-100px")};
+  transition: .5s;
+  opacity: ${(props) => (props.isActive ? 1 : 0)};
+  transform: ${props => props.isActive ? "translateY(0)" : "translateY(25px)"};
 `;
 
 const TopWrapper = styled.div`
@@ -56,12 +61,19 @@ const BudgetList = styled.div`
 `
 
 const BudgetItem = styled.div`
-  padding: 20px;
+  padding: 20px 15px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background: #F9F9F9;
   border: 1px solid #EDEDED;
   border-radius: 15px;
+`
+
+const BudgetItemRightWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+  align-items: center;
 `
 
 const BudgetName = styled.div`
@@ -86,9 +98,17 @@ export default function BudgetEditSelectionModal() {
   const dispatch = useDispatch();
   const [sum, setSum] = useState(0);
 
+  const onClickDeleteButton = (id: number) => {
+    dispatch(deleteBudget(id));
+  }
+
   const onClickCancelButton = () => {
     dispatch(unsetActive("budgetEdit"));
   };
+
+  const onClickSubmitButton = () => {
+    dispatch(unsetActive("budgetEdit"));
+  }
 
   const onClickBudget = (id: number) => {
     dispatch(clickBudget(id));
@@ -97,9 +117,8 @@ export default function BudgetEditSelectionModal() {
   }
 
   useEffect(() => {
-    budgets.map(budget => {
-      setSum(sum + budget.budget);
-    });
+    setSum(0);
+    setTimeout(() => budgets.map(budget => {setSum(sum => sum + budget.budget)}), 0);
   }, [budgets.length]);
 
   return (
@@ -115,17 +134,20 @@ export default function BudgetEditSelectionModal() {
       </SumWrapper>
       <BudgetList>
         {budgets.map(budget => (
-          <BudgetItem key={budget.id} onClick={() => onClickBudget(budget.id)}>
-            <BudgetName>{budget.title}</BudgetName>
-            <Amount>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Amount>
+          <BudgetItem key={budget.id}>
+            <BudgetName onClick={() => onClickBudget(budget.id)}>{budget.title}</BudgetName>
+            <BudgetItemRightWrapper>
+              <Amount>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Amount>
+              <img src="images/cancel_gray.svg" onClick={() => onClickDeleteButton(budget.id)} />
+            </BudgetItemRightWrapper>
           </BudgetItem>
         ))}
       </BudgetList>
       <ButtonWrapper>
         <EditAndCreateButton
-          text="해당 수정 적용하기"
+          text="수정 완료"
           btnColor="orange"
-          onClick={() => {}}
+          onClick={onClickSubmitButton}
         />
       </ButtonWrapper>
     </Container>

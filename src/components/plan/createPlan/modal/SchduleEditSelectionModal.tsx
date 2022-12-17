@@ -8,8 +8,6 @@ import { clickSchdule, deleteSchdule, SchduleState } from "../../../../modules/s
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
-  bottom: ${(props) => (props.isActive ? 0 : "-100px")};
-  transition: 0.5s;
   padding: 25px;
 `;
 
@@ -61,7 +59,6 @@ export default function SchduleEditSelectionModal() {
   }
 
   const onClickSchdule = (seq: number) => {
-    console.log(seq);
     dispatch(clickSchdule(seq));
     dispatch(setActive("schduleEditOne"));
     dispatch(unsetActive("schduleEdit"));

@@ -1,7 +1,10 @@
+import { getLinkPreview } from "link-preview-js";
+import { useEffect } from "react";
 import styled from "styled-components";
+import { LinkInfoState } from "../../modules/linkInfo";
 
 type InfoLinkProps = {
-  link: string;
+  link: LinkInfoState;
 }
 
 const Container = styled.div`
@@ -55,7 +58,7 @@ const LinkTitle = styled.span``;
 
 export default function InfoLink({ link }: InfoLinkProps) {
   return (
-    <Container onClick={() => location.href = link}>
+    <Container onClick={() => location.href = link.link}>
       <Image src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
       <BottomWrapper>
         <TextWrapper>

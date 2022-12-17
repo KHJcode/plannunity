@@ -157,9 +157,9 @@ export default function ProfileInfoContainer() {
         </StatInfoBox>
       </StatInfoWrapper>
       <OptionWrapper>
-        <OptionItem>저장한 플랜 리스트 보기</OptionItem>
         <OptionItem>내가 만든 플랜 리스트 보기</OptionItem>
-        <OptionItem>참가한 파티 리스트 보기</OptionItem>
+        <OptionItem>내가 추천한 플랜 리스트 보기</OptionItem>
+        <OptionItem>내가 저장한 플랜 리스트 보기</OptionItem>
         <OptionItem>계정 정보 설정 및 변경</OptionItem>
         <OptionItem onClick={onClickLogoutButton}>
           <RedText>로그아웃하기</RedText>

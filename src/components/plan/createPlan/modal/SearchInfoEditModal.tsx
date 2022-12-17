@@ -3,13 +3,12 @@ import styled from "styled-components";
 import { RootState } from "../../../../modules";
 import EditAndCreateButton from "../../.././templates/EditAndCreateButton";
 import { unsetActive } from "../../../../modules/isActive";
-import { useState } from "react";
-import { addLink } from "../../../../modules/linkInfo";
+import { useEffect, useState } from "react";
+import { addLink, updateLink } from "../../../../modules/linkInfo";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
   padding: 25px;
-  bottom: ${(props) => (props.isActive ? 0 : "-100px")};
 `;
 
 const TopWrapper = styled.div`
@@ -59,10 +58,13 @@ const ButtonWrapper = styled.div`
 
 export default function SearchInfoEditModal() {
   const { searchInfoEditOne } = useSelector((state: RootState) => state.isActive);
+  const selectedLink = useSelector((state: RootState) => state.linkInfo).filter(item => item.isSelected)[0];
+
   const dispatch = useDispatch();
   const [link, setLink] = useState("");
 
   const onClickCancelButton = () => {
+    dispatch(updateLink(selectedLink.link, selectedLink.id));
     dispatch(unsetActive("searchInfoEditOne"));
   };
 
@@ -71,28 +73,40 @@ export default function SearchInfoEditModal() {
   }
 
   const onClickSubmitButton = () => {
-    dispatch(addLink(link));
+    dispatch(updateLink(link, selectedLink.id));
     dispatch(unsetActive("searchInfoEditOne"));
     setLink("");
   }
 
-  return (
-    <Container isActive={searchInfoEditOne}>
-      <TopWrapper>
-        <MainText>탐색 링크 추가</MainText>
-        <img src="images/cancel.svg" onClick={onClickCancelButton} />
-      </TopWrapper>
-      <InputWrapper>
-        <Label>정보에 사용할 링크</Label>
-        <Input placeholder="링크를 입력해주세요(예: https://naver.com)" onChange={onChange} value={link} />
-      </InputWrapper>
-      <ButtonWrapper>
-        <EditAndCreateButton
-          text="해당 추가 적용하기"
-          btnColor="orange"
-          onClick={onClickSubmitButton}
-        />
-      </ButtonWrapper>
-    </Container>
-  );
+  useEffect(() => {
+    if(selectedLink) {
+      setLink(selectedLink.link);
+    }
+  }, [selectedLink]);
+
+  if(!selectedLink) return <></>;
+
+  if(selectedLink.link.length) {
+    return (
+      <Container isActive={searchInfoEditOne}>
+        <TopWrapper>
+          <MainText>탐색 링크 추가</MainText>
+          <img src="images/cancel.svg" onClick={onClickCancelButton} />
+        </TopWrapper>
+        <InputWrapper>
+          <Label>정보에 사용할 링크</Label>
+          <Input placeholder="링크를 입력해주세요(예: https://naver.com)" onChange={onChange} value={link} />
+        </InputWrapper>
+        <ButtonWrapper>
+          <EditAndCreateButton
+            text="해당 추가 적용하기"
+            btnColor="orange"
+            onClick={onClickSubmitButton}
+          />
+        </ButtonWrapper>
+      </Container>
+    );
+  } else {
+    return <></>;
+  }
 }

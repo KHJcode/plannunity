@@ -54,7 +54,7 @@ export default function SearchBar({
     <Container>
       <Image src="images/search.svg" onClick={onClickSearchButton} />
       <Input
-        placeholder="관심있는 플랜을 검색해보세요"
+        placeholder={ searchType == "plan" ? "관심있는 플랜을 검색해보세요" : "새로운 친구를 찾아보세요"}
         onChange={onChange}
         value={text}
       />

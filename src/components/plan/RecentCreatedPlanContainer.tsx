@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import { useDispatch } from "react-redux"
 import styled from "styled-components"
-import PlanThumbnail from "./PlanThumbnail"
+import PlanThumbnail from "../templates/PlanThumbnail"
 import SecTitle from "../templates/SecTitle"
 import { setActive } from "../../modules/isActive"
 
@@ -36,7 +36,7 @@ export default function RecentCreatedPlanContainer() {
   return (
     <Container>
       <SecTitle text="회원님께서 제작하신 플랜" />
-      <PlanThumbnail isShared={false} />
+      <PlanThumbnail styleOption="private" />
       <ButtonWrapper>
         <Button btnColor="white">모든 플랜 보기</Button>
         <Button btnColor="orange" onClick={onClickCreateButton}>플랜 만들기</Button>

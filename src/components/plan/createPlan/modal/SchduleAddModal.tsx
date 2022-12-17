@@ -8,7 +8,6 @@ import { addSchdule } from "../../../../modules/schdule";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
-  bottom: ${(props) => (props.isActive ? 0 : "-100px")};
   padding: 25px;
 `;
 

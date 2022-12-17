@@ -11,10 +11,6 @@ const Container = styled.div`
   padding: 25px;
 `;
 
-// <{ isActive: boolean }>
-
-// bottom: ${(props) => (props.isActive ? 0 : "-100px")};
-
 const TopWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -80,7 +76,10 @@ export default function SchduleEditModal() {
   const schdule = useSelector((state: RootState) => state.schdule).filter(item => item.isSelected)[0];
   const dispatch = useDispatch();
   const onClickCancelButton = () => {
+    dispatch(updateSchdule(schdule.title, schdule.desc, schdule.seq));
     dispatch(unsetActive("schduleEditOne"));
+    setTitle("");
+    setDesc("");
   };
 
   const [title, setTitle] = useState("");
@@ -92,40 +91,52 @@ export default function SchduleEditModal() {
   }
 
   const onClickSubmitButton = () => {
-    console.log(schdule.seq);
     dispatch(updateSchdule(title, desc, schdule.seq));
     dispatch(unsetActive("schduleEditOne"));
     setTitle("");
     setDesc("");
   }
 
-  return (
-    <Container >
-      <TopWrapper>
-        <MainText>
-          {schdule?.seq}번째 과정
-        </MainText>
-        <img src="images/cancel.svg" onClick={onClickCancelButton} />
-      </TopWrapper>
-      <InputWrapper>
-        <Label>일정 제목</Label>
-        <Input placeholder="일정 제목을 입력해주세요" value={title} onChange={onChange} id="title" />
-      </InputWrapper>
-      <InputWrapper>
-        <Label>세부 정보</Label>
-        <Input placeholder="세부 정보를 입력해주세요" value={desc} onChange={onChange} id="desc" />
-      </InputWrapper>
-      <SelectBoxWrapper>
-        <Label>일정 순서</Label>
-        <SeqBox>{schdule?.seq}번째</SeqBox>
-      </SelectBoxWrapper>
-      <ButtonWrapper>
-        <EditAndCreateButton
-          text="해당 일정 변경하기"
-          btnColor="orange"
-          onClick={onClickSubmitButton}
-        />
-      </ButtonWrapper>
-    </Container>
-  );
+  useEffect(() => {
+    if(schdule) {
+      setTitle(schdule.title);
+      setDesc(schdule.desc);
+    }
+  }, [schdule]);
+
+  if(!schdule) return <></>;
+
+  if(schdule.title.length) {
+    return (
+      <Container>
+        <TopWrapper>
+          <MainText>
+            {schdule.seq}번째 과정
+          </MainText>
+          <img src="images/cancel.svg" onClick={onClickCancelButton} />
+        </TopWrapper>
+        <InputWrapper>
+          <Label>일정 제목</Label>
+          <Input placeholder="일정 제목을 입력해주세요" value={title} onChange={onChange} id="title" />
+        </InputWrapper>
+        <InputWrapper>
+          <Label>세부 정보</Label>
+          <Input placeholder="세부 정보를 입력해주세요" value={desc} onChange={onChange} id="desc" />
+        </InputWrapper>
+        <SelectBoxWrapper>
+          <Label>일정 순서</Label>
+          <SeqBox>{schdule.seq}번째</SeqBox>
+        </SelectBoxWrapper>
+        <ButtonWrapper>
+          <EditAndCreateButton
+            text="해당 일정 변경하기"
+            btnColor="orange"
+            onClick={onClickSubmitButton}
+          />
+        </ButtonWrapper>
+      </Container>
+    );
+  } else {
+    return <></>;
+  }
 }

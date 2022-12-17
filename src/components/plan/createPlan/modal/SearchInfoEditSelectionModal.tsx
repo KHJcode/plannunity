@@ -2,13 +2,12 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../../../modules";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
-import { unsetActive } from "../../../../modules/isActive";
-import { deleteLink } from "../../../../modules/linkInfo";
+import { setActive, unsetActive } from "../../../../modules/isActive";
+import { clickLink, deleteLink } from "../../../../modules/linkInfo";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
   padding: 25px;
-  bottom: ${(props) => (props.isActive ? 0 : "-100px")};
 `;
 
 const TopWrapper = styled.div`
@@ -42,6 +41,7 @@ const LinkItem = styled.div`
 const LinkText = styled.div`
   font-size: 18px;
   line-height: 20px;
+  flex: 1;
 `;
 
 const IconWrapper = styled.div`
@@ -58,6 +58,7 @@ export default function SearchInfoEditSelectionModal() {
   const { searchInfoEdit } = useSelector((state: RootState) => state.isActive);
   const links = useSelector((state: RootState) => state.linkInfo);
   const dispatch = useDispatch();
+
   const onClickCancelButton = () => {
     dispatch(unsetActive("searchInfoEdit"));
   };
@@ -70,6 +71,12 @@ export default function SearchInfoEditSelectionModal() {
     dispatch(unsetActive("searchInfoEdit"));
   };
 
+  const onClickLink = (id: number) => {
+    dispatch(clickLink(id));
+    dispatch(setActive("searchInfoEditOne"));
+    dispatch(unsetActive("searchInfoEdit"));
+  }
+
   return (
     <Container isActive={searchInfoEdit}>
       <TopWrapper>
@@ -79,7 +86,7 @@ export default function SearchInfoEditSelectionModal() {
       <LinkList>
         {links.map(link => (
           <LinkItem key={link.id}>
-            <LinkText>링크 {link.id + 1}</LinkText>
+            <LinkText onClick={() => onClickLink(link.id)}>링크 {link.id + 1}</LinkText>
             <IconWrapper>
               <img src="images/cancel_gray.svg" onClick={() => onClickDeleteButton(link.id)} />
               <img src="images/hamburger_gray.svg" />

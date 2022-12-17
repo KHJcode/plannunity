@@ -10,19 +10,10 @@ import { Provider } from "react-redux";
 import { useRouter } from "next/router";
 import { auth } from "../src/firebase/firebase";
 import axios from "axios";
+import CartContainer from "../src/components/cart/CartContainer";
+import FriendDetailModalContainer from "../src/components/friend/modal/FriendDetailModalContainer";
+import { getLocal } from "../src/map/search";
 
-export const getMap = (local: string = "서울시") => {
-  axios
-    .get(`https://dapi.kakao.com/v2/local/search/address?query=${local}`, {
-      headers: {
-        Authorization: `KakaoAK ${"4741cf75cb47cc7e86543bd2a76f9b48"}`,
-      },
-    })
-    .then((value) => {
-      console.log(value);
-    })
-    .catch((err) => console.log(err));
-};
 
 export interface IsClicked {
   bag: boolean;
@@ -50,7 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
-    getMap();
+    getLocal();
   }, []);
 
   const { store } = wrapper.useWrappedStore(pageProps);
@@ -59,14 +50,16 @@ export default function App({ Component, pageProps }: AppProps) {
       <Provider store={store}>
         {(route === "/" ||
           route === "/plan" ||
-          route === "/party" ||
+          route === "/friend" ||
           route === "/profile") && (
-            <div style={{ "visibility": logined ? "visible" : "hidden" }}>
+            <>
               <Header />
               <Navigation />
               <NotificationContainer />
-            </div>
-          )}
+              <CartContainer />
+              <FriendDetailModalContainer />
+            </>
+        )}
         <Component {...pageProps} />
       </Provider>
     </>

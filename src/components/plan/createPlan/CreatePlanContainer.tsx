@@ -12,6 +12,7 @@ import { clearSchdule } from "../../../modules/schdule";
 import PlanBudgetContainer from "./PlanBudgetContainer";
 import PlanSchduleContainer from "./PlanSchduleContainer";
 import PlanSearchInfoContainer from "./PlanSearchInfoContainer";
+import MapContainer from "./MapContainer";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -128,6 +129,7 @@ export default function CreatePlanContainer() {
       </PhotoButton> */}
       <PlanSchduleContainer />
       <PlanBudgetContainer />
+      {/* <MapContainer /> */}
       <PlanSearchInfoContainer />
     </Container>
   );

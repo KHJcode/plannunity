@@ -22,15 +22,16 @@ const Container = styled.div`
   box-shadow: 0px -10px 20px rgba(222, 222, 222, 0.25);
   backdrop-filter: blur(30px);
   padding-bottom: 13px;
+  z-index: 1;
 `
 
 export default function Navigation() {
-  const { home, plan, party, profile } = useSelector((state: RootState) => state.currentPage);
+  const { home, plan, friend, profile } = useSelector((state: RootState) => state.currentPage);
   return (
     <Container>
       <Link href="/" id="home" style={{ padding: "5px" }}><Home stroke={home ? "#FF833E" : "#D9D9D9"} /></Link>
       <Link href="/plan" id="plan" style={{ padding: "5px" }}><Edit stroke={plan ? "#FF833E" : "#D9D9D9"} /></Link>
-      <Link href="/party" id="party" style={{ padding: "5px" }}><Users stroke={party ? "#FF833E" : "#D9D9D9"}/></Link>
+      <Link href="/friend" id="friend" style={{ padding: "5px" }}><Users stroke={friend ? "#FF833E" : "#D9D9D9"}/></Link>
       <Link href="/profile" id="profile" style={{ padding: "5px" }}><User stroke={profile ? "#FF833E" : "#D9D9D9"} /></Link>
     </Container>
   );

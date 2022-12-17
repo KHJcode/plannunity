@@ -74,19 +74,21 @@ const SubText = styled.div`
 export default function BudgetList({ budgetData }: BudgetListProps) {
   const router = useRouter();
   const budgets = useSelector((state: RootState) => state.budget);
+  const selectedBudget = budgets.filter(item => item.isSelected)[0];
   const [sum, setSum] = useState(0);
 
   useEffect(() => {
+    setSum(0);
     if(budgetData) {
       budgetData.map(budget => {
-        setSum(sum + budget.budget);
+        setSum(sum => sum + budget.budget);
       });
     } else {
       budgets.map(budget => {
-        setSum(sum + budget.budget);
+        setSum(sum => sum + budget.budget);
       });
     }
-  }, [budgetData ? budgetData.length : budgets.length]);
+  }, [selectedBudget, budgetData ? budgetData.length : budgets.length]);
 
   return (
     <Container>

@@ -8,17 +8,16 @@ import { unsetActive } from "../../modules/isActive";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
-  height: fit-content;
-  min-height: 100vh;
-  padding: 40px 20px;
-  top: 0;
-  left: ${props => props.isActive ? 0 : "100vw"};
-  opacity: ${props => props.isActive ? 1 : 0};
-  background: #FFFFFF;
-  z-index: 1000;
-  transition: .5s;
-  touch-action: none;
+  height: 100%;
+  padding: 40px 20px 60px 20px;
   position: fixed;
+  top: 0;
+  left: ${(props) => (props.isActive ? 0 : "100vw")};
+  opacity: ${(props) => (props.isActive ? 1 : 0)};
+  background: #ffffff;
+  z-index: 1000;
+  transition: 0.5s;
+  overflow-y: scroll;
 `
 
 const TopWrapper = styled.div`

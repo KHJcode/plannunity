@@ -1,6 +1,7 @@
 const ADD_BUDGET = 'ADD_BUDGET' as const;
 const CLICK_BUDGET = 'CLICK_BUDGET' as const;
 const UPDATE_BUDGET = 'UPDATE_BUDGET' as const;
+const DELETE_BUDGET = 'DELETE_BUDGET' as const;
 const CLEAR_BUDGET = 'CLEAR_BUDGET' as const;
 
 let nextId = 0;
@@ -28,6 +29,11 @@ export const updateBudget = (title: string, budget: number, id: number) => ({
   }
 });
 
+export const deleteBudget = (id: number) => ({
+  type: DELETE_BUDGET,
+  payload: id,
+});
+
 export const clearBudget = () => ({
   type: CLEAR_BUDGET
 });
@@ -36,7 +42,8 @@ export type BudgetAction =
   | ReturnType<typeof addBudget>
   | ReturnType<typeof clickBudget>
   | ReturnType<typeof updateBudget>
-  | ReturnType<typeof clearBudget>;
+  | ReturnType<typeof clearBudget>
+  | ReturnType<typeof deleteBudget>;
 
 export type BudgetState = {
   title: string,
@@ -75,6 +82,8 @@ export default function budget(
         id: item.id,
         isSelected: false,
       }: item);
+    case DELETE_BUDGET:
+      return state.filter(item => item.id !== action.payload);
     case CLEAR_BUDGET:
       return [];
     default:

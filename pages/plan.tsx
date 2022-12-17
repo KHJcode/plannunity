@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import PlanListWithConditionContainer from "../src/components/templates/PlanListWithConditionContainer";
 import RecentCreatedPlanContainer from "../src/components/plan/RecentCreatedPlanContainer";
 import RecentSharedPlanContainer from "../src/components/plan/RecentSharedPlanContainer";
@@ -9,7 +9,7 @@ import SearchWithCategoryContainer from "../src/components/plan/SearchWithCatego
 import { setCurrentPage } from "../src/modules/currentPage";
 import styles from "../styles/Page.module.css";
 import SchduleAddModalContainer from "../src/components/plan/createPlan/modal/SchduleAddModalContainer";
-import SchduleEditSelectionModalContainer from "../src/components/plan/createPlan/modal/SchduleEditModalSelectionContainer";
+import SchduleEditSelectionModalContainer from "../src/components/plan/createPlan/modal/SchduleEditSelectionModalContainer";
 import SchduleEditModalContainer from "../src/components/plan/createPlan/modal/SchduleEditModalContainer";
 import BudgetAddModalContainer from "../src/components/plan/createPlan/modal/BudgetAddModalContainer";
 import BudgetEditSelectionModalContainer from "../src/components/plan/createPlan/modal/BudgetEditSelectionModalContainer";
@@ -20,6 +20,8 @@ import CreatePlanContainer from "../src/components/plan/createPlan/CreatePlanCon
 import BudgetEditModalContainer from "../src/components/plan/createPlan/modal/BudgetEditModalContainer";
 import { GetStaticProps } from "next";
 import { getAllPlans } from "../src/firebase/database";
+import { RootState } from "../src/modules";
+import SearchInfoEditModalContainer from "../src/components/plan/createPlan/modal/SearchInfoEditModalContainer";
 
 export const getStaticProps: GetStaticProps = async () => {
   const planData: any = await getAllPlans();
@@ -56,6 +58,7 @@ export default function PlanPage({ planData }: any) {
       <BudgetEditSelectionModalContainer />
       <SearchInfoAddModalContainer />
       <SearchInfoEditSelectionModalContainer />
+      <SearchInfoEditModalContainer />
     </div>
   );
 }

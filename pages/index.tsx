@@ -14,6 +14,7 @@ import { BudgetsState } from '../src/modules/budget';
 
 export const getStaticProps: GetStaticProps = async () => {
   const planData: any = await getAllPlans();
+  console.log(planData);
   return {
     props: {
       planData
@@ -33,6 +34,7 @@ export interface PlanData {
 export default function HomePage({ planData }: any) {
   const dispatch = useDispatch();
   const [logined, setLogined] = useState(false);
+
   useEffect(() => {
     console.log(localStorage.getItem("name"))
     if(localStorage.getItem("name")) {
@@ -40,6 +42,7 @@ export default function HomePage({ planData }: any) {
     }
     dispatch(setCurrentPage("home"));
   }, []);
+
   return (
     <>
       {logined &&

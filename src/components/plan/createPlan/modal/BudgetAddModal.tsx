@@ -9,7 +9,6 @@ import { addBudget } from "../../../../modules/budget";
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
   padding: 25px;
-  bottom: ${(props) => (props.isActive ? 0 : "-100px")};
 `;
 
 const TopWrapper = styled.div`

@@ -1,5 +1,6 @@
 const SET_ACTIVE = "SET_ACTIVE" as const;
 const UNSET_ACTIVE = "UNSET_ACTIVE" as const;
+const SET_TOGGLE = "SET_TOGGLE" as const;
 
 export const setActive = (name: string) => ({
   type: SET_ACTIVE,
@@ -11,13 +12,22 @@ export const unsetActive = (name: string) => ({
   payload: name,
 });
 
+export const setToggle = (name: string, currentState: boolean) => ({
+  type: SET_TOGGLE,
+  payload: {
+    name,
+    currentState,
+  }
+});
+
 export type isActiveAction =
   | ReturnType<typeof setActive>
-  | ReturnType<typeof unsetActive>;
+  | ReturnType<typeof unsetActive>
+  | ReturnType<typeof setToggle>;
 
 export type isActiveState = {
   bell: boolean;
-  bag: boolean;
+  cart: boolean;
   planEdit: boolean;
   partyEdit: boolean;
   partyItem: boolean;
@@ -32,11 +42,14 @@ export type isActiveState = {
   searchInfoAdd: boolean;
   searchInfoEdit: boolean;
   searchInfoEditOne: boolean;
+  friendList: boolean;
+  deleteFriend: boolean;
+  friendDetail: boolean;
 };
 
 const initialState: isActiveState = {
   bell: false,
-  bag: false,
+  cart: false,
   planEdit: false,
   partyEdit: false,
   partyItem: false,
@@ -51,6 +64,9 @@ const initialState: isActiveState = {
   searchInfoAdd: false,
   searchInfoEdit: false,
   searchInfoEditOne: false,
+  friendList: false,
+  deleteFriend: false,
+  friendDetail: false,
 };
 
 export default function isClicked(
@@ -68,6 +84,11 @@ export default function isClicked(
         ...state,
         [action.payload]: false,
       };
+    case SET_TOGGLE:
+      return {
+        ...state,
+        [action.payload.name]: !action.payload.currentState,
+      }
     default:
       return state;
   }

@@ -28,16 +28,16 @@ export default function PlanSearchInfoContainer() {
   };
   return (
     <Container>
-      <SecTitle text="플랜 탐색 정보" />
+      <SecTitle text="플랜 관련 링크" />
       <InfoLinkList />
       <ButtonWrapper>
         <EditAndCreateButton
-          text="정보 수정하기"
+          text="링크 수정하기"
           btnColor="white"
           onClick={onClickEdit}
         />
         <EditAndCreateButton
-          text="정보 추가하기"
+          text="링크 추가하기"
           btnColor="orange"
           onClick={onClickAdd}
         />

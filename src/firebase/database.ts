@@ -102,3 +102,20 @@ export const updatePlan = async (
   const updatedPlan = await updateDoc(plan, fieldName, updateData);
   return updatedPlan;
 };
+
+// const addData = async (docType: "plans" | "users" | "friends", data: object) => {
+//   try {
+//     const plan = doc(database, docType, data.id);
+//     const planSnap = await getDoc(plan);
+
+//     if (planSnap.exists()) {
+//       return planSnap.data();
+//     } else {
+//       return;
+//     }
+//   } catch (e) {
+//     return e;
+//   }
+// }
+
+

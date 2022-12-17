@@ -14,7 +14,6 @@ const Container = styled.div<{ isActive: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  opacity: ${(props) => (props.isActive ? 1 : 0)};
   z-index: ${(props) => (props.isActive ? 1000 : -1)};
 `;
 

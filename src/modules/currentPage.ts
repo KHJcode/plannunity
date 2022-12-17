@@ -10,11 +10,11 @@ export type CurrentPageAction = ReturnType<typeof setCurrentPage>;
 export type CurrentPageState = {
   home: boolean;
   plan: boolean;
-  party: boolean;
+  friend: boolean;
   profile: boolean;
 }
 
-const initialState: CurrentPageState = { home: true, plan: false, party: false, profile: false };
+const initialState: CurrentPageState = { home: true, plan: false, friend: false, profile: false };
 
 export default function currentPage(
   state: CurrentPageState = initialState,
@@ -25,7 +25,7 @@ export default function currentPage(
       return {
         home: false,
         plan: false,
-        party: false,
+        friend: false,
         profile: false,
         [action.payload]: true
       };

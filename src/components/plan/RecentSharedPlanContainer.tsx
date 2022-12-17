@@ -2,7 +2,7 @@ import { useRouter } from "next/router"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import styled from "styled-components"
-import PlanThumbnail from "./PlanThumbnail"
+import PlanThumbnail from "../templates/PlanThumbnail"
 import SecTitle from "../templates/SecTitle"
 import { RootState } from "../../modules"
 import { setActive } from "../../modules/isActive"
@@ -37,7 +37,7 @@ export default function RecentSharedPlanContainer() {
   return (
     <Container>
       <SecTitle text="회원님께서 공유하신 플랜" />
-      <PlanThumbnail isShared={true} />
+      <PlanThumbnail styleOption="share" />
       <ButtonWrapper>
         <Button btnColor="white">공유한 플랜 보기</Button>
         <Button btnColor="orange" onClick={onClickCreateButton}>플랜 공유하기</Button>

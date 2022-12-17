@@ -15,7 +15,6 @@ const Container = styled.div<{ isActive: boolean }>`
   flex-direction: column;
   justify-content: flex-end;
   z-index: ${(props) => (props.isActive ? 1000 : -1)};
-  opacity: ${(props) => (props.isActive ? 1 : 0)};
 `;
 
 export default function SearchInfoEditModalContainer() {
