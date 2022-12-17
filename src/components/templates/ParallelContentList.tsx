@@ -3,7 +3,7 @@ import { PlanData } from "../../../pages";
 import ParallelContentItem from "./ParallelContentItem";
 
 type ParallelContentListType = {
-  plans: any
+  plans: any;
 }
 
 const Container = styled.div`

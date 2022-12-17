@@ -9,113 +9,59 @@ import {
   deleteDoc,
   updateDoc,
 } from "firebase/firestore";
+import {Plan, User} from "./schema";
 import {} from "link-preview-js";
 
-export interface schdule {
-  seq: number;
-  title: string;
-  desc: string;
-  isSelected: boolean;
-}
-
-export interface budget {
-  id: number;
-  title: string;
-  budget: number;
-  isSelected: boolean;
-}
-
-export interface info {
-  id:number;
-  link: string;
-}
-
-const planCollection = collection(database, "plans");
-
-export const addPlan = async (
-  planTitle: string,
-  author: string,
-  schdules: schdule[],
-  budgets: budget[],
-  infos: info[]
-) => {
+export const addData = async (docType: "plans" | "users", data: Plan | User) => {
   try {
-    const newPlan = await addDoc(planCollection, {
-      author,
-      planTitle,
-      schdules,
-      budgets,
-      infos,
-    });
-    return newPlan;
+    const newDoc = await addDoc(collection(database, docType), data);
+    return newDoc;
+  } catch(e) {
+    return e;
+  } 
+}
+
+export const getData = async (docType: "plans" | "users", id: string) => {
+  try {
+    const data = doc(database, docType, id);
+    const dataSnap = await getDoc(data);
+    if (dataSnap.exists()) return dataSnap.data();
+    else return;
+  } catch (e) {
+    return e;
+  } 
+}
+
+export const getAllData = async (docType: "plans" | "users") => {
+  try {
+    const dataSnap = await getDocs(collection(database, docType));
+    const datas: any[] = [];
+    dataSnap.forEach(data => {
+      datas.push({
+        ...data.data(),
+        id: data.id
+      })
+     });
+    return datas;
   } catch (e) {
     return e;
   }
-};
+}
 
-export const deletePlan = async (planId: string) => {
+export const updateData = async (docType: "plans" | "users", id: string, fieldName: string, updateData: any) => {
   try {
-    await deleteDoc(doc(database, "plans", planId));
+    const data = doc(database, docType, id);
+    return await updateDoc(data, fieldName, updateData);
+  } catch(e) {
+    return e;
+  }
+}
+
+export const deleteData = async (docType: "plans" | "users", id:string) => {
+  try {
+    await deleteDoc(doc(database, docType, id))
     return;
   } catch (e) {
     return e;
   }
-};
-
-export const getAllPlans = async () => {
-  try {
-    const planSnapshot = await getDocs(planCollection);
-    const planData: any[] = [];
-    planSnapshot.forEach(plan => {
-      planData.push({
-        ...plan.data(),
-        id: plan.id
-      })
-     });
-    return planData;
-  } catch (e) {
-    return e;
-  }
-};
-
-export const getPlan = async (planId: string) => {
-  try {
-    const plan = doc(database, "plans", planId);
-    const planSnap = await getDoc(plan);
-
-    if (planSnap.exists()) {
-      return planSnap.data();
-    } else {
-      return;
-    }
-  } catch (e) {
-    return e;
-  }
-};
-
-export const updatePlan = async (
-  planId: string,
-  fieldName: string,
-  updateData: any
-) => {
-  const plan = doc(database, "plans", planId);
-  const updatedPlan = await updateDoc(plan, fieldName, updateData);
-  return updatedPlan;
-};
-
-// const addData = async (docType: "plans" | "users" | "friends", data: object) => {
-//   try {
-//     const plan = doc(database, docType, data.id);
-//     const planSnap = await getDoc(plan);
-
-//     if (planSnap.exists()) {
-//       return planSnap.data();
-//     } else {
-//       return;
-//     }
-//   } catch (e) {
-//     return e;
-//   }
-// }
-
-
+}

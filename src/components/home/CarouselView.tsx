@@ -2,6 +2,9 @@ import styled from "styled-components";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { setActive } from "../../modules/isActive";
 
 const Container = styled.div`
   height: 167px;
@@ -52,6 +55,8 @@ const Button = styled.button`
 `
 
 export default function CarouselView() {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const settings = {
     dots: true,
     infinite: true,
@@ -70,6 +75,12 @@ export default function CarouselView() {
     },
     dotsClass: 'dots-custom-1',
   };
+
+  const onClick = () => {
+    dispatch(setActive("planEdit"));
+    router.replace('/plan');
+  }
+
   return (
     <Container> 
       <Slider {...settings}>
@@ -79,8 +90,8 @@ export default function CarouselView() {
         <ItemWrapper>
           <CarouselItem>
             <SubText>플래뮤니티 이벤트</SubText>
-            <MainText><Strong>파티 만드시고,</Strong>포인트 받으세요!</MainText>
-            <Button>지금 시작하기</Button>
+            <MainText><Strong>플랜 만드시고,</Strong>포인트 받으세요!</MainText>
+            <Button onClick={onClick}>지금 시작하기</Button>
           </CarouselItem>
         </ItemWrapper>
         <ItemWrapper>

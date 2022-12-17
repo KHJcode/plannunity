@@ -1,5 +1,11 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import { PlanData } from "../../../pages";
+
+type RankingItemProps = {
+  plan: PlanData;
+  rank: number;
+}
 
 const Conatiner = styled.div`
   width: 100%;
@@ -42,8 +48,8 @@ const Desc = styled.div`
   color: #AEAEAE;
 `
 
-export default function RankingItem() {
-  const planURL = `plan/${3}`;
+export default function RankingItem({ plan, rank }: RankingItemProps) {
+  const planURL = `plan/${plan.id}`;
   const router = useRouter();
   const onClick = () => {
     router.push(planURL);
@@ -51,10 +57,10 @@ export default function RankingItem() {
 
   return (
     <Conatiner onClick={onClick}>
-      <Ranking>1</Ranking>
-      <Image src="https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png" />
+      <Ranking>{rank}</Ranking>
+      <Image src="https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png" />
       <TextWrapper>
-        <Title>독특한 포항 여행 플랜</Title>
+        <Title>{plan.planTitle}</Title>
         <Desc>가장 추천을 많이 받았어요</Desc>
       </TextWrapper>
     </Conatiner>

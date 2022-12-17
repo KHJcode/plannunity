@@ -1,5 +1,10 @@
 import styled from "styled-components";
+import { PlanData } from "../../../pages";
 import RankingItem from "./RankingItem";
+
+type RankingListProps = {
+  plans: PlanData[];
+}
 
 const Container = styled.div`
   display: flex;
@@ -7,12 +12,12 @@ const Container = styled.div`
   gap: 10px;
 `
 
-export default function RankingList() {
+export default function RankingList({ plans }: RankingListProps) {
   return (
     <Container>
-      <RankingItem />
-      <RankingItem />
-      <RankingItem />
+      {plans.map((plan: PlanData, idx: number) => (
+        <RankingItem plan={plan} key={idx + 1} rank={idx + 1} />
+      ))}
     </Container>
   );
 }

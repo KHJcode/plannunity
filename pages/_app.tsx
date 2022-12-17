@@ -14,7 +14,6 @@ import CartContainer from "../src/components/cart/CartContainer";
 import FriendDetailModalContainer from "../src/components/friend/modal/FriendDetailModalContainer";
 import { getLocal } from "../src/map/search";
 
-
 export interface IsClicked {
   bag: boolean;
   bell: boolean;

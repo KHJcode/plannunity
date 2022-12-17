@@ -1,5 +1,10 @@
 import styled from "styled-components";
+import { PlanData } from "../../../pages";
 import PlanThumbnail from "../templates/PlanThumbnail";
+
+type RecentCreatedPlanByFriendListProps = {
+  plans: PlanData[];
+}
 
 const Container = styled.div`
   display: flex;
@@ -7,12 +12,12 @@ const Container = styled.div`
   gap: 5px;
 `
 
-export default function RecentCreatedPlanByFriendList() {
+export default function RecentCreatedPlanByFriendList({ plans }: RecentCreatedPlanByFriendListProps) {
   return (
     <Container>
-      <PlanThumbnail styleOption="friend" />
-      <PlanThumbnail styleOption="friend" />
-      <PlanThumbnail styleOption="friend" />
+      {plans.map((plan: PlanData) => (
+        <PlanThumbnail styleOption="friend" plan={plan} key={plan.id} />
+      ))}
     </Container>
   );
 }

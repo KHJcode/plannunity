@@ -29,8 +29,6 @@ export type isActiveState = {
   bell: boolean;
   cart: boolean;
   planEdit: boolean;
-  partyEdit: boolean;
-  partyItem: boolean;
   planShare: boolean;
   planDetail: boolean;
   schduleAdd: boolean;
@@ -51,8 +49,6 @@ const initialState: isActiveState = {
   bell: false,
   cart: false,
   planEdit: false,
-  partyEdit: false,
-  partyItem: false,
   planShare: false,
   planDetail: false,
   schduleAdd: false,

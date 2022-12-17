@@ -4,6 +4,11 @@ import styled from "styled-components"
 import PlanThumbnail from "../templates/PlanThumbnail"
 import SecTitle from "../templates/SecTitle"
 import { setActive } from "../../modules/isActive"
+import { PlanData } from "../../../pages"
+
+type RecentCreatedPlanContainerProps = {
+  plan: PlanData;
+}
 
 const Container = styled.div`
   padding: 20px;
@@ -26,7 +31,7 @@ const Button = styled.button<{ btnColor: string }>`
   background: ${props => props.btnColor === "white" ? "#F9F9F9": "#FFDFCD"};
 `
 
-export default function RecentCreatedPlanContainer() {
+export default function RecentCreatedPlanContainer({ plan }: RecentCreatedPlanContainerProps) {
   const dispatch = useDispatch();
 
   const onClickCreateButton = () => {
@@ -36,7 +41,7 @@ export default function RecentCreatedPlanContainer() {
   return (
     <Container>
       <SecTitle text="회원님께서 제작하신 플랜" />
-      <PlanThumbnail styleOption="private" />
+      <PlanThumbnail styleOption="private" plan={plan} />
       <ButtonWrapper>
         <Button btnColor="white">모든 플랜 보기</Button>
         <Button btnColor="orange" onClick={onClickCreateButton}>플랜 만들기</Button>

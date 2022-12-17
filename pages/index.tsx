@@ -7,14 +7,14 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setCurrentPage } from '../src/modules/currentPage';
 import { GetStaticProps } from 'next';
-import { getAllPlans } from '../src/firebase/database';
 import { SchdulesState } from '../src/modules/schdule';
 import { LinkInfosState } from '../src/modules/linkInfo';
 import { BudgetsState } from '../src/modules/budget';
+import { loadCart } from '../src/modules/cart';
+import { getAllData } from '../src/firebase/database';
 
 export const getStaticProps: GetStaticProps = async () => {
-  const planData: any = await getAllPlans();
-  console.log(planData);
+  const planData: any = await getAllData("plans");
   return {
     props: {
       planData
@@ -41,6 +41,7 @@ export default function HomePage({ planData }: any) {
       setLogined(true);
     }
     dispatch(setCurrentPage("home"));
+    dispatch(loadCart(planData.slice(0, 4)));
   }, []);
 
   return (
@@ -54,7 +55,7 @@ export default function HomePage({ planData }: any) {
             <CarouselContainer />
             <PlanListWithConditionContainer title='커뮤니티 추천 플랜' plans={planData} />
             <PlanListWithConditionContainer title='회원님께 추천드리는 플랜' plans={planData} />
-            <RankedPlanContainer />
+            <RankedPlanContainer plans={planData.slice(-4, -1)} />
           </div>
         </>
       }

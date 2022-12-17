@@ -166,9 +166,9 @@ export default function FriendDetailModal() {
       <BottomWrapper>
         <SecTitle text="제작한 플랜" />
         <PlanList>
+          {/* <PlanThumbnail styleOption="friend" />
           <PlanThumbnail styleOption="friend" />
-          <PlanThumbnail styleOption="friend" />
-          <PlanThumbnail styleOption="friend" />
+          <PlanThumbnail styleOption="friend" /> */}
         </PlanList>
       </BottomWrapper>
     </Conatiner>

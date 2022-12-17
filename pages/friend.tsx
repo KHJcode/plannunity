@@ -1,3 +1,4 @@
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,11 +8,21 @@ import DeleteFriendModalContainer from "../src/components/friend/modal/DeleteFri
 import FriendDetailModalContainer from "../src/components/friend/modal/FriendDetailModalContainer";
 import OnlineFriendContainer from "../src/components/friend/OnlineFriendContainer";
 import RecentCreatedPlanByFriendContainer from "../src/components/friend/RecentCreatedPlanByFriendContainer";
+import { getAllData } from "../src/firebase/database";
 import { RootState } from "../src/modules";
 import { setCurrentPage } from "../src/modules/currentPage";
 import styles from "../styles/Page.module.css";
 
-export default function PartyPage() {
+export const getStaticProps: GetStaticProps = async () => {
+  const planData: any = await getAllData("plans");
+  return {
+    props: {
+      planData
+    }
+  }
+}
+
+export default function PartyPage({ planData }: any) {
   const dispatch = useDispatch();
   const friendList = useSelector((state: RootState) => state.isActive.friendList);
   useEffect(() => {
@@ -22,13 +33,12 @@ export default function PartyPage() {
       <Head>
         <title>플래뮤니티 | 친구</title>
       </Head>
-      {/* <FriendDetailModalContainer /> */}
       {
         !friendList 
         ? 
         <div>
           <OnlineFriendContainer />
-          <RecentCreatedPlanByFriendContainer />
+          <RecentCreatedPlanByFriendContainer plans={planData.slice(0, 3)} />
         </div>
         : 
         <div>

@@ -19,12 +19,12 @@ import SharePlanContainer from "../src/components/plan/sharePlan/SharePlanContai
 import CreatePlanContainer from "../src/components/plan/createPlan/CreatePlanContainer";
 import BudgetEditModalContainer from "../src/components/plan/createPlan/modal/BudgetEditModalContainer";
 import { GetStaticProps } from "next";
-import { getAllPlans } from "../src/firebase/database";
 import { RootState } from "../src/modules";
 import SearchInfoEditModalContainer from "../src/components/plan/createPlan/modal/SearchInfoEditModalContainer";
+import { getAllData } from "../src/firebase/database";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const planData: any = await getAllPlans();
+  const planData: any = await getAllData("plans");
   return {
     props: {
       planData
@@ -43,8 +43,8 @@ export default function PlanPage({ planData }: any) {
         <title>플래뮤니티 | 플랜</title>
       </Head>
       <SearchBarContainer searchType="plan" />
-      <RecentCreatedPlanContainer />
-      <RecentSharedPlanContainer />
+      <RecentCreatedPlanContainer plan={planData[0]} />
+      <RecentSharedPlanContainer plan={planData[0]} />
       <SearchWithCategoryContainer />
       <PlanListWithConditionContainer title="현재 인기 플랜" plans={planData} />
       <PlanListWithConditionContainer title="추천수가 높은 플랜" plans={planData} />

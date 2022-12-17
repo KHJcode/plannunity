@@ -6,6 +6,7 @@ import userInfo from "./userInfo";
 import schdule from "./schdule";
 import budget from "./budget";
 import linkInfo from "./linkInfo";
+import cart from './cart';
 
 const rootReducer = combineReducers({
   currentPage,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   schdule,
   budget,
   linkInfo,
+  cart,
 });
 
 const makeStore: MakeStore<any> = () => {

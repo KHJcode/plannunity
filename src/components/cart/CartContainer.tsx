@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../modules";
 import { unsetActive } from "../../modules/isActive";
 import PlanThumbnail from "../templates/PlanThumbnail";
+import { PlanData } from "../../../pages";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -52,7 +53,9 @@ const PlanList = styled.div`
 
 export default function CartContainer() {
   const { cart } = useSelector((state: RootState) => state.isActive);
+  const plans = useSelector((state: RootState) => state.cart);
   const dispatch = useDispatch();
+
   const onClick = () => {
     dispatch(unsetActive("cart"));
   }
@@ -69,9 +72,9 @@ export default function CartContainer() {
       </TopWrapper>
       <MainText>현재 총 3개의<br />플랜이 저장되었어요</MainText>
       <PlanList>
-        <PlanThumbnail styleOption="cart" />
-        <PlanThumbnail styleOption="cart" />
-        <PlanThumbnail styleOption="cart" />
+        {plans.map((plan: PlanData) => (
+          <PlanThumbnail styleOption="cart" plan={plan} key={plan.id} />
+        ))}
       </PlanList>
     </Container>
   );

@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { PlanData } from "../../../pages";
 import SecTitle from "../templates/SecTitle";
 import RecentCreatedPlanByFriendList from "./RecentCreatedPlanByFriendList";
+
+type RecentCreatedPlanByFriendContainerProps = {
+  plans: PlanData[];
+}
 
 const Container = styled.div`
   display: flex;
@@ -8,11 +13,11 @@ const Container = styled.div`
   padding: 20px;
 `
 
-export default function RecentCreatedPlanByFriendContainer() {
+export default function RecentCreatedPlanByFriendContainer({ plans }: RecentCreatedPlanByFriendContainerProps) {
   return (
     <Container>
       <SecTitle text="최근 친구가 제작한 플랜" />
-      <RecentCreatedPlanByFriendList />
+      <RecentCreatedPlanByFriendList plans={plans} />
     </Container>
   );
 }

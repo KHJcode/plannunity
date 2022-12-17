@@ -2,7 +2,7 @@ import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import styled from "styled-components";
 import PlanDetailContainer from "../../src/components/plan/planDetail/PlanDetailContainer";
-import { getPlan } from "../../src/firebase/database";
+import { getData } from "../../src/firebase/database";
 
 const Container = styled.div`
   width: 100%;
@@ -10,7 +10,7 @@ const Container = styled.div`
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.planId;
-  const planData = await getPlan(String(id));
+  const planData = await getData("plans" ,String(id));
   console.log(planData);
   return {
     props: {

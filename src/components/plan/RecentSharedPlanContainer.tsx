@@ -6,6 +6,11 @@ import PlanThumbnail from "../templates/PlanThumbnail"
 import SecTitle from "../templates/SecTitle"
 import { RootState } from "../../modules"
 import { setActive } from "../../modules/isActive"
+import { PlanData } from "../../../pages"
+
+type RecentSharedPlanContainerProps = {
+  plan: PlanData;
+}
 
 const Container = styled.div`
   padding: 20px;
@@ -28,7 +33,7 @@ const Button = styled.button<{ btnColor: string }>`
   background: ${props => props.btnColor === "white" ? "#F9F9F9": "#FFDFCD"};
 `
 
-export default function RecentSharedPlanContainer() {
+export default function RecentSharedPlanContainer({ plan }: RecentSharedPlanContainerProps) {
   const dispatch = useDispatch();
   const onClickCreateButton = () => {
     dispatch(setActive("planShare"));
@@ -37,7 +42,7 @@ export default function RecentSharedPlanContainer() {
   return (
     <Container>
       <SecTitle text="회원님께서 공유하신 플랜" />
-      <PlanThumbnail styleOption="share" />
+      <PlanThumbnail styleOption="share" plan={plan} />
       <ButtonWrapper>
         <Button btnColor="white">공유한 플랜 보기</Button>
         <Button btnColor="orange" onClick={onClickCreateButton}>플랜 공유하기</Button>

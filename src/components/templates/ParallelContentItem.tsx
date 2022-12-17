@@ -11,7 +11,7 @@ const Container = styled.div`
   height: 165px;
   width: 200px; 
   border-radius: 15px;
-  background: linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), url(https://cdn.pixabay.com/photo/2021/02/07/18/38/bridge-5992305_1280.jpg);
+  background: linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), url(https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png);
   background-size: 200px 165px;
   padding: 15px 10px;
   display: flex;
@@ -55,7 +55,7 @@ export default function ParallelContentItem({ plan }: ParallelContentItemType) {
   
   return (
       <Container onClick={onClick}>
-        <SubText>{plan.author}</SubText>
+        <SubText>햇살 좋은 날 안성맞춤 플랜</SubText>
         <MainText>{plan.planTitle}</MainText>
       </Container>
   );

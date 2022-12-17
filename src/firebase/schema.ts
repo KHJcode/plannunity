@@ -30,5 +30,5 @@ export interface Plan {
 }
 
 export interface User {
-
+    
 }

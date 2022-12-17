@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Dot from "../../../../public/images/dot.svg"
 import PageTitle from "../../templates/PageTitle";
-import { addPlan } from "../../../firebase/database";
 import { RootState } from "../../../modules";
 import { clearBudget } from "../../../modules/budget";
 import { unsetActive } from "../../../modules/isActive";
@@ -13,6 +12,7 @@ import PlanBudgetContainer from "./PlanBudgetContainer";
 import PlanSchduleContainer from "./PlanSchduleContainer";
 import PlanSearchInfoContainer from "./PlanSearchInfoContainer";
 import MapContainer from "./MapContainer";
+import { addData } from "../../../firebase/database";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -101,7 +101,8 @@ export default function CreatePlanContainer() {
   }
 
   const onClick = () => {
-    addPlan(title, username, schdules, budgets, links);
+    // Plan 형태 맞게 넣기
+    addData("plans", {});
     dispatch(clearBudget());
     dispatch(clearLink());
     dispatch(clearSchdule());
