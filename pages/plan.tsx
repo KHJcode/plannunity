@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import PlanListWithConditionContainer from "../src/components/templates/PlanListWithConditionContainer";
 import RecentCreatedPlanContainer from "../src/components/plan/RecentCreatedPlanContainer";
 import RecentSharedPlanContainer from "../src/components/plan/RecentSharedPlanContainer";
-import SearchBarContainer from "../src/components/templates/SearchBarContainer";
 import SearchWithCategoryContainer from "../src/components/plan/SearchWithCategoryContainer";
 import { setCurrentPage } from "../src/modules/currentPage";
 import styles from "../styles/Page.module.css";
@@ -22,6 +21,7 @@ import { GetStaticProps } from "next";
 import SearchInfoEditModalContainer from "../src/components/plan/createPlan/modal/SearchInfoEditModalContainer";
 import { getAllData } from "../src/firebase/database";
 import SearchPlaceModalContainer from "../src/components/plan/createPlan/modal/SearchPlaceModalContainer";
+import SearchBar from "../src/components/templates/SearchBar";
 
 export const getStaticProps: GetStaticProps = async () => {
   const planData: any = await getAllData("plans");
@@ -42,7 +42,8 @@ export default function PlanPage({ planData }: any) {
       <Head>
         <title>플래뮤니티 | 플랜</title>
       </Head>
-      <SearchBarContainer searchType="plan" />
+      {/* 검색창 프롭 수정 */}
+      <SearchBar searchType="plan" text="" setText={() => {}} onClick={() => {}} /> 
       <RecentCreatedPlanContainer plan={planData[0]} />
       <RecentSharedPlanContainer plan={planData[0]} />
       <SearchWithCategoryContainer />
