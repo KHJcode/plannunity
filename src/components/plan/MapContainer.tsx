@@ -47,7 +47,7 @@ export default function MapContainer() {
       minLevel={10}
       >
         {schdule.map((schdule: SchduleState) => (
-          <MapMarker image={{
+          <MapMarker key={schdule.seq} image={{
             src: "/images/marker.svg",
             size: {
               width: 20,
