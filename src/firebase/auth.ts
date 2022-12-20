@@ -7,6 +7,8 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "./firebase";
+import { Plan, User } from "./schema";
+import { addData } from "./database";
 
 export const sign = async (
   type: "google" | "email",
@@ -39,7 +41,17 @@ export const createUser = async (
       displayName: nickname,
     });
     await setPersistence(auth, browserLocalPersistence);
-    // await sign("email", email, password);
+    const data: User = {
+      email: user.email,
+      friends: [],
+      name: user.displayName,
+      notice: [],
+      plans: [],
+      uid: user.uid,
+      point: 0,
+      profileImg: user.photoURL,
+    };
+    addData("users", data);
     return user;
   } catch (err: any) {
     return err;

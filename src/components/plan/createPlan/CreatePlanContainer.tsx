@@ -4,15 +4,20 @@ import styled from "styled-components";
 import Dot from "../../../../public/images/dot.svg"
 import PageTitle from "../../templates/PageTitle";
 import { RootState } from "../../../modules";
-import { clearBudget } from "../../../modules/budget";
+import { BudgetsState, clearBudget } from "../../../modules/budget";
 import { unsetActive } from "../../../modules/isActive";
-import { clearLink } from "../../../modules/linkInfo";
-import { clearSchdule } from "../../../modules/schdule";
+import { clearLink, LinkInfosState } from "../../../modules/linkInfo";
+import schdule, { clearSchdule, SchdulesState, SchduleState } from "../../../modules/schdule";
 import PlanBudgetContainer from "./PlanBudgetContainer";
 import PlanSchduleContainer from "./PlanSchduleContainer";
 import PlanSearchInfoContainer from "./PlanSearchInfoContainer";
-import MapContainer from "./MapContainer";
-import { addData } from "../../../firebase/database";
+import MapContainer from "../MapContainer";
+import { addData, deleteData } from "../../../firebase/database";
+import MapIcon from "../MapIcon";
+import { Budget, Link, Plan, Schdule } from "../../../firebase/schema";
+import { auth } from "../../../firebase/firebase";
+import SecTitle from "../../templates/SecTitle";
+import SmallSecTitle from "../SmallSecTitle";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -54,7 +59,7 @@ const RegisterButton = styled.button`
   background: #ffffff;
 `;
 
-const TitleInput = styled.input`
+const Input = styled.input<{ type: string }>`
   width: 100%;
   height: 50px;
   background: #f9f9f9;
@@ -63,7 +68,7 @@ const TitleInput = styled.input`
   padding: 15px;
   font-size: 15px;
   line-height: 20px;
-  margin: 15px 0;
+  margin-top: ${props => props.type === "title" ? "15px" : "5px"};
 
   &::placeholder {
     color: #bfbfbf;
@@ -71,17 +76,40 @@ const TitleInput = styled.input`
   }
 `;
 
-const PhotoButton = styled.button`
-  width: 65px;
-  height: 65px;
-  border-radius: 12px;
-  background: #f9f9f9;
-  border: 1px solid #ededed;
+const OptionWrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-`;
+  flex-direction: column;
+  margin-top: 40px;
+`
+
+const OptionBottomWrapper = styled.div`
+  display: flex;
+  gap: 7px;
+  margin-top: 5px;
+`
+
+const OptionBoxList = styled.div`
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+`
+
+const OptionBox = styled.div`
+  height: 50px;
+  padding: 16px 15px;
+  background: #F9F9F9;
+  border: 1px solid #EDEDED;
+  border-radius: 12px;
+`
+
+const PlusButton = styled.div`
+  padding: 13px;
+  background: #F9F9F9;
+  border: 1px solid #EDEDED;
+  border-radius: 12px;
+  width: 50px;
+  height: 50px;
+`
 
 export default function CreatePlanContainer() {
   const { planEdit } = useSelector((state: RootState) => state.isActive);
@@ -94,15 +122,22 @@ export default function CreatePlanContainer() {
   
   useEffect(() => {
     setUsername(localStorage.getItem("name")!);
-  })
+  }, []);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   }
 
   const onClick = () => {
-    // Plan 형태 맞게 넣기
-    addData("plans", {});
+    const plan: Plan = {
+      title,
+      visibility: "private",
+      schdules: schdules,
+      budgets: budgets,
+      links: links,
+    }
+    addData("plans", plan);
+
     dispatch(clearBudget());
     dispatch(clearLink());
     dispatch(clearSchdule());
@@ -124,14 +159,29 @@ export default function CreatePlanContainer() {
         </TitleWrapper>
         <RegisterButton onClick={onClick}>등록</RegisterButton>
       </TopWrapper>
-      <TitleInput placeholder="플랜 제목을 입력해주세요" value={title} onChange={onChange} />
-      {/* <PhotoButton>
-        <img src="images/camera.svg" style={{ "padding": "20px" }} />
-      </PhotoButton> */}
+      <Input placeholder="플랜 제목을 입력해주세요" value={title} onChange={onChange} type="title" />
+      <OptionWrapper>
+        <SmallSecTitle text="카테고리" />
+        <OptionBottomWrapper>
+          <OptionBoxList>
+            <OptionBox>대중교통</OptionBox>
+            <OptionBox>도보</OptionBox>
+            <OptionBox>카페</OptionBox>
+            <OptionBox>맛집</OptionBox>
+            <PlusButton>
+              <img src="/images/plus.svg" />
+            </PlusButton>
+          </OptionBoxList>
+        </OptionBottomWrapper>
+      </OptionWrapper>
+      <OptionWrapper>
+        <SmallSecTitle text="여행 기간" />
+        <Input placeholder="여행 기간을 선택해주세요" type="term" />
+      </OptionWrapper>
       <PlanSchduleContainer />
       <PlanBudgetContainer />
-      {/* <MapContainer /> */}
       <PlanSearchInfoContainer />
+      <MapIcon />
     </Container>
   );
 }

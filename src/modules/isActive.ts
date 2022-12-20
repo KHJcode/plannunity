@@ -43,6 +43,9 @@ export type isActiveState = {
   friendList: boolean;
   deleteFriend: boolean;
   friendDetail: boolean;
+  searchPlace: boolean;
+  map: boolean;
+  schduleDetail: boolean;
 };
 
 const initialState: isActiveState = {
@@ -63,6 +66,9 @@ const initialState: isActiveState = {
   friendList: false,
   deleteFriend: false,
   friendDetail: false,
+  searchPlace: false,
+  map: false,
+  schduleDetail: false,
 };
 
 export default function isClicked(

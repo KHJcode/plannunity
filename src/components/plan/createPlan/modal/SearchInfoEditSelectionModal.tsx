@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { RootState } from "../../../../modules";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import { setActive, unsetActive } from "../../../../modules/isActive";
-import { clickLink, deleteLink } from "../../../../modules/linkInfo";
+import { clickLink, deleteLink, LinkInfoState } from "../../../../modules/linkInfo";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
@@ -84,9 +84,9 @@ export default function SearchInfoEditSelectionModal() {
         <img src="images/cancel.svg" onClick={onClickCancelButton} />
       </TopWrapper>
       <LinkList>
-        {links.map(link => (
+        {links.map((link: LinkInfoState, idx: number) => (
           <LinkItem key={link.id}>
-            <LinkText onClick={() => onClickLink(link.id)}>링크 {link.id + 1}</LinkText>
+            <LinkText onClick={() => onClickLink(link.id)}>링크 {idx + 1}</LinkText>
             <IconWrapper>
               <img src="images/cancel_gray.svg" onClick={() => onClickDeleteButton(link.id)} />
               <img src="images/hamburger_gray.svg" />

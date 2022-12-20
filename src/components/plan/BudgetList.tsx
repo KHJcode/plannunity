@@ -71,6 +71,13 @@ const SubText = styled.div`
   color: #969696;
 `;
 
+const ReplaceText = styled.div`
+  font-size: 15px;
+  line-height: 20px;
+  color: #BFBFBF;
+  font-family: 'SUIT-400';
+`
+
 export default function BudgetList({ budgetData }: BudgetListProps) {
   const router = useRouter();
   const budgets = useSelector((state: RootState) => state.budget);
@@ -100,7 +107,7 @@ export default function BudgetList({ budgetData }: BudgetListProps) {
         {router.pathname === "/plan" && <img src="/images/edit-3.svg" />}
       </SumBox>
       <BudgetBox>
-        {router.pathname === "/plan" ? 
+        {router.pathname === "/plan" && budgets.length ? 
           <>
             {budgets.map(budget => (
               <TextWrapper key={budget.id}>
@@ -109,6 +116,8 @@ export default function BudgetList({ budgetData }: BudgetListProps) {
               </TextWrapper>
             ))}
           </>
+        : router.pathname === "/plan" && !budgets.length ? 
+          <ReplaceText>새로운 예산을 추가해보세요...</ReplaceText>
         :
           <>
             {budgetData?.map(budget => (

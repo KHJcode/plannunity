@@ -7,6 +7,8 @@ import schdule from "./schdule";
 import budget from "./budget";
 import linkInfo from "./linkInfo";
 import cart from './cart';
+import selectedSchdule from "./selectedSchdule";
+import place from "./place";
 
 const rootReducer = combineReducers({
   currentPage,
@@ -16,6 +18,8 @@ const rootReducer = combineReducers({
   budget,
   linkInfo,
   cart,
+  selectedSchdule,
+  place,
 });
 
 const makeStore: MakeStore<any> = () => {

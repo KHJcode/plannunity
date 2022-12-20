@@ -11,9 +11,8 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin: 40px 0;
-  height: 24px;
-  padding: 0 20px;
+  height: 104px;
+  padding: 40px 20px;
   background: #FFFFFF;
 `
 

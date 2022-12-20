@@ -1,4 +1,4 @@
-import { database } from "./firebase";
+import { database, auth } from "./firebase";
 import {
   doc,
   setDoc,
@@ -10,13 +10,31 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import {Plan, User} from "./schema";
-import {} from "link-preview-js";
+
 
 export const addData = async (docType: "plans" | "users", data: Plan | User) => {
   try {
-    const newDoc = await addDoc(collection(database, docType), data);
-    return newDoc;
+    console.log(data);
+    
+    const curUser = auth.currentUser;
+    const userUid = curUser?.uid;
+    if (docType === "plans") {
+      const newPlan = await addDoc(collection(database, docType), {
+        ...data,
+        author: curUser?.displayName
+      });
+      const userData = (await getData("users", userUid!.toString())) as User      
+      
+      await updateData("users", userUid!.toString(), "plans", [...userData.plans, newPlan.id]);
+
+      return newPlan;
+    } else if (docType === "users") {
+      const newUser = await setDoc(doc(database, docType, userUid!.toString()), data);
+      return newUser;
+    }
   } catch(e) {
+    console.log(e);
+    
     return e;
   } 
 }

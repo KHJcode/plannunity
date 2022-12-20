@@ -76,7 +76,7 @@ export default function SchduleEditModal() {
   const schdule = useSelector((state: RootState) => state.schdule).filter(item => item.isSelected)[0];
   const dispatch = useDispatch();
   const onClickCancelButton = () => {
-    dispatch(updateSchdule(schdule.title, schdule.desc, schdule.seq));
+    dispatch(updateSchdule(schdule.title, schdule.desc, schdule.seq, schdule.place));
     dispatch(unsetActive("schduleEditOne"));
     setTitle("");
     setDesc("");
@@ -91,7 +91,7 @@ export default function SchduleEditModal() {
   }
 
   const onClickSubmitButton = () => {
-    dispatch(updateSchdule(title, desc, schdule.seq));
+    dispatch(updateSchdule(title, desc, schdule.seq, schdule.place));
     dispatch(unsetActive("schduleEditOne"));
     setTitle("");
     setDesc("");

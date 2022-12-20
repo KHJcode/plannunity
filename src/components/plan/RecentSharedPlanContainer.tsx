@@ -42,7 +42,7 @@ export default function RecentSharedPlanContainer({ plan }: RecentSharedPlanCont
   return (
     <Container>
       <SecTitle text="회원님께서 공유하신 플랜" />
-      <PlanThumbnail styleOption="share" plan={plan} />
+      {plan && <PlanThumbnail styleOption="share" plan={plan} />}
       <ButtonWrapper>
         <Button btnColor="white">공유한 플랜 보기</Button>
         <Button btnColor="orange" onClick={onClickCreateButton}>플랜 공유하기</Button>

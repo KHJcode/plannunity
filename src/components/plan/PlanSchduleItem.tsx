@@ -1,5 +1,9 @@
+import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { setActive } from "../../modules/isActive";
 import { SchduleState } from "../../modules/schdule";
+import { selectSchdule } from "../../modules/selectedSchdule";
 
 type SchduleItemProps = {
   schdule: SchduleState;
@@ -43,8 +47,16 @@ const Number = styled.div`
 `;
 
 export default function PlanSchduleItem({ schdule }: SchduleItemProps) {
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const onClick = () => {
+    if(router.pathname !== "plan") {
+      dispatch(selectSchdule(schdule.title, schdule.desc, schdule.img!.thumbnail, schdule.place.address_name, schdule.seq));
+      dispatch(setActive("schduleDetail"));
+    }
+  }
   return (
-    <Container>
+    <Container onClick={onClick}>
       <Number>{schdule.seq}</Number>
       <TextWrapper>
         <Title>{schdule.title}</Title>

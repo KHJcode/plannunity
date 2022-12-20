@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import PlanListWithConditionContainer from "../src/components/templates/PlanListWithConditionContainer";
 import RecentCreatedPlanContainer from "../src/components/plan/RecentCreatedPlanContainer";
 import RecentSharedPlanContainer from "../src/components/plan/RecentSharedPlanContainer";
@@ -19,9 +19,9 @@ import SharePlanContainer from "../src/components/plan/sharePlan/SharePlanContai
 import CreatePlanContainer from "../src/components/plan/createPlan/CreatePlanContainer";
 import BudgetEditModalContainer from "../src/components/plan/createPlan/modal/BudgetEditModalContainer";
 import { GetStaticProps } from "next";
-import { RootState } from "../src/modules";
 import SearchInfoEditModalContainer from "../src/components/plan/createPlan/modal/SearchInfoEditModalContainer";
 import { getAllData } from "../src/firebase/database";
+import SearchPlaceModalContainer from "../src/components/plan/createPlan/modal/SearchPlaceModalContainer";
 
 export const getStaticProps: GetStaticProps = async () => {
   const planData: any = await getAllData("plans");
@@ -59,6 +59,7 @@ export default function PlanPage({ planData }: any) {
       <SearchInfoAddModalContainer />
       <SearchInfoEditSelectionModalContainer />
       <SearchInfoEditModalContainer />
+      <SearchPlaceModalContainer />
     </div>
   );
 }

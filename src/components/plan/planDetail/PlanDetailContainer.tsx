@@ -6,17 +6,18 @@ import PlanDetailFooterBar from "./PlanDetailFooterBar";
 import SecTitle from "../../templates/SecTitle";
 import PlanSchduleList from "../PlanSchduleList";
 import { useRouter } from "next/router";
-import { GetServerSideProps } from "next";
-import PlanBudgetContainer from "../createPlan/PlanBudgetContainer";
 import BudgetList from "../BudgetList";
 import InfoLinkList from "../InfoLinkList";
 import { PlanData } from "../../../../pages";
+import MapIcon from "../MapIcon";
 
 type PlanDetailContainerProps = {
   plan: PlanData
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  background: #FFFFFF;
+`;
 
 const BackButton = styled.div`
   position: absolute;
@@ -105,7 +106,7 @@ const Wrapper = styled.div`
 `;
 
 const Box = styled.div`
-  height: 100px;
+  height: 85px;
 `;
 
 export default function PlanDetailContainer({ plan }: PlanDetailContainerProps) {
@@ -142,7 +143,7 @@ export default function PlanDetailContainer({ plan }: PlanDetailContainerProps) 
           </PlanInfoBox>
         </PlanInfoBoxWrapper>
       </PlanDetailWrapper>
-      <PlanDetailFooterBar />
+      {/* <PlanDetailFooterBar /> */}
       <Wrapper>
         <SecTitle text="플랜 일정" />
         <PlanSchduleList schduleData={plan.schdules} />
@@ -152,16 +153,11 @@ export default function PlanDetailContainer({ plan }: PlanDetailContainerProps) 
         <BudgetList budgetData={plan.budgets} />
       </Wrapper>
       <Wrapper>
-        <SecTitle text="플랜 탐색 정보" />
+        <SecTitle text="플랜 관련 링크" />
         <InfoLinkList linkData={plan.infos}  />
       </Wrapper>
       <Box />
+      <MapIcon />
     </Container>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  return {
-    props: {},
-  };
-};

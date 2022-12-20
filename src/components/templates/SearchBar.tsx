@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 
 type SearchBarType = {
   text: string;
   setText: ($: string) => void;
   searchType: string;
+  onClick: () => void;
 };
 
 const Container = styled.div`
@@ -16,6 +18,7 @@ const Container = styled.div`
   gap: 12px;
   align-items: center;
   position: relative;
+  min-height: 50px !important;
 `;
 
 const Input = styled.input`
@@ -42,19 +45,29 @@ export default function SearchBar({
   text,
   setText,
   searchType,
+  onClick,
 }: SearchBarType) {
+  const [placeholder, setPlaceHolder] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
     console.log(text);
   };
 
-  const onClickSearchButton = () => {};
+  useEffect(() => {
+    if(searchType === "plan") {
+      setPlaceHolder("관심있는 플랜을 검색해보세요");
+    } else if(searchType === "address") {
+      setPlaceHolder("예)용산구 청파동 선린인터넷고등학교");
+    } else {
+      setPlaceHolder("새로운 친구를 찾아보세요");
+    }
+  }, [])
 
   return (
     <Container>
-      <Image src="images/search.svg" onClick={onClickSearchButton} />
+      <Image src="images/search.svg" onClick={onClick} />
       <Input
-        placeholder={ searchType == "plan" ? "관심있는 플랜을 검색해보세요" : "새로운 친구를 찾아보세요"}
+        placeholder={placeholder}
         onChange={onChange}
         value={text}
       />

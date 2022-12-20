@@ -43,63 +43,22 @@ const CategoryList = styled.div`
   overflow: scroll;
 `
 
+const categoryList = ["맛집", "카페", "관광", "힐링", "쇼핑", "도시", "자연", "도보", "자전거", "대중교통"];
+
 export default function SearchWithCategoryContainer() {
+  const onClick = () => {
+
+  }
   return (
     <Conatiner>
       <SecTitle text="카테고리로 찾아보세요" />
       <CategoryList>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>내 주변</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>당일치기</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>맛집</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>대중교통만</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>핫플레이스</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>알찬</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>힐링</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>자연</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>축제</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>가성비</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>럭셔리</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>이색적인</CategoryName>
-        </CategoryItemWrapper>
-        <CategoryItemWrapper>
-          <CategoryItem><Etc /></CategoryItem>
-          <CategoryName>익스트림</CategoryName>
-        </CategoryItemWrapper>
+        {categoryList.map(data => (
+          <CategoryItemWrapper onClick={onClick} key={data}>
+           <CategoryItem><Etc /></CategoryItem>
+           <CategoryName>{data}</CategoryName>
+          </CategoryItemWrapper>
+        ))}
       </CategoryList>
     </Conatiner>
   );

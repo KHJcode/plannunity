@@ -12,7 +12,8 @@ import { auth } from "../src/firebase/firebase";
 import axios from "axios";
 import CartContainer from "../src/components/cart/CartContainer";
 import FriendDetailModalContainer from "../src/components/friend/modal/FriendDetailModalContainer";
-import { getLocal } from "../src/map/search";
+// import { getLocal } from "../src/map/search";
+import MapContainer from "../src/components/plan/MapContainer";
 
 export interface IsClicked {
   bag: boolean;
@@ -40,7 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, []);
 
   useEffect(() => {
-    getLocal();
+    // getLocal();
   }, []);
 
   const { store } = wrapper.useWrappedStore(pageProps);
@@ -59,6 +60,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <FriendDetailModalContainer />
             </>
         )}
+        {(route !== "/" && route !== "friend" && route !== "profile") && <MapContainer />}
         <Component {...pageProps} />
       </Provider>
     </>

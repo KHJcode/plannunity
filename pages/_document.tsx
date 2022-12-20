@@ -4,6 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <script type='text/javascript' src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services,clusterer`} />
         <link rel="manifest" href="/manifest.json" />
         <link
           href="favicons/favicon-16x16.png"

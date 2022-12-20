@@ -1,6 +1,7 @@
 import { GetServerSideProps, GetStaticProps } from "next";
 import Head from "next/head";
 import styled from "styled-components";
+import SchduleDetailModalContainer from "../../src/components/plan/planDetail/modal/SchduleDetailModalContainer";
 import PlanDetailContainer from "../../src/components/plan/planDetail/PlanDetailContainer";
 import { getData } from "../../src/firebase/database";
 
@@ -27,6 +28,7 @@ export default function Plan({ planData }: any) {
       </Head>
       <Container>
         <PlanDetailContainer plan={planData} />
+        <SchduleDetailModalContainer />
       </Container>
     </>
   );

@@ -8,7 +8,7 @@ import { setActive } from "../../../modules/isActive";
 const Container = styled.div`
   width: 100%;
   margin-top: 40px;
-  margin-bottom: 60px;
+  margin-bottom: 85px;
 `;
 
 const ButtonWrapper = styled.div`

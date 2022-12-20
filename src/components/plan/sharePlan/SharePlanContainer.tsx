@@ -4,6 +4,7 @@ import Dot from "../../../../public/images/dot.svg"
 import PageTitle from "../../templates/PageTitle";
 import { RootState } from "../../../modules";
 import { unsetActive } from "../../../modules/isActive";
+import SmallSecTitle from "../SmallSecTitle";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -45,31 +46,46 @@ const RegisterButton = styled.button`
   background: #FFFFFF;
 `
 
-const OptionsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-bottom: 25px;
-`
-
-const OptionWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
-`
-
-const OptionName = styled.div`
-  font-size: 18px;
-  line-height: 20px;
-`
-
-const OptionSelectBox = styled.div`
+const SelectBox1 = styled.div`
+  padding: 15px 16px;
   background: #F9F9F9;
   border: 1px solid #EDEDED;
   border-radius: 12px;
-  padding: 15px;
+  height: 71px;
+  display: flex;
+  align-items: center;
+`
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+  margin-left: 15px;
+`
+
+const TitleText = styled.div`
+  font-size: 18px;
+  line-height: 20px;
   color: #454545;
+`
+
+const DescText = styled.div`
+  font-size: 12px;
+  line-height: 20px;
+  color: #A4A4A4;
+`
+
+const SelectBox2 = styled.div`
+  background: #F9F9F9;
+  border: 1px solid #EDEDED;
+  border-radius: 12px;
+  padding: 15px 22px;
+`
+
+const SecTitle = styled.div`
+  font-size: 18px;
+  line-height: 20px;
 `
 
 const PlanDesc = styled.textarea`
@@ -81,7 +97,7 @@ const PlanDesc = styled.textarea`
   border-radius: 15px;
   font-size: 15px;
   line-height: 25px;
-  margin-bottom: 40px;
+  resize: none;
 
   &::placeholder {
     color: #9A9A9A;
@@ -105,21 +121,29 @@ export default function SharePlanContainer() {
         </TitleWrapper>
         <RegisterButton>공유</RegisterButton>
       </TopWrapper>
-      <OptionsWrapper>
-        <OptionWrapper>
-          <OptionName>카테고리</OptionName>
-          <OptionSelectBox>지역 핫플레이스</OptionSelectBox>
-        </OptionWrapper>
-        <OptionWrapper>
-          <OptionName>소요 시간</OptionName>
-          <OptionSelectBox>6시간</OptionSelectBox>
-        </OptionWrapper>
-        <OptionWrapper>
-          <OptionName>지역</OptionName>
-          <OptionSelectBox>서울특별시 강남구 역삼동</OptionSelectBox>
-        </OptionWrapper>
-      </OptionsWrapper>
-      <PlanDesc placeholder="플랜을 소개할 내용을&#13;&#10;간단히 적어주세요 (1000자 이내)" />
+      <div style={{ "marginBottom": "20px" }}> 
+        <SmallSecTitle text="공유 대상" />
+        <SelectBox1>
+          <img src="/images/earth.svg" />
+          <TextWrapper>
+            <TitleText>전체 공유</TitleText>
+            <DescText>해당 플랜을 모두에게 공유해요</DescText>
+          </TextWrapper>
+          <img src="/images/arrow-down.svg" width={23} height={23} />
+        </SelectBox1>
+      </div>
+      <div style={{ "marginBottom": "40px", "display": "flex", "justifyContent": "space-between", "alignItems": "center" }}>
+        <SecTitle>교통 접근성 (선택)</SecTitle>
+        <SelectBox2>좋음</SelectBox2>
+      </div>
+      <div style={{ "display": "flex", "marginBottom": "40px", "gap": "5px", "flexDirection": "column" }}>
+        <SmallSecTitle text="기타 정보 (선택)" />
+        <PlanDesc placeholder="플랜의 기타 정보를 적어보세요" />
+      </div>
+      <div style={{ "display": "flex", "marginBottom": "40px", "gap": "5px", "flexDirection": "column" }}>
+        <SmallSecTitle text="후기 (선택)" />
+        <PlanDesc placeholder="후기를 적어보세요" />
+      </div>
     </Container>
   );
 }

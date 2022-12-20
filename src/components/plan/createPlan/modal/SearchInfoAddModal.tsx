@@ -5,6 +5,7 @@ import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import { unsetActive } from "../../../../modules/isActive";
 import { useState } from "react";
 import { addLink } from "../../../../modules/linkInfo";
+import { Client } from 'peekalink';
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
@@ -56,10 +57,19 @@ const ButtonWrapper = styled.div`
   width: 100%;
 `;
 
+const ErrorMessage = styled.div`
+  font-size: 15px;
+  color: #ff2525;
+  margin-bottom: 20px;
+`;
+
+const client = new Client({ "apiKey": "1af5912c-2b02-4280-b320-ce870e4b92dd" });
+
 export default function SearchInfoAddModal() {
   const { searchInfoAdd } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
   const [link, setLink] = useState("");
+  const [errMsg, setErrMsg] = useState("");
 
   const onClickCancelButton = () => {
     dispatch(unsetActive("searchInfoAdd"));
@@ -69,9 +79,14 @@ export default function SearchInfoAddModal() {
     setLink(e.target.value);
   }
 
-  const onClickSubmitButton = () => {
-    dispatch(addLink(link));
-    dispatch(unsetActive("searchInfoAdd"));
+  const onClickSubmitButton = async () => {
+    // const { isAvailable } = await client.isAvailable(link);
+    // if(!isAvailable) {
+      dispatch(addLink(link));
+      dispatch(unsetActive("searchInfoAdd"));
+    // } else {
+    //   setErrMsg("링크가 유효하지 않습니다.");
+    // }
     setLink("");
   }
 
@@ -85,6 +100,7 @@ export default function SearchInfoAddModal() {
         <Label>정보에 사용할 링크</Label>
         <Input placeholder="링크를 입력해주세요(예: https://naver.com)" onChange={onChange} value={link} />
       </InputWrapper>
+      <ErrorMessage>{errMsg}</ErrorMessage>
       <ButtonWrapper>
         <EditAndCreateButton
           text="해당 추가 적용하기"
