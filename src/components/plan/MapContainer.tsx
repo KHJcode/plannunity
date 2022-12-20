@@ -6,6 +6,7 @@ import { RootState } from "../../modules";
 import { setActive, unsetActive } from "../../modules/isActive";
 import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk"
 import { SchduleState } from "../../modules/schdule";
+import { useRef } from "react";
 
 const Container = styled.div<{ isActive: boolean }>`
   position: fixed;
@@ -33,30 +34,26 @@ export default function MapContainer() {
     dispatch(unsetActive("map"));
   }
 
-  useEffect(() => {
-  }, []);
-
   return (
     <Container isActive={map}>
       <CancelButton>
         <img src="/images/cancel.svg" onClick={onClickCancelButton} />
       </CancelButton>
-      <Map center={{lat: 37.5427559235541, lng: 126.967185290642}} style={{ width: "100%", height: "100%" }} level={5}>
-      <MarkerClusterer
-      averageCenter={true}
-      minLevel={10}
-      >
-        {schdule.map((schdule: SchduleState) => (
-          <MapMarker key={schdule.seq} image={{
-            src: "/images/marker.svg",
-            size: {
-              width: 20,
-              height: 20
-            },
-          }} position={{lat: Number(schdule.place.y), lng: Number(schdule.place.x)}}>{schdule.place.place_name}</MapMarker>
-        ))}
-      </MarkerClusterer>
-        
+      <Map center={{lat: 37.5427559235541, lng: 126.967185290642}} style={{ "width": "100%", "height": "100%" }} level={5}>
+        <MarkerClusterer
+        averageCenter={true}
+        minLevel={10}
+        >
+          {schdule.map((schdule: SchduleState) => (
+            <MapMarker key={schdule.seq} image={{
+              src: "/images/marker.svg",
+              size: {
+                width: 20,
+                height: 20
+              },
+            }} position={{lat: Number(schdule.place.y), lng: Number(schdule.place.x)}}>{schdule.place.place_name}</MapMarker>
+          ))}
+        </MarkerClusterer>
       </Map>
     </Container>
   );

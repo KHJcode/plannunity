@@ -10,7 +10,6 @@ const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
   background: ${(props) =>
     props.isActive ? "rgba(0, 0, 0, 0.41)" : "#FFFFFF"};
-  touch-action: none;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;

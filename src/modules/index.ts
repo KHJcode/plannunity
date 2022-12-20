@@ -9,6 +9,7 @@ import linkInfo from "./linkInfo";
 import cart from './cart';
 import selectedSchdule from "./selectedSchdule";
 import place from "./place";
+import category from "./category";
 
 const rootReducer = combineReducers({
   currentPage,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   cart,
   selectedSchdule,
   place,
+  category,
 });
 
 const makeStore: MakeStore<any> = () => {

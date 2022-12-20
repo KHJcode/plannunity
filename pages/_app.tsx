@@ -14,6 +14,7 @@ import CartContainer from "../src/components/cart/CartContainer";
 import FriendDetailModalContainer from "../src/components/friend/modal/FriendDetailModalContainer";
 // import { getLocal } from "../src/map/search";
 import MapContainer from "../src/components/plan/MapContainer";
+import Script from "next/script";
 
 export interface IsClicked {
   bag: boolean;
@@ -47,6 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
   const { store } = wrapper.useWrappedStore(pageProps);
   return (
     <>
+
       <Provider store={store}>
         {(route === "/" ||
           route === "/plan" ||

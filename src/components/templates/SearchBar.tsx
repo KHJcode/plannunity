@@ -8,9 +8,8 @@ type SearchBarType = {
   onClick: () => void;
 };
 
-const Container = styled.div`
+const Container = styled.div<{ margin: boolean }>`
   height: 50px;
-  width: 100%;
   background: #f9f9f9;
   border: 1px solid #ededed;
   border-radius: 12px;
@@ -19,6 +18,7 @@ const Container = styled.div`
   align-items: center;
   position: relative;
   min-height: 50px !important;
+  margin: 0 ${props => props.margin && "20px"};
 `;
 
 const Input = styled.input`
@@ -64,7 +64,7 @@ export default function SearchBar({
   }, [])
 
   return (
-    <Container>
+    <Container margin={searchType === "plan" ? true : false}>
       <Image src="images/search.svg" onClick={onClick} />
       <Input
         placeholder={placeholder}
