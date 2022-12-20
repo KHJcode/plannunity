@@ -12,6 +12,7 @@ type RecentCreatedPlanContainerProps = {
 
 const Container = styled.div`
   padding: 20px;
+  padding-top: 40px;
 `
 
 const ButtonWrapper = styled.div`
@@ -31,6 +32,22 @@ const Button = styled.button<{ btnColor: string }>`
   background: ${props => props.btnColor === "white" ? "#F9F9F9": "#FFDFCD"};
 `
 
+const ReplaceBox = styled.div`
+  width: 100%;
+  height: 165px;
+  border-radius: 15px;
+  background: #F9F9F9;
+  background-size: 100% 165px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const ReplaceText = styled.div`
+  
+`
+
 export default function RecentCreatedPlanContainer({ plan }: RecentCreatedPlanContainerProps) {
   const dispatch = useDispatch();
 
@@ -41,7 +58,7 @@ export default function RecentCreatedPlanContainer({ plan }: RecentCreatedPlanCo
   return (
     <Container>
       <SecTitle text="회원님께서 제작하신 플랜" />
-      {plan && <PlanThumbnail styleOption="private" plan={plan} />}
+      {plan ? <PlanThumbnail styleOption="private" plan={plan} /> : <ReplaceBox><ReplaceText></ReplaceText></ReplaceBox>}
       <ButtonWrapper>
         <Button btnColor="white">모든 플랜 보기</Button>
         <Button btnColor="orange" onClick={onClickCreateButton}>플랜 만들기</Button>

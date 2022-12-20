@@ -22,6 +22,7 @@ import SearchInfoEditModalContainer from "../src/components/plan/createPlan/moda
 import { getAllData } from "../src/firebase/database";
 import SearchPlaceModalContainer from "../src/components/plan/createPlan/modal/SearchPlaceModalContainer";
 import SearchBar from "../src/components/templates/SearchBar";
+import { useState } from "react";
 
 export const getStaticProps: GetStaticProps = async () => {
   const planData: any = await getAllData("plans");
@@ -34,16 +35,22 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function PlanPage({ planData }: any) {
   const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
+
+  const onClickSearchButton = () => {
+    console.log(search);
+  }
+
   useEffect(() => {
     dispatch(setCurrentPage("plan"));
   }, []);
+
   return (
     <div className={styles.container}>
       <Head>
         <title>플래뮤니티 | 플랜</title>
       </Head>
-      {/* 검색창 프롭 수정 */}
-      <SearchBar searchType="plan" text="" setText={() => {}} onClick={() => {}} /> 
+      <SearchBar searchType="plan" text={search} setText={setSearch} onClick={onClickSearchButton} /> 
       <RecentCreatedPlanContainer plan={planData[0]} />
       <RecentSharedPlanContainer plan={planData[0]} />
       <SearchWithCategoryContainer />

@@ -33,6 +33,22 @@ const Button = styled.button<{ btnColor: string }>`
   background: ${props => props.btnColor === "white" ? "#F9F9F9": "#FFDFCD"};
 `
 
+const ReplaceBox = styled.div`
+  width: 100%;
+  height: 165px;
+  border-radius: 15px;
+  background: #F9F9F9;
+  background-size: 100% 165px;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+const ReplaceText = styled.div`
+  
+`
+
 export default function RecentSharedPlanContainer({ plan }: RecentSharedPlanContainerProps) {
   const dispatch = useDispatch();
   const onClickCreateButton = () => {
@@ -42,7 +58,7 @@ export default function RecentSharedPlanContainer({ plan }: RecentSharedPlanCont
   return (
     <Container>
       <SecTitle text="회원님께서 공유하신 플랜" />
-      {plan && <PlanThumbnail styleOption="share" plan={plan} />}
+      {plan ? <PlanThumbnail styleOption="share" plan={plan} /> : <ReplaceBox><ReplaceText></ReplaceText></ReplaceBox>}
       <ButtonWrapper>
         <Button btnColor="white">공유한 플랜 보기</Button>
         <Button btnColor="orange" onClick={onClickCreateButton}>플랜 공유하기</Button>

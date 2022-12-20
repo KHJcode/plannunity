@@ -113,6 +113,7 @@ const PlusButton = styled.div`
 
 export default function CreatePlanContainer() {
   const { planEdit } = useSelector((state: RootState) => state.isActive);
+  const categories = useSelector((state: RootState) => state.category);
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [username, setUsername] = useState("");
@@ -164,10 +165,9 @@ export default function CreatePlanContainer() {
         <SmallSecTitle text="카테고리" />
         <OptionBottomWrapper>
           <OptionBoxList>
-            <OptionBox>대중교통</OptionBox>
-            <OptionBox>도보</OptionBox>
-            <OptionBox>카페</OptionBox>
-            <OptionBox>맛집</OptionBox>
+            {categories.map((category: string) => (
+              <OptionBox>{category}</OptionBox>
+            ))}
             <PlusButton>
               <img src="/images/plus.svg" />
             </PlusButton>

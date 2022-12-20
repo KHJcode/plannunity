@@ -10,6 +10,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-height: 230px;
 `
 
 export default function RankingList({ plans }: RankingListProps) {

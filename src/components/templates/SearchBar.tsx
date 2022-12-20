@@ -50,7 +50,6 @@ export default function SearchBar({
   const [placeholder, setPlaceHolder] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
-    console.log(text);
   };
 
   useEffect(() => {

@@ -13,7 +13,7 @@ const Conatiner = styled.div`
   height: 165px;
   border-radius: 15px;
   background: linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), url(https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png);
-  background-size: 100% 185px;
+  background-size: 100% 165px;
   margin-top: 5px;
   padding: 15px 10px;
   display: flex;

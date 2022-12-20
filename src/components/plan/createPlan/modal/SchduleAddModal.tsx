@@ -165,7 +165,7 @@ export default function SchduleAddModal() {
       </InputWrapper>
       <InputWrapper>
         <Label>일정 위치</Label>
-        <Input placeholder="일정 위치를 입력해주세요." value={place?.place_name} onFocus={onFocusLocInput} id="desc" readOnly />
+        <Input placeholder="일정 위치를 입력해주세요." value={place ? place.place_name : ""} onFocus={onFocusLocInput} id="desc" readOnly />
       </InputWrapper>
       <InputWrapper>
         <Label>일정 제목</Label>
