@@ -35,7 +35,7 @@ export default function MapContainer() {
   }
 
   return (
-    <Container isActive={map}>
+    <Container isActive={map} id="map">
       <CancelButton>
         <img src="/images/cancel.svg" onClick={onClickCancelButton} />
       </CancelButton>
