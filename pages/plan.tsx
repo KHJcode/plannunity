@@ -117,8 +117,8 @@ export default function PlanPage({ recentSharedPlan, recentCreatedPlan, highestT
       <ShareTargetModalContainer />
       <MassTransAccModalContainer />
       <DifficultyModalContainer />
-      <MyAllPlan />
-      <MySharedPlan />
+      {/* <MyAllPlan plans={recentCreatedPlan} />
+      <MySharedPlan plans={recentSharedPlan} /> */}
     </div>
   );
 }

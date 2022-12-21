@@ -8,6 +8,10 @@ import PlanThumbnail from "../../templates/PlanThumbnail";
 import { useEffect, useState } from "react";
 import { getAllData } from "../../../firebase/database";
 
+type MyAllPlan = {
+  plans: any;
+}
+
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
   height: 100%;
@@ -52,21 +56,13 @@ const PlanList = styled.div`
   gap: 10px;
 `
 
-export default function MyAllPlan() {
+export default function MyAllPlan({ plans }: any) {
   const { allPlan } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
-  const [plans, setPlans] = useState<any>();
-  const [loaded, setLoaded] = useState(false);
 
   const onClick = () => {
     dispatch(unsetActive("allPlan"));
   }
-
-  useEffect(() => {
-    (async () => {
-      await getAllData("plans").then((data: any) => setPlans(data));
-    })()
-  }, [])
 
   return (
     <Container isActive={allPlan}>
@@ -79,18 +75,17 @@ export default function MyAllPlan() {
           </DotWrapper>
         </TitleWrapper>
       </TopWrapper>
-      <MainText>현재 총 3개의<br />플랜이 저장되었어요</MainText>
+      <MainText>현재 총 {plans.length}개의<br />플랜을 만들었어요</MainText>
       <PlanList>
-        {
-          loaded
-          ? 
-          plans.map((plan: any) => (
-            <PlanThumbnail styleOption="private" plan={plan} key={plan.id} />
-          ))
-          :
-          <></>
-        }
-        
+          {
+            plans.length 
+            ? 
+            plans.map((plan: any) => (
+              <PlanThumbnail styleOption="private" plan={plan} key={plan.id} />
+            ))
+            :
+            <></>
+          }
       </PlanList>
     </Container>
   );
