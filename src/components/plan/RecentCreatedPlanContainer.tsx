@@ -55,12 +55,16 @@ export default function RecentCreatedPlanContainer({ plan }: RecentCreatedPlanCo
     dispatch(setActive("planEdit"));
   }
 
+  const onClickAllPlan = () => {
+    dispatch(setActive("allPlan"));
+  }
+
   return (
     <Container>
       <SecTitle text="회원님께서 제작하신 플랜" />
       {plan ? <PlanThumbnail styleOption="private" plan={plan} /> : <ReplaceBox><ReplaceText></ReplaceText></ReplaceBox>}
       <ButtonWrapper>
-        <Button btnColor="white">모든 플랜 보기</Button>
+        <Button btnColor="white" onClick={onClickAllPlan}>모든 플랜 보기</Button>
         <Button btnColor="orange" onClick={onClickCreateButton}>플랜 만들기</Button>
       </ButtonWrapper>
     </Container>

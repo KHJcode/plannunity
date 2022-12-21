@@ -6,6 +6,7 @@ export default function Document() {
     <Html>
       <Head>
         <Script type='text/javascript' src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&libraries=services,clusterer&autoload=false`} strategy="beforeInteractive" />
+        <meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
         <link rel="manifest" href="/manifest.json" />
         <link
           href="favicons/favicon-16x16.png"
