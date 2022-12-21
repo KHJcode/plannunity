@@ -8,18 +8,18 @@ import { useEffect, useState } from 'react';
 import { setCurrentPage } from '../src/modules/currentPage';
 import { GetStaticProps } from 'next';
 import { loadCart } from '../src/modules/cart';
-import { getAllData } from '../src/firebase/database';
+import { getPlansByVisibility } from '../src/firebase/database';
 
 export const getStaticProps: GetStaticProps = async () => {
-  const planData: any = await getAllData("plans");
+  const sharedPlan: any = await getPlansByVisibility("public");
   return {
     props: {
-      planData
+      sharedPlan
     }
   }
 }
 
-export default function HomePage({ planData }: any) {
+export default function HomePage({ sharedPlan }: any) {
   const dispatch = useDispatch();
   const [logined, setLogined] = useState(false);
 
@@ -29,7 +29,7 @@ export default function HomePage({ planData }: any) {
       setLogined(true);
     }
     dispatch(setCurrentPage("home"));
-    dispatch(loadCart(planData.slice(0, 4)));
+    dispatch(loadCart(sharedPlan.slice(0, 4)));
   }, []);
 
   return (
@@ -41,9 +41,9 @@ export default function HomePage({ planData }: any) {
           </Head>
           <div className={styles.container}>
             <CarouselContainer />
-            <PlanListWithConditionContainer title='추천수가 높은 플랜' plans={planData} />
-            <PlanListWithConditionContainer title='회원님께 추천드리는 플랜' plans={planData} />
-            <RankedPlanContainer plans={planData.slice(-4, -1)} />
+            <PlanListWithConditionContainer title='추천수가 높은 플랜' plans={sharedPlan} />
+            <PlanListWithConditionContainer title='회원님께 추천드리는 플랜' plans={sharedPlan} />
+            <RankedPlanContainer plans={sharedPlan.slice(0, 3)} />
           </div>
         </>
       }

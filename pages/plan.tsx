@@ -30,6 +30,8 @@ import MassTransAccModalContainer from "../src/components/plan/sharePlan/modal/M
 import DifficultyModalContainer from "../src/components/plan/sharePlan/modal/DifficultyModalContainer";
 import { SharedPlan } from "../src/firebase/schema";
 import PlanThumbnail from "../src/components/templates/PlanThumbnail";
+import MyAllPlan from "../src/components/plan/PlanList/MyAllPlan";
+import MySharedPlan from "../src/components/plan/PlanList/MySharedPlan";
 
 export const getStaticProps: GetStaticProps = async () => {
   const sharedPlan: any = await getPlansByVisibility("public");
@@ -115,6 +117,8 @@ export default function PlanPage({ recentSharedPlan, recentCreatedPlan, highestT
       <ShareTargetModalContainer />
       <MassTransAccModalContainer />
       <DifficultyModalContainer />
+      <MyAllPlan />
+      <MySharedPlan />
     </div>
   );
 }
