@@ -1,15 +1,11 @@
-import { useRouter } from "next/router"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import styled from "styled-components"
 import PlanThumbnail from "../templates/PlanThumbnail"
 import SecTitle from "../templates/SecTitle"
-import { RootState } from "../../modules"
 import { setActive } from "../../modules/isActive"
-import { PlanData } from "../../../pages"
 
 type RecentSharedPlanContainerProps = {
-  plan: PlanData;
+  plan: any;
 }
 
 const Container = styled.div`

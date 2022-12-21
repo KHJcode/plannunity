@@ -5,7 +5,7 @@ import Dot from "../../../../public/images/dot.svg"
 import PageTitle from "../../templates/PageTitle";
 import { RootState } from "../../../modules";
 import { BudgetsState, clearBudget } from "../../../modules/budget";
-import { unsetActive } from "../../../modules/isActive";
+import { setActive, unsetActive } from "../../../modules/isActive";
 import { clearLink, LinkInfosState } from "../../../modules/linkInfo";
 import schdule, { clearSchdule, SchdulesState, SchduleState } from "../../../modules/schdule";
 import PlanBudgetContainer from "./PlanBudgetContainer";
@@ -18,6 +18,7 @@ import { Budget, Link, Plan, Schdule } from "../../../firebase/schema";
 import { auth } from "../../../firebase/firebase";
 import SecTitle from "../../templates/SecTitle";
 import SmallSecTitle from "../SmallSecTitle";
+import { clearCategory } from "../../../modules/category";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -120,6 +121,7 @@ export default function CreatePlanContainer() {
   const schdules = useSelector((state: RootState) => state.schdule);
   const budgets = useSelector((state: RootState) => state.budget);
   const links = useSelector((state: RootState) => state.linkInfo);
+  const { travelTerm } = useSelector((state: RootState) => state.currentData);
   
   useEffect(() => {
     setUsername(localStorage.getItem("name")!);
@@ -133,16 +135,28 @@ export default function CreatePlanContainer() {
     const plan: Plan = {
       title,
       visibility: "private",
-      schdules: schdules,
-      budgets: budgets,
-      links: links,
+      schdules,
+      budgets,
+      links,
+      category: categories,
     }
+    console.log(plan);
     addData("plans", plan);
 
+    setTitle("");
     dispatch(clearBudget());
     dispatch(clearLink());
     dispatch(clearSchdule());
+    dispatch(clearCategory());
     dispatch(unsetActive("planEdit"));
+  }
+
+  const onClickCategoryAddButton = () => {
+    dispatch(setActive("categorySelect"));
+  }
+
+  const onClickTravelTermInput = () => {
+    dispatch(setActive("travelTerm"));
   }
 
   return (
@@ -165,10 +179,10 @@ export default function CreatePlanContainer() {
         <SmallSecTitle text="카테고리" />
         <OptionBottomWrapper>
           <OptionBoxList>
-            {categories.map((category: string) => (
-              <OptionBox>{category}</OptionBox>
+            {categories.map((category: string, idx: number) => (
+              <OptionBox key={idx}>{category}</OptionBox>
             ))}
-            <PlusButton>
+            <PlusButton onClick={onClickCategoryAddButton}>
               <img src="/images/plus.svg" />
             </PlusButton>
           </OptionBoxList>
@@ -176,7 +190,7 @@ export default function CreatePlanContainer() {
       </OptionWrapper>
       <OptionWrapper>
         <SmallSecTitle text="여행 기간" />
-        <Input placeholder="여행 기간을 선택해주세요" type="term" />
+        <Input placeholder="여행 기간을 선택해주세요" type="term" value={travelTerm} onFocus={onClickTravelTermInput} readOnly />
       </OptionWrapper>
       <PlanSchduleContainer />
       <PlanBudgetContainer />

@@ -8,11 +8,11 @@ import PlanSchduleList from "../PlanSchduleList";
 import { useRouter } from "next/router";
 import BudgetList from "../BudgetList";
 import InfoLinkList from "../InfoLinkList";
-import { PlanData } from "../../../../pages";
 import MapIcon from "../MapIcon";
+import { useEffect, useState } from "react";
 
 type PlanDetailContainerProps = {
-  plan: PlanData
+  plan: any;
 }
 
 const Container = styled.div`
@@ -106,44 +106,46 @@ const Wrapper = styled.div`
 `;
 
 const Box = styled.div`
-  height: 85px;
+  height: 96.5px;
 `;
 
 export default function PlanDetailContainer({ plan }: PlanDetailContainerProps) {
   const router = useRouter();
+
   return (
     <Container>
       <BackButton>
         <img src="/images/arrow-left.svg" onClick={() => router.back()} />
       </BackButton>
-      <ImageCarouselView />
+      <ImageCarouselView schdules={plan.schdules} />
       <PlanDetailWrapper>
         <Desc1Wrapper>
           <Desc1>현재 핫한 플랜</Desc1>
           <Dot />
-          <Desc1>By {plan.author}</Desc1>
+          <Desc1 style={{ "color": "#FF833E" }}>By {plan.author}</Desc1>
         </Desc1Wrapper>
-        <Title>{plan.planTitle}</Title>
+        <Title>{plan.title}</Title>
         <Desc2Wrapper>
-          <Desc2>0 추천, 저장시 10p</Desc2>
-          <Stars />
+          <Desc2>{plan.heart} 추천, 저장시 10p</Desc2>
         </Desc2Wrapper>
         <PlanInfoBoxWrapper>
           <PlanInfoBox>
             <InfoTitle>플랜 소개</InfoTitle>
             <InfoText>
-              Lorem ipsum dolor sit amet.
+              {plan.intro}
             </InfoText>
           </PlanInfoBox>
           <PlanInfoBox>
             <InfoTitle>카테고리</InfoTitle>
             <InfoText>
-              Lorem ipsum dolor sit amet.
+              {plan.category.map((item: string) => (
+                <span key={item}>{item}, </span>
+              ))}
             </InfoText>
           </PlanInfoBox>
         </PlanInfoBoxWrapper>
       </PlanDetailWrapper>
-      {/* <PlanDetailFooterBar /> */}
+      <PlanDetailFooterBar />
       <Wrapper>
         <SecTitle text="플랜 일정" />
         <PlanSchduleList schduleData={plan.schdules} />
@@ -154,10 +156,9 @@ export default function PlanDetailContainer({ plan }: PlanDetailContainerProps) 
       </Wrapper>
       <Wrapper>
         <SecTitle text="플랜 관련 링크" />
-        <InfoLinkList linkData={plan.infos}  />
+        <InfoLinkList linkData={plan.links}  />
       </Wrapper>
       <Box />
-      <MapIcon />
     </Container>
   );
 }

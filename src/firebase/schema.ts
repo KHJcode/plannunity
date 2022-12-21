@@ -8,14 +8,11 @@ export interface Schdule {
     desc: string;
     seq: number;
     place: DocData;
-    img?: UploadImg;
+    img: UploadImg | null;
     isSelected: boolean;
 }
 
-
 export interface Budget {
-    // title: string;
-    // money: number;
     title: string,
     budget: number,
     id: number,
@@ -36,18 +33,22 @@ export interface Notice {
 export interface Plan {
     title: string;
     author?: string | null;
-    hearts?: number;
-    thumbs?: number;
-    visibility: "private" | "public" | "friends";
     schdules: Schdule[];
     budgets: Budget[];
     links: Link[];
-    category?: string[];
-    intro?: string;
-    content?: string;
+    category: string[];
+    visibility: "private" | "public" | "friends";
 }
 
-// 추가 정보 있어야 함.
+export interface SharedPlan extends Plan {
+    intro: string;
+    content?: string;
+    thumbs: number;
+    hearts: number;
+    difficulty: string;
+    transportAccess: string;
+    view: number;
+}
 
 export interface User {
     name: string | null;

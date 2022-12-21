@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { PlanData } from "../../../pages";
 import ParallelContentItem from "./ParallelContentItem";
 
 type ParallelContentListType = {
@@ -21,7 +20,7 @@ export default function ParallelContentList({ plans }: ParallelContentListType) 
   return (
     <Container>
        <Wrapper>
-        {plans.map((plan: PlanData) => (
+        {plans.map((plan: any) => (
           <ParallelContentItem plan={plan} key={plan.id} />
         ))}
       </Wrapper>

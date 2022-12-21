@@ -65,9 +65,13 @@ const LinkWrapper = styled.div`
   overflow: hidden;
 `;
 
-const Link = styled.span``;
+const LinkText = styled.span`
 
-const LinkTitle = styled.span``;
+`;
+
+const LinkTitle = styled.span`
+
+`;
 
 interface PreviewData {
   title?: string;
@@ -96,17 +100,18 @@ export default function InfoLink({ link }: InfoLinkProps) {
       const data = await returnLinkPrivewData(link.link);
       setData(data);
     })();
-  }, [])
+  }, []);
+  
   if(data.title) {
     return (
-      <Container onClick={() => location.href = link.link}>
+      <Container>
         <BottomWrapper>
           <TextWrapper>
             <Title>{data.title}</Title>
             <Desc>{data.desc}</Desc>
           </TextWrapper>
           <LinkWrapper>
-            <Link>{data.domain} | </Link>
+            <LinkText>{data.domain} | </LinkText>
             <LinkTitle>{data.title}</LinkTitle>
           </LinkWrapper>
         </BottomWrapper>

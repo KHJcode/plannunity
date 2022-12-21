@@ -7,7 +7,7 @@ const CLICK_SCHDULE = 'CLICK_SCHDULE' as const;
 const UPDATE_SCHDULE = 'UPDATE_SCHDULE' as const;
 const CLEAR_SCHDULE = 'CLEAR_SCHDULE' as const;
 
-export const addSchdule = (title: string, desc: string, seq: number, place: DocData, img?: UploadImg) => ({
+export const addSchdule = (title: string, desc: string, seq: number, place: DocData, img: UploadImg | null) => ({
   type: ADD_SCHDULE,
   payload: {
     title,
@@ -28,7 +28,7 @@ export const clickSchdule = (seq: number) => ({
   payload: seq
 });
 
-export const updateSchdule = (title: string, desc: string, seq: number, place: DocData, img?: UploadImg) => ({
+export const updateSchdule = (title: string, desc: string, seq: number, place: DocData, img: UploadImg | null) => ({
   type: UPDATE_SCHDULE,
   payload: {
     title,
@@ -55,7 +55,7 @@ export type SchduleState = {
   desc: string;
   seq: number;
   place: DocData;
-  img?: UploadImg;
+  img: UploadImg | null;
   isSelected: boolean;
 }
 

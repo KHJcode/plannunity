@@ -1,18 +1,19 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import { PlanData } from "../../../pages";
 
 type ParallelContentItemType = {
-  plan: PlanData
+  plan: any;
 }
 
-const Container = styled.div`
+const Container = styled.div<{ url: string }>`
   height: 165px;
   width: 200px; 
   border-radius: 15px;
-  background: linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), url(https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png);
-  background-size: 200px 165px;
+  background: 
+    linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), 
+    url(${props => props.url !== "" ? props.url : "https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png"});
+  background-size: cover;
   padding: 15px 10px;
   display: flex;
   flex-direction: column;
@@ -54,9 +55,9 @@ export default function ParallelContentItem({ plan }: ParallelContentItemType) {
   }
   
   return (
-      <Container onClick={onClick}>
-        <SubText>햇살 좋은 날 안성맞춤 플랜</SubText>
-        <MainText>{plan.planTitle}</MainText>
+      <Container onClick={onClick} url={plan.schdules[0].img ? plan.schdules[0].img.thumbnail : ""}>
+        <SubText>{plan.intro}</SubText>
+        <MainText>{plan.title}</MainText>
       </Container>
   );
 }

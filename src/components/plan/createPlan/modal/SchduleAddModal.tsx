@@ -5,6 +5,7 @@ import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import { setActive, unsetActive } from "../../../../modules/isActive";
 import React, { useRef, useState } from "react";
 import { addSchdule } from "../../../../modules/schdule";
+import { clearPlace } from "../../../../modules/currentData";
 
 const Container = styled.div`
   background: #ffffff;
@@ -12,7 +13,7 @@ const Container = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: stretch;
 `;
 
 const TopWrapper = styled.div`
@@ -76,6 +77,11 @@ const ButtonWrapper = styled.div`
   width: 100%;
 `;
 
+const PhotoWrapper = styled.div`
+  display: flex;
+  gap: 10px;
+`
+
 const PhotoButton = styled.button`
   width: 65px;
   height: 65px;
@@ -87,21 +93,30 @@ const PhotoButton = styled.button`
   align-items: center;
 `;
 
+const PhotoThumbnail = styled.img`
+  width: 65px;
+  height: 65px;
+  border-radius: 12px;
+  object-fit: cover;
+`
+
 export type UploadImg = {
-  file: File;
   thumbnail: string;
   type: string;
 }
 
 export default function SchduleAddModal() {
   const schdules = useSelector((state: RootState) => state.schdule);
-  const place = useSelector((state: RootState) => state.place.place);
+  const place = useSelector((state: RootState) => state.currentData.place);
   const dispatch = useDispatch();
   const imgButton = useRef<HTMLInputElement>(null);
   const [imgFile, setImgFile] = useState<UploadImg | null>()
 
   const onClickCancelButton = () => {
     dispatch(unsetActive("schduleAdd"));
+    dispatch(clearPlace());
+    setTitle("");
+    setDesc("");
   };
 
   const [title, setTitle] = useState("");
@@ -114,12 +129,16 @@ export default function SchduleAddModal() {
 
   const onClickSubmitButton = () => {
     if(imgFile) {
+      console.log(imgFile);
+      console.log(place);
       dispatch(addSchdule(title, desc, schdules.length + 1, place!, imgFile));
       setImgFile(null);
     } else {
-      dispatch(addSchdule(title, desc, schdules.length + 1, place!));
+      dispatch(addSchdule(title, desc, schdules.length + 1, place!, null));
     }
     dispatch(unsetActive("schduleAdd"));
+    dispatch(clearPlace());
+    setImgFile(null);
     setTitle("");
     setDesc("");
   }
@@ -135,14 +154,17 @@ export default function SchduleAddModal() {
   const uploadImgFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
     if(fileList && fileList[0]) {
-      const url = URL.createObjectURL(fileList[0]);
-      console.log(url);
-      setImgFile({
-        file: fileList[0],
-        thumbnail: url,
-        type: fileList[0].type.slice(0, 5),
-      });
-      console.log(imgFile?.thumbnail);
+      const reader = new FileReader()
+      reader.readAsDataURL(fileList[0])
+      reader.onload = () => {
+        console.dir(reader.result);
+        setImgFile({
+          thumbnail: (reader.result)!.toString(),
+          type: fileList[0].type.slice(0, 5),
+        });
+      }
+      // const url = URL.createObjectURL(fileList[0]);
+      // console.log(url);
     }
   }
 
@@ -158,10 +180,13 @@ export default function SchduleAddModal() {
       </TopWrapper>
       <InputWrapper>
         <Label>이미지(선택)</Label>
-        <PhotoButton onClick={onClickPhotoButton}>
-          <img src="images/camera.svg" style={{ "padding": "20px" }} />
-          <input type="file" accept="image/jpg, image/jpeg, image/png" style={{ "display": "none" }} ref={imgButton} onChange={uploadImgFile} />
-        </PhotoButton>
+        <PhotoWrapper>
+          <PhotoButton onClick={onClickPhotoButton}>
+            <img src="images/camera.svg" style={{ "padding": "20px" }} />
+            <input type="file" accept="image/jpg, image/jpeg, image/png" style={{ "display": "none" }} ref={imgButton} onChange={uploadImgFile} />
+          </PhotoButton>
+          {imgFile && <PhotoThumbnail src={imgFile.thumbnail} />}
+        </PhotoWrapper>
       </InputWrapper>
       <InputWrapper>
         <Label>일정 위치</Label>

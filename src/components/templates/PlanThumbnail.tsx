@@ -1,19 +1,21 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { PlanData } from "../../../pages";
+import { Plan } from "../../firebase/schema";
 
 type PlanThumbnailType = {
-  styleOption: string;
-  plan: PlanData;
+  styleOption: "share" | "private" | "friend" | "cart";
+  plan: any;
 }
 
-const Conatiner = styled.div`
+const Conatiner = styled.div<{ url: string }>`
   width: 100%;
   height: 165px;
   border-radius: 15px;
-  background: linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), url(https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png);
-  background-size: 100% 165px;
+  background: 
+    linear-gradient(180deg, rgba(180, 180, 180, 0.26) 19.7%, rgba(0, 0, 0, 0.58) 100%), 
+    url(${props => props.url !== "" ? props.url : "https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png"});
+  background-size: cover;
   margin-top: 5px;
   padding: 15px 10px;
   display: flex;
@@ -94,27 +96,31 @@ export default function PlanThumbnail({ styleOption, plan }: PlanThumbnailType) 
     }
   }
 
+  useEffect(() => {
+    console.log(plan);
+  }, [])
+
   if(styleOption === "share" || styleOption === "friend") return (
-    <Conatiner onClick={onClick}>
+    <Conatiner onClick={onClick} url={plan.schdules[0].img ? plan.schdules[0].img.thumbnail : ""}>
       <LeftWrapper>
         <SubText>
           {styleOption === "friend" && <ProfileImg src="https://cdn.pixabay.com/photo/2014/03/29/09/17/cat-300572_1280.jpg" />}
           {styleOption === "share" ? "최근 회원님께서 공유하셨어요" : `By ${plan.author}`}
         </SubText>
-        <MainText>{plan.planTitle}</MainText>
+        <MainText>{plan.title}</MainText>
       </LeftWrapper>
         <RightWrapper>
-          <SubText>123 저장</SubText>
-          <SubText>32 추천</SubText>
+          <SubText>{plan.thumb}</SubText>
+          <SubText>{plan.heart}</SubText>
         </RightWrapper>
     </Conatiner>
   );
   else if(styleOption === "cart" || styleOption === "private") return (
-    <Conatiner onClick={onClick}>
+    <Conatiner onClick={onClick} url={plan.schdules[0].img ? plan.schdules[0].img.thumbnail : ""}>
       {styleOption === "cart" && <CancelButton onClick={onClickDeleteButton}>저장 취소하기</CancelButton>}
       <LeftWrapper>
-        <SubText>{styleOption === "private" ? "최근 회원님께서 작성하셨어요" : "멋진 스카이라인과 함께"}</SubText>
-        <MainText>{plan.planTitle}</MainText>
+        <SubText>{styleOption === "private" ? "최근 회원님께서 작성하셨어요" : ""}</SubText>
+        <MainText>{plan.title}</MainText>
       </LeftWrapper>
     </Conatiner>
   );

@@ -50,8 +50,8 @@ export default function PlanSchduleItem({ schdule }: SchduleItemProps) {
   const router = useRouter();
   const dispatch = useDispatch();
   const onClick = () => {
-    if(router.pathname !== "plan") {
-      dispatch(selectSchdule(schdule.title, schdule.desc, schdule.img!.thumbnail, schdule.place.address_name, schdule.seq));
+    if(router.pathname !== "/plan") {
+      dispatch(selectSchdule(schdule.title, schdule.desc, schdule.place.place_name, schdule.img ? schdule.img.thumbnail : null, schdule.seq));
       dispatch(setActive("schduleDetail"));
     }
   }

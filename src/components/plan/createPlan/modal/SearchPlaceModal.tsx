@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { unsetActive } from "../../../../modules/isActive";
-import { addPlace } from "../../../../modules/place";
+import { addPlace } from "../../../../modules/currentData";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import SearchBar from "../../../templates/SearchBar";
 
@@ -12,15 +12,15 @@ const KAKAO_URL = "//dapi.kakao.com"
 
 export interface DocData {
   address_name: string;
-  category_group_code: string;
-  category_group_name: string;
-  category_name: string;
-  distance: string;
+  // category_group_code: string;
+  // category_group_name: string;
+  // category_name: string;
+  // distance: string;
   id: string;
-  phone: string;
+  // phone: string;
   place_name: string;
-  place_url: string;
-  road_address_name: string;
+  // place_url: string;
+  // road_address_name: string;
   x: string;
   y: string;
 }
@@ -173,7 +173,14 @@ export default function SearchPlaceModal() {
   }
 
   const onClickSubmitButton = () => {
-    dispatch(addPlace(places[selectedPlaceIdx]));
+    const data: DocData = {
+      address_name: places[selectedPlaceIdx].address_name,
+      id: places[selectedPlaceIdx].id,
+      place_name: places[selectedPlaceIdx].place_name,
+      x: places[selectedPlaceIdx].x,
+      y: places[selectedPlaceIdx].y,
+    }
+    dispatch(addPlace(data));
     dispatch(unsetActive("searchPlace"));
     setAddress("");
     setPlaces([]);

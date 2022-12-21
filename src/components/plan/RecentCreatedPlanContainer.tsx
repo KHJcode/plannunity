@@ -4,10 +4,10 @@ import styled from "styled-components"
 import PlanThumbnail from "../templates/PlanThumbnail"
 import SecTitle from "../templates/SecTitle"
 import { setActive } from "../../modules/isActive"
-import { PlanData } from "../../../pages"
+import { Plan } from "../../firebase/schema"
 
 type RecentCreatedPlanContainerProps = {
-  plan: PlanData;
+  plan: Plan;
 }
 
 const Container = styled.div`

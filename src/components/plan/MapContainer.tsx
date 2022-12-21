@@ -4,7 +4,7 @@ import styled from "styled-components";
 // import { createMap } from "../../map/map";s
 import { RootState } from "../../modules";
 import { setActive, unsetActive } from "../../modules/isActive";
-import { Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk"
+import { CustomOverlayMap, Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk"
 import { SchduleState } from "../../modules/schdule";
 import { useRef } from "react";
 
@@ -25,6 +25,23 @@ const CancelButton = styled.div`
   z-index: 1002;
 `
 
+const OverLayWrapper = styled.div`
+  position: relative;
+`
+
+const OverLay = styled.div`
+  border-radius: 5px;
+  padding: 10px;
+  color: #FF833E;
+  font-size: 18px;
+  line-height: 20px;
+  font-family: 'SUIT-700';
+  background: #FFFFFF;
+  position: absolute;
+  top: -65px;
+  left: -50px;
+`
+
 export default function MapContainer() {
   const { map } = useSelector((state: RootState) => state.isActive);
   const schdule = useSelector((state: RootState) => state.schdule);
@@ -40,20 +57,27 @@ export default function MapContainer() {
         <img src="/images/cancel.svg" onClick={onClickCancelButton} />
       </CancelButton>
       <Map center={{lat: 37.5427559235541, lng: 126.967185290642}} style={{ "width": "100%", "height": "100%" }} level={5}>
-        <MarkerClusterer
+        {/* <MarkerClusterer
         averageCenter={true}
         minLevel={10}
         >
           {schdule.map((schdule: SchduleState) => (
-            <MapMarker key={schdule.seq} image={{
-              src: "/images/marker.svg",
-              size: {
-                width: 20,
-                height: 20
-              },
-            }} position={{lat: Number(schdule.place.y), lng: Number(schdule.place.x)}}>{schdule.place.place_name}</MapMarker>
+            <div key={schdule.seq}>
+              <MapMarker image={{
+                src: "/images/marker.svg",
+                size: {
+                  width: 20,
+                  height: 20
+                },
+              }} position={{lat: Number(schdule.place.y), lng: Number(schdule.place.x)}} />
+              <CustomOverlayMap position={{lat: Number(schdule.place.y), lng: Number(schdule.place.x)}}>
+                <OverLayWrapper>
+                  <OverLay>{schdule.place.place_name}</OverLay>
+                </OverLayWrapper>
+              </CustomOverlayMap>
+            </div>
           ))}
-        </MarkerClusterer>
+        </MarkerClusterer> */}
       </Map>
     </Container>
   );

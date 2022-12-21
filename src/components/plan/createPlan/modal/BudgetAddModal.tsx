@@ -6,7 +6,7 @@ import { unsetActive } from "../../../../modules/isActive";
 import { useState } from "react";
 import { addBudget } from "../../../../modules/budget";
 
-const Container = styled.div<{ isActive: boolean }>`
+const Container = styled.div`
   background: #ffffff;
   padding: 25px;
 `;
@@ -76,7 +76,6 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function BudgetAddModal() {
-  const { budgetAdd } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
   const onClickCancelButton = () => {
     dispatch(unsetActive("budgetAdd"));
@@ -98,7 +97,7 @@ export default function BudgetAddModal() {
   }
 
   return (
-    <Container isActive={budgetAdd}>
+    <Container>
       <TopWrapper>
         <MainText>플랜 예산안 추가</MainText>
         <img src="images/cancel.svg" onClick={onClickCancelButton} />

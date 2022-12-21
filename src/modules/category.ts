@@ -1,23 +1,30 @@
 const ADD_CATEGORY = "ADD_CATEGORY" as const;
+const CLEAR_CATEGORY = "CLEAR_CATEGORY" as const;
 
-export const addCategory = (category: string) => ({
+export const addCategory = (category: string[]) => ({
   type: ADD_CATEGORY,
   payload: category,
 });
 
-export type CategoryAction = ReturnType<typeof addCategory>;
+export const clearCategory = () => ({
+  type: CLEAR_CATEGORY,
+});
 
-export type CategorysState = string[];
+export type CategoryAction = ReturnType<typeof addCategory> | ReturnType<typeof clearCategory>;
 
-const initialState: CategorysState = [];
+export type CategoriesState = string[];
+
+const initialState: CategoriesState = [];
 
 export default function category(
-  state: CategorysState = initialState,
+  state: CategoriesState = initialState,
   action: CategoryAction
-): CategorysState {
+): CategoriesState {
   switch(action.type) {
     case ADD_CATEGORY:
-      return state.concat(action.payload);
+      return action.payload;
+    case CLEAR_CATEGORY:
+      return [];
     default:
       return state;
   }

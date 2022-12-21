@@ -1,6 +1,6 @@
 const SELECT_SCHDULE = "SELECT_SCHDULE" as const;
 
-export const selectSchdule = (title: string, desc: string, address: string, imgLink: string, seq: number) => ({
+export const selectSchdule = (title: string, desc: string, address: string, imgLink: string | null, seq: number) => ({
   type: SELECT_SCHDULE,
   payload: {
     title,
@@ -17,13 +17,13 @@ export type selectedSchduleState = {
   title: string;
   desc: string;
   address: string;
-  imgLink: string;
+  imgLink: string | null;
   seq: number;
 }
 
 const initialState: selectedSchduleState = { title: "", desc: "", address: "", imgLink: "", seq: 0 }
 
-export default function selectedSchdule(
+export default function selectedSchdule(  
   state: selectedSchduleState = initialState,
   action: selectedSchduleAction
 ): selectedSchduleState {

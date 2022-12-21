@@ -8,7 +8,7 @@ import budget from "./budget";
 import linkInfo from "./linkInfo";
 import cart from './cart';
 import selectedSchdule from "./selectedSchdule";
-import place from "./place";
+import currentData from "./currentData";
 import category from "./category";
 
 const rootReducer = combineReducers({
@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   linkInfo,
   cart,
   selectedSchdule,
-  place,
+  currentData,
   category,
 });
 

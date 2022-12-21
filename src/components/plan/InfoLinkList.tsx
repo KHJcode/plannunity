@@ -6,7 +6,7 @@ import { LinkInfosState } from "../../modules/linkInfo";
 import InfoLink from "./InfoLink";
 
 type InfoLinkListProps = {
-  linkData?: LinkInfosState
+  linkData: LinkInfosState
 }
 
 const Container = styled.div`
@@ -35,11 +35,11 @@ const ReplaceText = styled.div`
 export default function InfoLinkList({ linkData }: InfoLinkListProps) {
   const router = useRouter();
   const links = useSelector((state: RootState) => state.linkInfo);
-  if(links.length == 0) {
+  if(links.length == 0 && router.pathname === "/plan") {
     return (
       <Container>
         <ReplaceBox>
-          {router.pathname === "/plan" && <ReplaceText>새로운 링크를 추가해보세요...</ReplaceText>}
+          <ReplaceText>새로운 링크를 추가해보세요...</ReplaceText>
         </ReplaceBox>
       </Container>
     ); 
@@ -55,7 +55,7 @@ export default function InfoLinkList({ linkData }: InfoLinkListProps) {
   } else {
     return (
       <Container>
-        {linkData?.map(link => (
+        {linkData.map(link => (
           <InfoLink key={link.id} link={link} />
         ))}
       </Container>

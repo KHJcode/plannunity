@@ -84,8 +84,6 @@ const Text = styled.span<{ color: string }>`
 const InputWrapper = styled.div``;
 
 export default function RegisterFormContainer({ visible, setVisible }: RegisterFormContainerType) {
-  const dispatch = useDispatch();
-
   useEffect(() => {
     setTimeout(() => setVisible([true, false, false]), 100);
   }, []);
@@ -111,7 +109,6 @@ export default function RegisterFormContainer({ visible, setVisible }: RegisterF
               setErrMsg("잘못된 요청입니다");
           };
         } else {
-          // dispatch(setLogin(data.displayName!, data.email!, data.photoURL!))
           localStorage.setItem("name", data.displayName!);
           localStorage.setItem("email", data.email!);
           localStorage.setItem("imgURL", (data.imgURL ? data.imgURL! : "https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png"));

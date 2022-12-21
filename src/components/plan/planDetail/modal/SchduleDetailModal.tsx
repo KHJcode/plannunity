@@ -1,5 +1,6 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../../../../modules";
 import { unsetActive } from "../../../../modules/isActive";
 
 const Container = styled.div`
@@ -46,19 +47,20 @@ const Desc = styled.div`
 
 export default function SchduleDetailModal() {
   const dispatch = useDispatch();
+  const selectSchdule = useSelector((state: RootState) => state.selectedSchdule);
   const onClickCancelButton = () => {
     dispatch(unsetActive("schduleDetail"));
   }
   return (
     <Container>
       <TopWrapper>
-        <TitleText>1. 관악산역 도착</TitleText>
+        <TitleText>{selectSchdule.seq}. {selectSchdule.title}</TitleText>
         <img src="/images/cancel.svg" onClick={onClickCancelButton} />
       </TopWrapper>
-      <Img src="https://cdn.pixabay.com/photo/2022/12/12/12/58/dog-7651002_1280.jpg" />
+      <Img src={selectSchdule.imgLink ? selectSchdule.imgLink : "https://cdn.pixabay.com/photo/2022/12/12/12/58/dog-7651002_1280.jpg"} />
       <DescWrapper>
-        <Address>주소 서울특별시 관악구 신림동 211 관악산역</Address>
-        <Desc>신림선을 통해 관악산역 1번 출구로 나옵니다.</Desc>
+        <Address>{selectSchdule.address}</Address>
+        <Desc>{selectSchdule.desc}</Desc>
       </DescWrapper>
     </Container>
   );

@@ -46,6 +46,13 @@ export type isActiveState = {
   searchPlace: boolean;
   map: boolean;
   schduleDetail: boolean;
+  categorySelect: boolean;
+  travelTerm: boolean;
+  shareTarget: boolean;
+  massTransAcc: boolean;
+  difficulty: boolean;
+  allPlan: boolean;
+  sharedPlan: boolean;
 };
 
 const initialState: isActiveState = {
@@ -69,6 +76,13 @@ const initialState: isActiveState = {
   searchPlace: false,
   map: false,
   schduleDetail: false,
+  categorySelect: false,
+  travelTerm: false,
+  shareTarget: false,
+  massTransAcc: false,
+  difficulty: false,
+  allPlan: false,
+  sharedPlan: false,
 };
 
 export default function isClicked(

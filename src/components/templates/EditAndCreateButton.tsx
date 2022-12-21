@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 type EditAndCreateButtonProps = {
   text: string;
-  btnColor: string;
+  btnColor: "orange" | "white";
   onClick: () => void;
 };
 

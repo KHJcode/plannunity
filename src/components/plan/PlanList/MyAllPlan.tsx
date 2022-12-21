@@ -1,10 +1,12 @@
-import styled from "styled-components";
-import PageTitle from "../templates/PageTitle";
-import Dot from "../../../public/images/dot.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../modules";
-import { unsetActive } from "../../modules/isActive";
-import PlanThumbnail from "../templates/PlanThumbnail";
+import styled from "styled-components";
+import { RootState } from "../../../modules";
+import { unsetActive } from "../../../modules/isActive";
+import PageTitle from "../../templates/PageTitle";
+import Dot from "../../../../public/images/Dot.svg";
+import PlanThumbnail from "../../templates/PlanThumbnail";
+import { useEffect, useState } from "react";
+import { getAllData } from "../../../firebase/database";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -50,21 +52,28 @@ const PlanList = styled.div`
   gap: 10px;
 `
 
-export default function CartContainer() {
-  const { cart } = useSelector((state: RootState) => state.isActive);
-  const plans = useSelector((state: RootState) => state.cart);
+export default function MyAllPlan() {
+  const { allPlan } = useSelector((state: RootState) => state.isActive);
   const dispatch = useDispatch();
+  const [plans, setPlans] = useState<any>();
+  const [loaded, setLoaded] = useState(false);
 
   const onClick = () => {
-    dispatch(unsetActive("cart"));
+    dispatch(unsetActive("allPlan"));
   }
 
+  useEffect(() => {
+    (async () => {
+      await getAllData("plans").then((data: any) => setPlans(data));
+    })()
+  }, [])
+
   return (
-    <Container isActive={cart}>
+    <Container isActive={allPlan}>
       <TopWrapper>
         <TitleWrapper>
           <img src="images/arrow-left.svg" onClick={onClick} />
-          <PageTitle text="장바구니" />
+          <PageTitle text="나의 모든 플랜" />
           <DotWrapper>
             <Dot />
           </DotWrapper>
@@ -72,9 +81,16 @@ export default function CartContainer() {
       </TopWrapper>
       <MainText>현재 총 3개의<br />플랜이 저장되었어요</MainText>
       <PlanList>
-        {plans.map((plan: any) => (
-          <PlanThumbnail styleOption="cart" plan={plan} key={plan.id} />
-        ))}
+        {
+          loaded
+          ? 
+          plans.map((plan: any) => (
+            <PlanThumbnail styleOption="private" plan={plan} key={plan.id} />
+          ))
+          :
+          <></>
+        }
+        
       </PlanList>
     </Container>
   );

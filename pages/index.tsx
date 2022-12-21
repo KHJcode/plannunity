@@ -7,9 +7,6 @@ import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { setCurrentPage } from '../src/modules/currentPage';
 import { GetStaticProps } from 'next';
-import { SchdulesState } from '../src/modules/schdule';
-import { LinkInfosState } from '../src/modules/linkInfo';
-import { BudgetsState } from '../src/modules/budget';
 import { loadCart } from '../src/modules/cart';
 import { getAllData } from '../src/firebase/database';
 
@@ -20,15 +17,6 @@ export const getStaticProps: GetStaticProps = async () => {
       planData
     }
   }
-}
-
-export interface PlanData {
-  schdules: SchdulesState
-  author: string
-  infos: LinkInfosState
-  planTitle: string
-  budgets: BudgetsState
-  id: string
 }
 
 export default function HomePage({ planData }: any) {
@@ -53,7 +41,7 @@ export default function HomePage({ planData }: any) {
           </Head>
           <div className={styles.container}>
             <CarouselContainer />
-            <PlanListWithConditionContainer title='커뮤니티 추천 플랜' plans={planData} />
+            <PlanListWithConditionContainer title='추천수가 높은 플랜' plans={planData} />
             <PlanListWithConditionContainer title='회원님께 추천드리는 플랜' plans={planData} />
             <RankedPlanContainer plans={planData.slice(-4, -1)} />
           </div>

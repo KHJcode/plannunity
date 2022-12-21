@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import SecTitle from "../templates/SecTitle";
 import OnlineFriendList from "./OnlineFriendList";
-import SecRightOrangeText from "./SecRightOrangeText";
 
 const Container = styled.div`
   padding-bottom: 20px;
@@ -20,8 +19,8 @@ export default function OnlineFriendContainer() {
   return (
     <Container>
       <HeaderWrapper>
-        <SecTitle text="현재 접속중인 친구" />
-        <SecRightOrangeText text="6명" />
+        <SecTitle text="새로운 친구 추천" />
+        {/* <SecRightOrangeText text="6명" /> */}
       </HeaderWrapper>
       <OnlineFriendList />
 
