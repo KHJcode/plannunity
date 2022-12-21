@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import { PlanData } from "../../../pages";
 import PlanThumbnail from "../templates/PlanThumbnail";
 
 type RecentCreatedPlanByFriendListProps = {
-  plans: PlanData[];
+  plans: any;
 }
 
 const Container = styled.div`
@@ -15,7 +14,7 @@ const Container = styled.div`
 export default function RecentCreatedPlanByFriendList({ plans }: RecentCreatedPlanByFriendListProps) {
   return (
     <Container>
-      {plans.map((plan: PlanData) => (
+      {plans.map((plan: any) => (
         <PlanThumbnail styleOption="friend" plan={plan} key={plan.id} />
       ))}
     </Container>

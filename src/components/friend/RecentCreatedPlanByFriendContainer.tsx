@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import { PlanData } from "../../../pages";
 import SecTitle from "../templates/SecTitle";
 import RecentCreatedPlanByFriendList from "./RecentCreatedPlanByFriendList";
 
 type RecentCreatedPlanByFriendContainerProps = {
-  plans: PlanData[];
+  plans: any;
 }
 
 const Container = styled.div`
