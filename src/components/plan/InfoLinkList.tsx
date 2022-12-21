@@ -6,7 +6,7 @@ import { LinkInfosState } from "../../modules/linkInfo";
 import InfoLink from "./InfoLink";
 
 type InfoLinkListProps = {
-  linkData: LinkInfosState
+  linkData?: LinkInfosState
 }
 
 const Container = styled.div`
@@ -55,7 +55,7 @@ export default function InfoLinkList({ linkData }: InfoLinkListProps) {
   } else {
     return (
       <Container>
-        {linkData.map(link => (
+        {linkData!.map(link => (
           <InfoLink key={link.id} link={link} />
         ))}
       </Container>
