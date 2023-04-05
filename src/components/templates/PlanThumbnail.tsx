@@ -101,7 +101,7 @@ export default function PlanThumbnail({ styleOption, plan }: PlanThumbnailType) 
   }, [])
 
   if(styleOption === "share" || styleOption === "friend") return (
-    <Conatiner onClick={onClick} url={plan.schdules[0].img ? plan.schdules[0].img.thumbnail : ""}>
+    <Conatiner onClick={onClick} url={plan.schdules[0]?.img ? plan.schdules[0].img.thumbnail : ""}>
       <LeftWrapper>
         <SubText>
           {styleOption === "friend" && <ProfileImg src="https://cdn.pixabay.com/photo/2014/03/29/09/17/cat-300572_1280.jpg" />}
@@ -116,7 +116,7 @@ export default function PlanThumbnail({ styleOption, plan }: PlanThumbnailType) 
     </Conatiner>
   );
   else if(styleOption === "cart" || styleOption === "private") return (
-    <Conatiner onClick={onClick} url={plan.schdules[0].img ? plan.schdules[0].img.thumbnail : ""}>
+    <Conatiner onClick={onClick} url={plan.schdules[0]?.img ? plan.schdules[0].img.thumbnail : ""}>
       {styleOption === "cart" && <CancelButton onClick={onClickDeleteButton}>저장 취소하기</CancelButton>}
       <LeftWrapper>
         <SubText>{styleOption === "private" ? "최근 회원님께서 작성하셨어요" : ""}</SubText>
