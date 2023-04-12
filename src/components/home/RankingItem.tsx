@@ -21,7 +21,7 @@ const Ranking = styled.span`
   margin: 20px 18px 20px 8px;
   width: 15px;
   font-size: 24px;
-  lign-height: 30px;
+  line-height: 30px;
   color: #FF833E;
   text-align: center;
 `
