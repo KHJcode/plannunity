@@ -6,7 +6,7 @@ type RankingItemProps = {
   rank: number;
 }
 
-const Conatiner = styled.div`
+const Container = styled.div`
   width: 100%;
   height: 70px;
   border-radius: 15px;
@@ -56,13 +56,13 @@ export default function RankingItem({ plan, rank }: RankingItemProps) {
   }
 
   return (
-    <Conatiner onClick={onClick}>
+    <Container onClick={onClick}>
       <Ranking>{rank}</Ranking>
       <Image src={plan.schdules[0].img ? plan.schdules[0].img.thumbnail : "https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png"} />
       <TextWrapper>
         <Title>{plan.title}</Title>
         <Desc>{rank}번째로 조회수가 높아요</Desc>
       </TextWrapper>
-    </Conatiner>
+    </Container>
   );
 }
