@@ -3,9 +3,10 @@ import Logo from "../../../public/images/logo.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../modules";
 import PageTitle from "./PageTitle";
-import Dot from "../../../public/images/dot.svg";
 import { useRouter } from "next/router";
 import { setActive, setToggle } from "../../modules/isActive";
+import React from "react";
+import IconSVG from "./IconSVG";
 
 const Container = styled.div`
   width: 100%;
@@ -13,59 +14,107 @@ const Container = styled.div`
   justify-content: space-between;
   height: 104px;
   padding: 40px 20px;
-  background: #FFFFFF;
-`
+  background: #ffffff;
+`;
 
 const LogoWrapper = styled.div`
   margin-left: 5px;
-`
+`;
 
 const IconWrapper = styled.div`
   display: flex;
   gap: 30px;
   padding: 0 10px;
-`
+`;
 
 const TitleWrapper = styled.span`
   display: flex;
   gap: 3px;
-`
+`;
 
 const DotWrapper = styled.span`
   display: flex;
   align-items: flex-end;
   padding-bottom: 3px;
-`
+`;
 
 export default function Header() {
-  const { home, plan, friend, profile } = useSelector((state: RootState) => state.currentPage);
-  const friendList = useSelector((state: RootState) => state.isActive.friendList);
+  const { home } = useSelector((state: RootState) => state.currentPage);
+  const friendList = useSelector(
+    (state: RootState) => state.isActive.friendList
+  );
   const router = useRouter();
   const dispatch = useDispatch();
+
+  const pathnameToPageTitle = {
+    "/plan": "플랜",
+    "/profile": "프로필",
+    "/friend": friendList ? "친구 리스트" : "친구",
+  };
+  const pageTitle = (pathnameToPageTitle as any)[router.pathname];
+  const pathnameToIconId = {
+    "/plan": ["edit", "edit-3"],
+    "/friend": ["friendList", "users-24"],
+  };
+  const IconId = (pathnameToIconId as any)[router.pathname];
+
   const onClick = (e: React.MouseEvent<HTMLElement>) => {
     document.body.style.overflowY = "hidden";
-    if(router.pathname === "/plan" && e.currentTarget.id === "edit") {
+    if (router.pathname === "/plan" && e.currentTarget.id === "edit") {
       dispatch(setActive("planEdit"));
-    } else if(e.currentTarget.id === "friendList") {
+    } else if (e.currentTarget.id === "friendList") {
       dispatch(setToggle(e.currentTarget.id, friendList));
     } else {
       dispatch(setActive(e.currentTarget.id));
     }
-  }
+  };
 
   return (
     <Container>
-      <LogoWrapper> 
-        {home && <Logo />}
-        {plan && <TitleWrapper><PageTitle text="플랜" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
-        {friend && <TitleWrapper><PageTitle text={friendList ? "친구 리스트" : "친구"} /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
-        {profile && <TitleWrapper><PageTitle text="프로필" /><DotWrapper><Dot /></DotWrapper></TitleWrapper>}
+      <LogoWrapper>
+        {home ? (
+          <Logo />
+        ) : (
+          <TitleWrapper>
+            <PageTitle text={pageTitle} />
+            <DotWrapper>
+              <IconSVG imageId={"dot"} width={4} height={4} />
+            </DotWrapper>
+          </TitleWrapper>
+        )}
       </LogoWrapper>
       <IconWrapper>
-        {router.pathname === "/plan" && <img src="images/edit-3.svg" onClick={onClick} id="edit" />}
-        {router.pathname === "/friend" && <img src="images/users_24.svg" onClick={onClick} id="friendList" />}
-        {router.pathname !== "/friend" && <img src="images/shopping-bag.svg" onClick={onClick} id="cart" />}
-        <img src="images/bell.svg" onClick={onClick} id="bell" />
+        {Object.keys(pathnameToIconId).includes(router.pathname) && (
+          <IconSVG
+            onClick={onClick}
+            imageId={IconId[1]}
+            id={IconId[0]}
+            width={24}
+            height={24}
+            stroke="currentColor"
+            strokeWidth={2}
+          />
+        )}
+        {router.pathname !== "/friend" && (
+          <IconSVG
+            stroke="currentColor"
+            strokeWidth={2}
+            imageId="shopping-bag"
+            width={24}
+            height={24}
+            id="cart"
+            onClick={onClick}
+          />
+        )}
+        <IconSVG
+          stroke="currentColor"
+          strokeWidth={2}
+          imageId="bell"
+          width={24}
+          height={24}
+          id="bell"
+          onClick={onClick}
+        />
       </IconWrapper>
     </Container>
   );

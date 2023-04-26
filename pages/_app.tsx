@@ -48,7 +48,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const { store } = wrapper.useWrappedStore(pageProps);
   return (
     <>
-
       <Provider store={store}>
         {(route === "/" ||
           route === "/plan" ||

@@ -1,12 +1,8 @@
 import styled from "styled-components";
-import Home from "../../../public/images/home.svg";
-import Edit from "../../../public/images/edit.svg";
-import Users from "../../../public/images/users.svg";
-import User from "../../../public/images/user.svg";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../modules";
-import { setCurrentPage } from "../../modules/currentPage";
+import IconSVG from "./IconSVG";
 
 const Container = styled.div`
   position: fixed;
@@ -29,10 +25,42 @@ export default function Navigation() {
   const { home, plan, friend, profile } = useSelector((state: RootState) => state.currentPage);
   return (
     <Container>
-      <Link href="/" id="home" style={{ padding: "5px" }}><Home stroke={home ? "#FF833E" : "#D9D9D9"} /></Link>
-      <Link href="/plan" id="plan" style={{ padding: "5px" }}><Edit stroke={plan ? "#FF833E" : "#D9D9D9"} /></Link>
-      <Link href="/friend" id="friend" style={{ padding: "5px" }}><Users stroke={friend ? "#FF833E" : "#D9D9D9"}/></Link>
-      <Link href="/profile" id="profile" style={{ padding: "5px" }}><User stroke={profile ? "#FF833E" : "#D9D9D9"} /></Link>
+      <Link href="/" id="home" style={{ padding: "5px" }}>
+          <IconSVG
+              imageId={"home"}
+              width={'28'}
+              height={'28'}
+              stroke={home ? "#FF833E" : "#D9D9D9"}
+              strokeWidth={2}
+          />
+      </Link>
+      <Link href="/plan" id="plan" style={{ padding: "5px" }}>
+          <IconSVG
+              imageId={"edit"}
+              width={28}
+              height={28}
+              stroke={plan ? "#FF833E" : "#D9D9D9"}
+              strokeWidth={2}
+          />
+      </Link>
+      <Link href="/friend" id="friend" style={{ padding: "5px" }}>
+          <IconSVG
+              imageId={"users"}
+              width={28}
+              height={28}
+              stroke={friend ? "#FF833E" : "#D9D9D9"}
+              strokeWidth={2}
+          />
+      </Link>
+      <Link href="/profile" id="profile" style={{ padding: "5px" }}>
+          <IconSVG
+              imageId={"user"}
+              width={28}
+              height={28}
+              stroke={profile ? "#FF833E" : "#D9D9D9"}
+              strokeWidth={2}
+          />
+      </Link>
     </Container>
   );
 }
