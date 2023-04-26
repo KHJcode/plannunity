@@ -10,7 +10,7 @@ import { getAllData } from "../../../firebase/database";
 
 type MyAllPlan = {
   plans: any;
-}
+};
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -24,17 +24,17 @@ const Container = styled.div<{ isActive: boolean }>`
   z-index: 1000;
   transition: 0.5s;
   overflow-y: scroll;
-`
+`;
 
 const TopWrapper = styled.div`
   padding: 0 5px;
   margin-bottom: 40px;
-`
+`;
 
 const TitleWrapper = styled.div`
   display: flex;
   gap: 3px;
-`
+`;
 
 const DotWrapper = styled.span`
   display: flex;
@@ -45,16 +45,16 @@ const DotWrapper = styled.span`
 const MainText = styled.div`
   font-size: 20px;
   line-height: 35px;
-  font-family: 'SUIT-700';
+  font-family: "SUIT-700";
   margin-bottom: 20px;
-`
+`;
 
 const PlanList = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   gap: 10px;
-`
+`;
 
 export default function MySharedPlan({ plans }: any) {
   const { sharedPlan } = useSelector((state: RootState) => state.isActive);
@@ -62,7 +62,7 @@ export default function MySharedPlan({ plans }: any) {
 
   const onClick = () => {
     dispatch(unsetActive("allPlan"));
-  }
+  };
 
   return (
     <Container isActive={sharedPlan}>
@@ -75,17 +75,16 @@ export default function MySharedPlan({ plans }: any) {
           </DotWrapper>
         </TitleWrapper>
       </TopWrapper>
-      <MainText>현재 총 {plans.length}개의<br />플랜을 공유했어요</MainText>
+      <MainText>
+        현재 총 {plans.length}개의
+        <br />
+        플랜을 공유했어요
+      </MainText>
       <PlanList>
-          {
-            plans.length 
-            ? 
-            plans.map((plan: any) => (
-              <PlanThumbnail styleOption="private" plan={plan} key={plan.id} />
-            ))
-            :
-            <></>
-          }
+        {plans.length &&
+          plans.map((plan: any) => (
+            <PlanThumbnail styleOption="private" plan={plan} key={plan.id} />
+          ))}
       </PlanList>
     </Container>
   );

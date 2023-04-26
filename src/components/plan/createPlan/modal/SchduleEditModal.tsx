@@ -64,13 +64,13 @@ const SelectBoxWrapper = styled.div`
 `;
 
 const SeqBox = styled.div`
-  background: #F9F9F9;
-  border: 1px solid #EDEDED;
+  background: #f9f9f9;
+  border: 1px solid #ededed;
   border-radius: 12px;
   height: 50px;
   padding: 15px 26px;
   text-align: center;
-`
+`;
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -78,81 +78,105 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function SchduleEditModal() {
-  const schdule = useSelector((state: RootState) => state.schdule).filter(item => item.isSelected)[0];
+  const schdule = useSelector((state: RootState) => state.schdule).filter(
+    (item) => item.isSelected
+  )[0];
   const place = useSelector((state: RootState) => state.currentData.place);
   const dispatch = useDispatch();
   const onClickCancelButton = () => {
-    dispatch(updateSchdule(schdule.title, schdule.desc, schdule.seq, schdule.place, schdule.img));
+    dispatch(
+      updateSchdule(
+        schdule.title,
+        schdule.desc,
+        schdule.seq,
+        schdule.place,
+        schdule.img
+      )
+    );
     dispatch(unsetActive("schduleEditOne"));
     setTitle("");
     setDesc("");
   };
 
   const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState(""); 
+  const [desc, setDesc] = useState("");
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if(e.currentTarget.id === "title") setTitle(e.target.value);
-    else if(e.currentTarget.id === "desc") setDesc(e.target.value);
-  }
+    if (e.currentTarget.id === "title") setTitle(e.target.value);
+    else if (e.currentTarget.id === "desc") setDesc(e.target.value);
+  };
 
   const onClickSubmitButton = () => {
-    dispatch(updateSchdule(title, desc, schdule.seq, schdule.place, schdule.img));
+    dispatch(
+      updateSchdule(title, desc, schdule.seq, schdule.place, schdule.img)
+    );
     dispatch(unsetActive("schduleEditOne"));
     setTitle("");
     setDesc("");
-  }
+  };
 
   const onFocusLocInput = () => {
     dispatch(setActive("searchPlace"));
-  }
+  };
 
   useEffect(() => {
-    if(schdule) {
+    if (schdule) {
       setTitle(schdule.title);
       setDesc(schdule.desc);
     }
   }, [schdule]);
 
-  if(!schdule) return <></>;
-
-  if(schdule.title.length) {
-    return (
-      <Container>
-        <TopWrapper>
-          <MainText>
-            {schdule.seq}번째 과정
-          </MainText>
-          <img src="images/cancel.svg" onClick={onClickCancelButton} />
-        </TopWrapper>
-        <Wrapper>
-          <InputWrapper>
-            <Label>일정 위치</Label>
-            <Input placeholder="일정 위치를 입력해주세요." value={place ? place.place_name : schdule.place.place_name} onFocus={onFocusLocInput} id="desc" readOnly />
-          </InputWrapper>
-          <InputWrapper>
-            <Label>일정 제목</Label>
-            <Input placeholder="일정 제목을 입력해주세요" value={title} onChange={onChange} id="title" />
-          </InputWrapper>
-          <InputWrapper>
-            <Label>세부 정보</Label>
-            <Input placeholder="세부 정보를 입력해주세요" value={desc} onChange={onChange} id="desc" />
-          </InputWrapper>
-          <SelectBoxWrapper>
-            <Label>일정 순서</Label>
-            <SeqBox>{schdule.seq}번째</SeqBox>
-          </SelectBoxWrapper>
-          <ButtonWrapper>
-            <EditAndCreateButton
-              text="해당 일정 변경하기"
-              btnColor="orange"
-              onClick={onClickSubmitButton}
-            />
-          </ButtonWrapper>
-        </Wrapper>
-      </Container>
-    );
-  } else {
-    return <></>;
-  }
+  return (
+    <>
+      {schdule?.title?.length && (
+        <Container>
+          <TopWrapper>
+            <MainText>{schdule.seq}번째 과정</MainText>
+            <img src="images/cancel.svg" onClick={onClickCancelButton} />
+          </TopWrapper>
+          <Wrapper>
+            <InputWrapper>
+              <Label>일정 위치</Label>
+              <Input
+                placeholder="일정 위치를 입력해주세요."
+                value={place ? place.place_name : schdule.place.place_name}
+                onFocus={onFocusLocInput}
+                id="desc"
+                readOnly
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <Label>일정 제목</Label>
+              <Input
+                placeholder="일정 제목을 입력해주세요"
+                value={title}
+                onChange={onChange}
+                id="title"
+              />
+            </InputWrapper>
+            <InputWrapper>
+              <Label>세부 정보</Label>
+              <Input
+                placeholder="세부 정보를 입력해주세요"
+                value={desc}
+                onChange={onChange}
+                id="desc"
+              />
+            </InputWrapper>
+            <SelectBoxWrapper>
+              <Label>일정 순서</Label>
+              <SeqBox>{schdule.seq}번째</SeqBox>
+            </SelectBoxWrapper>
+            <ButtonWrapper>
+              <EditAndCreateButton
+                text="해당 일정 변경하기"
+                btnColor="orange"
+                onClick={onClickSubmitButton}
+              />
+            </ButtonWrapper>
+          </Wrapper>
+        </Container>
+      )}
+    </>
+  );
 }

@@ -5,7 +5,7 @@ import { Client } from "peekalink";
 
 type InfoLinkProps = {
   link: LinkInfoState;
-}
+};
 
 const Container = styled.div`
   width 100%;
@@ -20,7 +20,7 @@ const Container = styled.div`
 
 const ImageWrapper = styled.div`
   flex: 1;
-`
+`;
 
 const Image = styled.img`
   border-radius: 15px;
@@ -65,13 +65,9 @@ const LinkWrapper = styled.div`
   overflow: hidden;
 `;
 
-const LinkText = styled.span`
+const LinkText = styled.span``;
 
-`;
-
-const LinkTitle = styled.span`
-
-`;
+const LinkTitle = styled.span``;
 
 interface PreviewData {
   title?: string;
@@ -79,7 +75,7 @@ interface PreviewData {
   imgUrl?: string;
   domain?: string;
 }
-const client = new Client({ "apiKey": "1af5912c-2b02-4280-b320-ce870e4b92dd" });
+const client = new Client({ apiKey: "1af5912c-2b02-4280-b320-ce870e4b92dd" });
 
 const returnLinkPrivewData = async (link: string) => {
   const data = await client.preview(link);
@@ -88,9 +84,9 @@ const returnLinkPrivewData = async (link: string) => {
     desc: data.description,
     imgUrl: data.image?.url,
     domain: data.domain,
-  }
+  };
   return previewData;
-}
+};
 
 export default function InfoLink({ link }: InfoLinkProps) {
   const [data, setData] = useState<PreviewData>({});
@@ -101,23 +97,23 @@ export default function InfoLink({ link }: InfoLinkProps) {
       setData(data);
     })();
   }, []);
-  
-  if(data.title) {
-    return (
-      <Container>
-        <BottomWrapper>
-          <TextWrapper>
-            <Title>{data.title}</Title>
-            <Desc>{data.desc}</Desc>
-          </TextWrapper>
-          <LinkWrapper>
-            <LinkText>{data.domain} | </LinkText>
-            <LinkTitle>{data.title}</LinkTitle>
-          </LinkWrapper>
-        </BottomWrapper>
-      </Container>
-    );
-  } else {
-    return <></>;
-  }
+
+  return (
+    <>
+      {data.title && (
+        <Container>
+          <BottomWrapper>
+            <TextWrapper>
+              <Title>{data.title}</Title>
+              <Desc>{data.desc}</Desc>
+            </TextWrapper>
+            <LinkWrapper>
+              <LinkText>{data.domain} | </LinkText>
+              <LinkTitle>{data.title}</LinkTitle>
+            </LinkWrapper>
+          </BottomWrapper>
+        </Container>
+      )}
+    </>
+  );
 }

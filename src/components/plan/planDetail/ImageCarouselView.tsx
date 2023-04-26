@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 type ImageCarouselViewProps = {
   schdules: any[];
-}
+};
 
 const Container = styled.div``;
 
@@ -19,12 +19,17 @@ const CarouselItem = styled.div<{ url: string }>`
       rgba(180, 180, 180, 0.26) 73.28%,
       rgba(0, 0, 0, 0.58) 100%
     ),
-    url(${props => props.url ? props.url : "https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png" });
+    url(${(props) =>
+      props.url
+        ? props.url
+        : "https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png"});
   background-size: cover !important;
   margin: 0px;
 `;
 
-export default function ImageCarouselView({ schdules }: ImageCarouselViewProps) {
+export default function ImageCarouselView({
+  schdules,
+}: ImageCarouselViewProps) {
   const settings = {
     dots: true,
     infinite: true,
@@ -40,16 +45,14 @@ export default function ImageCarouselView({ schdules }: ImageCarouselViewProps) 
   return (
     <Container>
       <Slider {...settings}>
-        {schdules.map((schdule: any) => (
-          
-          schdule.img 
-          ? 
-          <ItemWrapper key={schdule.seq}>
-            <CarouselItem url={schdule.img.thumbnail} />
-          </ItemWrapper>
-          :
-          <></>
-        ))}
+        {schdules.map(
+          (schdule: any) =>
+            schdule.img && (
+              <ItemWrapper key={schdule.seq}>
+                <CarouselItem url={schdule.img.thumbnail} />
+              </ItemWrapper>
+            )
+        )}
       </Slider>
     </Container>
   );

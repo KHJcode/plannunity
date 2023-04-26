@@ -28,16 +28,16 @@ const InputWrapper = styled.div`
   flex-direction: column;
   gap: 15px;
   margin-bottom: 25px;
-`
+`;
 
 const Label = styled.div`
   font-size: 18px;
   line-height: 20px;
-`
+`;
 
 const Input = styled.input`
-  background: #F9F9F9;
-  border: 1px solid #EDEDED;
+  background: #f9f9f9;
+  border: 1px solid #ededed;
   border-radius: 12px;
   width: 100%;
   height: 50px;
@@ -46,10 +46,10 @@ const Input = styled.input`
   line-height: 20px;
 
   &::placeholder {
-    color: #BFBFBF;
-    font-family: 'SUIT-500';
+    color: #bfbfbf;
+    font-family: "SUIT-500";
   }
-`
+`;
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -57,8 +57,12 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function SearchInfoEditModal() {
-  const { searchInfoEditOne } = useSelector((state: RootState) => state.isActive);
-  const selectedLink = useSelector((state: RootState) => state.linkInfo).filter(item => item.isSelected)[0];
+  const { searchInfoEditOne } = useSelector(
+    (state: RootState) => state.isActive
+  );
+  const selectedLink = useSelector((state: RootState) => state.linkInfo).filter(
+    (item) => item.isSelected
+  )[0];
 
   const dispatch = useDispatch();
   const [link, setLink] = useState("");
@@ -70,43 +74,45 @@ export default function SearchInfoEditModal() {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLink(e.target.value);
-  }
+  };
 
   const onClickSubmitButton = () => {
     dispatch(updateLink(link, selectedLink.id));
     dispatch(unsetActive("searchInfoEditOne"));
     setLink("");
-  }
+  };
 
   useEffect(() => {
-    if(selectedLink) {
+    if (selectedLink) {
       setLink(selectedLink.link);
     }
   }, [selectedLink]);
 
-  if(!selectedLink) return <></>;
-
-  if(selectedLink.link.length) {
-    return (
-      <Container isActive={searchInfoEditOne}>
-        <TopWrapper>
-          <MainText>탐색 링크 추가</MainText>
-          <img src="images/cancel.svg" onClick={onClickCancelButton} />
-        </TopWrapper>
-        <InputWrapper>
-          <Label>정보에 사용할 링크</Label>
-          <Input placeholder="링크를 입력해주세요(예: https://naver.com)" onChange={onChange} value={link} />
-        </InputWrapper>
-        <ButtonWrapper>
-          <EditAndCreateButton
-            text="해당 추가 적용하기"
-            btnColor="orange"
-            onClick={onClickSubmitButton}
-          />
-        </ButtonWrapper>
-      </Container>
-    );
-  } else {
-    return <></>;
-  }
+  return (
+    <>
+      {selectedLink?.link?.length && (
+        <Container isActive={searchInfoEditOne}>
+          <TopWrapper>
+            <MainText>탐색 링크 추가</MainText>
+            <img src="images/cancel.svg" onClick={onClickCancelButton} />
+          </TopWrapper>
+          <InputWrapper>
+            <Label>정보에 사용할 링크</Label>
+            <Input
+              placeholder="링크를 입력해주세요(예: https://naver.com)"
+              onChange={onChange}
+              value={link}
+            />
+          </InputWrapper>
+          <ButtonWrapper>
+            <EditAndCreateButton
+              text="해당 추가 적용하기"
+              btnColor="orange"
+              onClick={onClickSubmitButton}
+            />
+          </ButtonWrapper>
+        </Container>
+      )}
+    </>
+  );
 }

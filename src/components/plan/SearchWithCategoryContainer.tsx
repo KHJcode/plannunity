@@ -1,9 +1,5 @@
 import styled from "styled-components";
 import SecTitle from "../templates/SecTitle";
-import Bag from "../../../public/images/bag.svg";
-import Plane from "../../../public/images/plane.svg";
-import Car from "../../../public/images/car.svg";
-import Backpack from "../../../public/images/backpack.svg";
 import Etc from "../../../public/images/etc.svg";
 
 const Conatiner = styled.div`

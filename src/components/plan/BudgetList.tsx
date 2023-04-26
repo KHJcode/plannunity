@@ -6,12 +6,10 @@ import { RootState } from "../../modules";
 import { BudgetsState } from "../../modules/budget";
 
 type BudgetListProps = {
-  budgetData?: BudgetsState
-}
+  budgetData?: BudgetsState;
+};
 
-const Container = styled.div`
-  
-`
+const Container = styled.div``;
 
 const BudgetBox = styled.div`
   background: #f9f9f9;
@@ -74,25 +72,25 @@ const SubText = styled.div`
 const ReplaceText = styled.div`
   font-size: 15px;
   line-height: 20px;
-  color: #BFBFBF;
-  font-family: 'SUIT-400';
-`
+  color: #bfbfbf;
+  font-family: "SUIT-400";
+`;
 
 export default function BudgetList({ budgetData }: BudgetListProps) {
   const router = useRouter();
   const budgets = useSelector((state: RootState) => state.budget);
-  const selectedBudget = budgets.filter(item => item.isSelected)[0];
+  const selectedBudget = budgets.filter((item) => item.isSelected)[0];
   const [sum, setSum] = useState(0);
 
   useEffect(() => {
     setSum(0);
-    if(budgetData) {
-      budgetData.map(budget => {
-        setSum(sum => sum + budget.budget);
+    if (budgetData) {
+      budgetData.map((budget) => {
+        setSum((sum) => sum + budget.budget);
       });
     } else {
-      budgets.map(budget => {
-        setSum(sum => sum + budget.budget);
+      budgets.map((budget) => {
+        setSum((sum) => sum + budget.budget);
       });
     }
   }, [selectedBudget, budgetData ? budgetData.length : budgets.length]);
@@ -102,34 +100,39 @@ export default function BudgetList({ budgetData }: BudgetListProps) {
       <SumBox>
         <BoxLeftWrapper>
           <GrayText>총 예산 금액</GrayText>
-          <Sum>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Sum>
+          <Sum>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</Sum>
         </BoxLeftWrapper>
         {router.pathname === "/plan" && <img src="/images/edit-3.svg" />}
       </SumBox>
       <BudgetBox>
-        {router.pathname === "/plan" && budgets.length ? 
-          <>
-            {budgets.map(budget => (
+        {router.pathname === "/plan" ? (
+          budgets.length ? (
+            budgets.map((budget) => (
               <TextWrapper key={budget.id}>
                 <MainText>{budget.title}</MainText>
-                <SubText>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</SubText>
+                <SubText>
+                  {budget.budget
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  원
+                </SubText>
               </TextWrapper>
-            ))}
-          </>
-        : router.pathname === "/plan" && !budgets.length ? 
-          <ReplaceText>새로운 예산을 추가해보세요...</ReplaceText>
-        :
-          <>
-            {budgetData?.map(budget => (
-              <TextWrapper key={budget.id}>
-                <MainText>{budget.title}</MainText>
-                <SubText>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</SubText>
-              </TextWrapper>
-            ))}
-          </>
-        }
+            ))
+          ) : (
+            <ReplaceText>새로운 예산을 추가해보세요...</ReplaceText>
+          )
+        ) : (
+          budgetData?.map((budget) => (
+            <TextWrapper key={budget.id}>
+              <MainText>{budget.title}</MainText>
+              <SubText>
+                {budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                원
+              </SubText>
+            </TextWrapper>
+          ))
+        )}
       </BudgetBox>
     </Container>
-    
   );
 }

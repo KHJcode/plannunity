@@ -25,8 +25,7 @@ const rootReducer = combineReducers({
 });
 
 const makeStore: MakeStore<any> = () => {
-  const store = createStore(rootReducer, {});
-  return store;
+  return createStore(rootReducer, {});
 }
 
 export default rootReducer;

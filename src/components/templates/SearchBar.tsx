@@ -63,7 +63,7 @@ export default function SearchBar({
   }, [])
 
   return (
-    <Container margin={searchType === "plan" ? true : false}>
+    <Container margin={searchType === "plan"}>
       <Image src="images/search.svg" onClick={onClick} />
       <Input
         placeholder={placeholder}
