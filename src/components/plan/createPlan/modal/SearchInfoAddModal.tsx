@@ -6,6 +6,7 @@ import { unsetActive } from "../../../../modules/isActive";
 import { useState } from "react";
 import { addLink } from "../../../../modules/linkInfo";
 import { Client } from 'peekalink';
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
@@ -94,7 +95,12 @@ export default function SearchInfoAddModal() {
     <Container isActive={searchInfoAdd}>
       <TopWrapper>
         <MainText>탐색 링크 추가</MainText>
-        <img src="images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <InputWrapper>
         <Label>정보에 사용할 링크</Label>

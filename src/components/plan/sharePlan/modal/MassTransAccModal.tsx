@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { addMassTransAcc } from "../../../../modules/currentData";
 import { unsetActive } from "../../../../modules/isActive";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div`
   background: #ffffff;
@@ -70,7 +71,12 @@ export default function MassTransAccModal() {
     <Container>
       <TopWrapper>
         <MainText>대중교통 접근성</MainText>
-        <img src="/images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <AccessList>
         {optionList.map((option, idx) => (

@@ -5,6 +5,7 @@ import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import { setActive, unsetActive } from "../../../../modules/isActive";
 import { useEffect, useState } from "react";
 import { BudgetsState, clickBudget, deleteBudget } from "../../../../modules/budget";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div<{ isActive: boolean }>`
   position: absolute;
@@ -125,7 +126,12 @@ export default function BudgetEditSelectionModal() {
     <Container isActive={budgetEdit}>
       <TopWrapper>
         <MainText>플랜 예산안 수정</MainText>
-        <img src="images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <SumWrapper>
         <SubText>예산 총 금액</SubText>

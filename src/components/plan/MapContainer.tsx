@@ -4,9 +4,14 @@ import styled from "styled-components";
 // import { createMap } from "../../map/map";s
 import { RootState } from "../../modules";
 import { setActive, unsetActive } from "../../modules/isActive";
-import { CustomOverlayMap, Map, MapMarker, MarkerClusterer } from "react-kakao-maps-sdk"
+import {
+  CustomOverlayMap,
+  Map,
+  MapMarker,
+  MarkerClusterer,
+} from "react-kakao-maps-sdk";
 import { SchduleState } from "../../modules/schdule";
-import { useRef } from "react";
+import IconSVG from "../templates/IconSVG";
 
 const Container = styled.div<{ isActive: boolean }>`
   position: fixed;
@@ -15,7 +20,7 @@ const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
   z-index: ${(props) => (props.isActive ? 1001 : -1)};
   display: ${(props) => (props.isActive ? "unset" : "none")};
-  background: #FFFFFF;
+  background: #ffffff;
 `;
 
 const CancelButton = styled.div`
@@ -23,24 +28,24 @@ const CancelButton = styled.div`
   top: 25px;
   right: 25px;
   z-index: 1002;
-`
+`;
 
 const OverLayWrapper = styled.div`
   position: relative;
-`
+`;
 
 const OverLay = styled.div`
   border-radius: 5px;
   padding: 10px;
-  color: #FF833E;
+  color: #ff833e;
   font-size: 18px;
   line-height: 20px;
-  font-family: 'SUIT-700';
-  background: #FFFFFF;
+  font-family: "SUIT-700";
+  background: #ffffff;
   position: absolute;
   top: -65px;
   left: -50px;
-`
+`;
 
 export default function MapContainer() {
   const { map } = useSelector((state: RootState) => state.isActive);
@@ -49,14 +54,23 @@ export default function MapContainer() {
 
   const onClickCancelButton = () => {
     dispatch(unsetActive("map"));
-  }
+  };
 
   return (
     <Container isActive={map} id="map">
       <CancelButton>
-        <img src="/images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </CancelButton>
-      <Map center={{lat: 37.5427559235541, lng: 126.967185290642}} style={{ "width": "100%", "height": "100%" }} level={5}>
+      <Map
+        center={{ lat: 37.5427559235541, lng: 126.967185290642 }}
+        style={{ width: "100%", height: "100%" }}
+        level={5}
+      >
         {/* <MarkerClusterer
         averageCenter={true}
         minLevel={10}

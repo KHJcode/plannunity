@@ -5,6 +5,7 @@ import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import { setActive, unsetActive } from "../../../../modules/isActive";
 import { useEffect, useState } from "react";
 import { updateSchdule } from "../../../../modules/schdule";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div`
   background: #ffffff;
@@ -132,7 +133,12 @@ export default function SchduleEditModal() {
         <Container>
           <TopWrapper>
             <MainText>{schdule.seq}번째 과정</MainText>
-            <img src="images/cancel.svg" onClick={onClickCancelButton} />
+            <IconSVG
+              imageId="cancel"
+              width={24}
+              height={24}
+              onClick={onClickCancelButton}
+            />
           </TopWrapper>
           <Wrapper>
             <InputWrapper>

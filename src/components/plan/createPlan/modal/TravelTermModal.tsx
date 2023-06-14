@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { addTravelTerm } from "../../../../modules/currentData";
 import { unsetActive } from "../../../../modules/isActive";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div`
   background: #ffffff;
@@ -69,7 +70,12 @@ export default function TravelTermModal() {
     <Container>
       <TopWrapper>
         <MainText>여행 기간</MainText>
-        <img src="/images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <TermList>
         {optionList.map((option, idx) => (

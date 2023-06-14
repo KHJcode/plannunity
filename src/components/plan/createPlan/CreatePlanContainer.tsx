@@ -11,7 +11,6 @@ import schdule, { clearSchdule, SchdulesState, SchduleState } from "../../../mod
 import PlanBudgetContainer from "./PlanBudgetContainer";
 import PlanSchduleContainer from "./PlanSchduleContainer";
 import PlanSearchInfoContainer from "./PlanSearchInfoContainer";
-import MapContainer from "../MapContainer";
 import { addData, deleteData } from "../../../firebase/database";
 import MapIcon from "../MapIcon";
 import { Budget, Link, Plan, Schdule } from "../../../firebase/schema";
@@ -19,6 +18,7 @@ import { auth } from "../../../firebase/firebase";
 import SecTitle from "../../templates/SecTitle";
 import SmallSecTitle from "../SmallSecTitle";
 import { clearCategory } from "../../../modules/category";
+import IconSVG from "../../templates/IconSVG";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -163,8 +163,12 @@ export default function CreatePlanContainer() {
     <Container isActive={planEdit}>
       <TopWrapper>
         <TitleWrapper>
-          <img
-            src="images/arrow-left.svg"
+          <IconSVG
+            imageId="arrow-left"
+            width={24}
+            height={24}
+            stroke="currentColor"
+            strokeWidth={2}
             onClick={() => dispatch(unsetActive("planEdit"))}
           />
           <PageTitle text="플랜 만들기" />
@@ -183,7 +187,11 @@ export default function CreatePlanContainer() {
               <OptionBox key={idx}>{category}</OptionBox>
             ))}
             <PlusButton onClick={onClickCategoryAddButton}>
-              <img src="/images/plus.svg" />
+              <IconSVG
+                imageId="plus"
+                width={24}
+                height={24}
+              />
             </PlusButton>
           </OptionBoxList>
         </OptionBottomWrapper>

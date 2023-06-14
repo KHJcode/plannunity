@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../modules";
 import { unsetActive } from "../../modules/isActive";
 import PlanThumbnail from "../templates/PlanThumbnail";
+import IconSVG from "../templates/IconSVG";
 
 const Container = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -63,7 +64,14 @@ export default function CartContainer() {
     <Container isActive={cart}>
       <TopWrapper>
         <TitleWrapper>
-          <img src="images/arrow-left.svg" onClick={onClick} />
+          <IconSVG
+            imageId="arrow-left"
+            width={24}
+            height={24}
+            stroke="currentColor"
+            strokeWidth={2}
+            onClick={onClick}
+          />
           <PageTitle text="장바구니" />
           <DotWrapper>
             <Dot />

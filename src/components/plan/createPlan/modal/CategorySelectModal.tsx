@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { addCategory, CategoriesState } from "../../../../modules/category";
 import { unsetActive } from "../../../../modules/isActive";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div`
   background: #ffffff;
@@ -70,7 +71,12 @@ export default function CategorySelectModal() {
     <Container>
       <TopWrapper>
         <MainText>추가하실 카테고리들을<br/>선택해주세요.(총 10개)</MainText>
-        <img src="/images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <CategoryList>
         {categoryList.map((category: string, idx: number) => (

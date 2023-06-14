@@ -5,6 +5,7 @@ import PlanSchduleItem from "../../PlanSchduleItem";
 import EditAndCreateButton from "../../.././templates/EditAndCreateButton";
 import { setActive, unsetActive } from "../../../../modules/isActive";
 import { clickSchdule, deleteSchdule, SchduleState } from "../../../../modules/schdule";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
@@ -72,7 +73,12 @@ export default function SchduleEditSelectionModal() {
     <Container isActive={schduleEdit}>
       <TopWrapper>
         <MainText>일정 정보 수정</MainText>
-        <img src="images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <SchduleItemList>
         {schdules.map((schdule: SchduleState) => (

@@ -6,6 +6,7 @@ import { unsetActive } from "../../../../modules/isActive";
 import { addPlace } from "../../../../modules/currentData";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import SearchBar from "../../../templates/SearchBar";
+import IconSVG from "../../../templates/IconSVG";
 
 const KAKAO_LOCALAPI_ROUTE = "/v2/local/search/keyword.json"
 const KAKAO_URL = "//dapi.kakao.com"
@@ -191,7 +192,12 @@ export default function SearchPlaceModal() {
     <Container>
       <TopWrapper>
         <MainText>일정을 수행하실<br />장소의 주소를 입력해주세요</MainText>
-        <img src="images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <SearchBar searchType="address" text={address} setText={setAddress} onClick={onClickSearchButton} />
       <BottomWrapper>

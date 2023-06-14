@@ -4,6 +4,7 @@ import { RootState } from "../../../../modules";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import { setActive, unsetActive } from "../../../../modules/isActive";
 import { clickLink, deleteLink, LinkInfoState } from "../../../../modules/linkInfo";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div<{ isActive: boolean }>`
   background: #ffffff;
@@ -81,7 +82,12 @@ export default function SearchInfoEditSelectionModal() {
     <Container isActive={searchInfoEdit}>
       <TopWrapper>
         <MainText>탐색 정보 수정</MainText>
-        <img src="images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <LinkList>
         {links.map((link: LinkInfoState, idx: number) => (

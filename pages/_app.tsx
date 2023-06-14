@@ -9,12 +9,10 @@ import { wrapper } from "../src/modules";
 import { Provider } from "react-redux";
 import { useRouter } from "next/router";
 import { auth } from "../src/firebase/firebase";
-import axios from "axios";
 import CartContainer from "../src/components/cart/CartContainer";
 import FriendDetailModalContainer from "../src/components/friend/modal/FriendDetailModalContainer";
 // import { getLocal } from "../src/map/search";
 import MapContainer from "../src/components/plan/MapContainer";
-import Script from "next/script";
 
 export interface IsClicked {
   bag: boolean;

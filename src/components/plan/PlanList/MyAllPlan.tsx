@@ -7,6 +7,7 @@ import Dot from "../../../../public/images/Dot.svg";
 import PlanThumbnail from "../../templates/PlanThumbnail";
 import { useEffect, useState } from "react";
 import { getAllData } from "../../../firebase/database";
+import IconSVG from "../../templates/IconSVG";
 
 type MyAllPlan = {
   plans: any;
@@ -68,7 +69,14 @@ export default function MyAllPlan({ plans }: any) {
     <Container isActive={allPlan}>
       <TopWrapper>
         <TitleWrapper>
-          <img src="images/arrow-left.svg" onClick={onClick} />
+          <IconSVG
+            imageId="arrow-left"
+            width={24}
+            height={24}
+            stroke="currentColor"
+            strokeWidth={2}
+            onClick={onClick}
+          />
           <PageTitle text="나의 모든 플랜" />
           <DotWrapper>
             <Dot />

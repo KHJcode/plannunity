@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../modules";
 import { BudgetsState } from "../../modules/budget";
+import IconSVG from "../templates/IconSVG";
 
 type BudgetListProps = {
   budgetData?: BudgetsState;
@@ -102,7 +103,17 @@ export default function BudgetList({ budgetData }: BudgetListProps) {
           <GrayText>총 예산 금액</GrayText>
           <Sum>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원</Sum>
         </BoxLeftWrapper>
-        {router.pathname === "/plan" && <img src="/images/edit-3.svg" />}
+        {router.pathname === "/plan" && (
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <IconSVG
+              imageId="edit-3"
+              stroke="currentColor"
+              strokeWidth={2}
+              width={24}
+              height={24}
+            />
+          </div>
+        )}
       </SumBox>
       <BudgetBox>
         {router.pathname === "/plan" ? (

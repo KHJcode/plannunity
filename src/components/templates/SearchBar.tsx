@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import IconSVG from "./IconSVG";
 
 type SearchBarType = {
   text: string;
@@ -18,7 +19,7 @@ const Container = styled.div<{ margin: boolean }>`
   align-items: center;
   position: relative;
   min-height: 50px !important;
-  margin: 0 ${props => props.margin && "20px"};
+  margin: 0 ${(props) => props.margin && "20px"};
 `;
 
 const Input = styled.input`
@@ -36,11 +37,6 @@ const Input = styled.input`
   }
 `;
 
-const Image = styled.img`
-  position: absolute;
-  left: 17.5px;
-`;
-
 export default function SearchBar({
   text,
   setText,
@@ -53,23 +49,27 @@ export default function SearchBar({
   };
 
   useEffect(() => {
-    if(searchType === "plan") {
+    if (searchType === "plan") {
       setPlaceHolder("관심있는 플랜을 검색해보세요");
-    } else if(searchType === "address") {
+    } else if (searchType === "address") {
       setPlaceHolder("예)용산구 청파동 선린인터넷고등학교");
     } else {
       setPlaceHolder("새로운 친구를 찾아보세요");
     }
-  }, [])
+  }, []);
 
   return (
     <Container margin={searchType === "plan"}>
-      <Image src="images/search.svg" onClick={onClick} />
-      <Input
-        placeholder={placeholder}
-        onChange={onChange}
-        value={text}
+      <IconSVG
+        style={{ position: "absolute", left: "17.5px" }}
+        imageId="search"
+        width={20}
+        height={20}
+        stroke="#FF833E"
+        strokeWidth={2}
+        onClick={onClick}
       />
+      <Input placeholder={placeholder} onChange={onChange} value={text} />
     </Container>
   );
 }

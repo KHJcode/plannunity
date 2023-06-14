@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { unsetActive } from "../../../../modules/isActive";
 import Globe from "../../../../../public/images/earth.svg";
 import Users from "../../../../../public/images/users_35.svg";
-import { useState } from "react";
 import { addShareTarget } from "../../../../modules/currentData";
 import { RootState } from "../../../../modules";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div`
   background: #ffffff;
@@ -83,7 +83,12 @@ export default function ShareTargetModal() {
     <Container>
       <TopWrapper>
         <MainText>공유 대상 변경</MainText>
-        <img src="/images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <SelectBoxWrapper>
           <SelectBox onClick={onClickPublic} clicked={shareTarget === "public"}>

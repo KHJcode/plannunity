@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../../../../modules";
 import { unsetActive } from "../../../../modules/isActive";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div`
   background: #FFFFFF;
@@ -55,7 +56,12 @@ export default function SchduleDetailModal() {
     <Container>
       <TopWrapper>
         <TitleText>{selectSchdule.seq}. {selectSchdule.title}</TitleText>
-        <img src="/images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <Img src={selectSchdule.imgLink ? selectSchdule.imgLink : "https://cdn.pixabay.com/photo/2022/12/12/12/58/dog-7651002_1280.jpg"} />
       <DescWrapper>

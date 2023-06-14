@@ -10,13 +10,14 @@ import BudgetList from "../BudgetList";
 import InfoLinkList from "../InfoLinkList";
 import MapIcon from "../MapIcon";
 import { useEffect, useState } from "react";
+import IconSVG from "../../templates/IconSVG";
 
 type PlanDetailContainerProps = {
   plan: any;
-}
+};
 
 const Container = styled.div`
-  background: #FFFFFF;
+  background: #ffffff;
 `;
 
 const BackButton = styled.div`
@@ -109,20 +110,29 @@ const Box = styled.div`
   height: 96.5px;
 `;
 
-export default function PlanDetailContainer({ plan }: PlanDetailContainerProps) {
+export default function PlanDetailContainer({
+  plan,
+}: PlanDetailContainerProps) {
   const router = useRouter();
 
   return (
     <Container>
       <BackButton>
-        <img src="/images/arrow-left.svg" onClick={() => router.back()} />
+        <IconSVG
+          imageId="arrow-left"
+          width={24}
+          height={24}
+          stroke="currentColor"
+          strokeWidth={2}
+          onClick={() => router.back()}
+        />
       </BackButton>
       <ImageCarouselView schdules={plan.schdules} />
       <PlanDetailWrapper>
         <Desc1Wrapper>
           <Desc1>현재 핫한 플랜</Desc1>
           <Dot />
-          <Desc1 style={{ "color": "#FF833E" }}>By {plan.author}</Desc1>
+          <Desc1 style={{ color: "#FF833E" }}>By {plan.author}</Desc1>
         </Desc1Wrapper>
         <Title>{plan.title}</Title>
         <Desc2Wrapper>
@@ -131,9 +141,7 @@ export default function PlanDetailContainer({ plan }: PlanDetailContainerProps) 
         <PlanInfoBoxWrapper>
           <PlanInfoBox>
             <InfoTitle>플랜 소개</InfoTitle>
-            <InfoText>
-              {plan.intro}
-            </InfoText>
+            <InfoText>{plan.intro}</InfoText>
           </PlanInfoBox>
           <PlanInfoBox>
             <InfoTitle>카테고리</InfoTitle>
@@ -156,7 +164,7 @@ export default function PlanDetailContainer({ plan }: PlanDetailContainerProps) 
       </Wrapper>
       <Wrapper>
         <SecTitle text="플랜 관련 링크" />
-        <InfoLinkList linkData={plan.links}  />
+        <InfoLinkList linkData={plan.links} />
       </Wrapper>
       <Box />
     </Container>

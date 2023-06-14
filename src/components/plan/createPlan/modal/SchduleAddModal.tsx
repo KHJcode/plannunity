@@ -6,6 +6,7 @@ import { setActive, unsetActive } from "../../../../modules/isActive";
 import React, { useRef, useState } from "react";
 import { addSchdule } from "../../../../modules/schdule";
 import { clearPlace } from "../../../../modules/currentData";
+import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div`
   background: #ffffff;
@@ -176,7 +177,12 @@ export default function SchduleAddModal() {
           <br />
           정보를 입력하세요
         </MainText>
-        <img src="images/cancel.svg" onClick={onClickCancelButton} />
+        <IconSVG
+          imageId="cancel"
+          width={24}
+          height={24}
+          onClick={onClickCancelButton}
+        />
       </TopWrapper>
       <InputWrapper>
         <Label>이미지(선택)</Label>
