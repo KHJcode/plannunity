@@ -85,16 +85,10 @@ export default function BudgetList({ budgetData }: BudgetListProps) {
 
   useEffect(() => {
     setSum(0);
-    if (budgetData) {
-      budgetData.map((budget) => {
-        setSum((sum) => sum + budget.budget);
-      });
-    } else {
-      budgets.map((budget) => {
-        setSum((sum) => sum + budget.budget);
-      });
+    for (const budget of budgetData ?? budgets) {
+      setSum((sum) => sum + budget.budget);
     }
-  }, [selectedBudget, budgetData ? budgetData.length : budgets.length]);
+  }, [selectedBudget, budgetData, budgets]);
 
   return (
     <Container>

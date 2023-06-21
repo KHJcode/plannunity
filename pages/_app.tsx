@@ -29,10 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
       if (user) {
         setLogined(true);
       } else {
-        if (
-          route !== "/register" &&
-          route !== "/login" 
-        ) {
+        if (route !== "/register" && route !== "/login") {
           router.push("/welcome");
         }
       }
@@ -45,23 +42,23 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const { store } = wrapper.useWrappedStore(pageProps);
   return (
-    <>
-      <Provider store={store}>
-        {(route === "/" ||
-          route === "/plan" ||
-          route === "/friend" ||
-          route === "/profile") && (
-            <>
-              <Header />
-              <Navigation />
-              <NotificationContainer />
-              <CartContainer />
-              <FriendDetailModalContainer />
-            </>
-        )}
-        {(route !== "/" && route !== "friend" && route !== "profile") && <MapContainer />}
-        <Component {...pageProps} />
-      </Provider>
-    </>
+    <Provider store={store}>
+      {(route === "/" ||
+        route === "/plan" ||
+        route === "/friend" ||
+        route === "/profile") && (
+        <>
+          <Header />
+          <Navigation />
+          <NotificationContainer />
+          <CartContainer />
+          <FriendDetailModalContainer />
+        </>
+      )}
+      {route !== "/" && route !== "friend" && route !== "profile" && (
+        <MapContainer />
+      )}
+      <Component {...pageProps} />
+    </Provider>
   );
 }

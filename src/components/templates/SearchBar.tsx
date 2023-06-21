@@ -47,15 +47,14 @@ export default function SearchBar({
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value);
   };
+  const searchTypeToPlaceholder = {
+    "plan": "관심있는 플랜을 검색해보세요",
+    "address": "예) 용산구 청파동 선린인터넷고등학교",
+  };
 
   useEffect(() => {
-    if (searchType === "plan") {
-      setPlaceHolder("관심있는 플랜을 검색해보세요");
-    } else if (searchType === "address") {
-      setPlaceHolder("예)용산구 청파동 선린인터넷고등학교");
-    } else {
-      setPlaceHolder("새로운 친구를 찾아보세요");
-    }
+    const placeholder = searchTypeToPlaceholder[searchType as "plan" | "address"];
+    setPlaceHolder(placeholder ?? "새로운 친구를 찾아보세요");
   }, []);
 
   return (
