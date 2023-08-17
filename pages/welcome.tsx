@@ -5,11 +5,13 @@ import WelcomeContainer from "../src/components/login_register/WelcomeContainer"
 
 export default function WelcomePage() {
   const router = useRouter();
+
   useEffect(() => {
     if(localStorage.getItem("name")) {
       router.replace("/");
     }
   }, []);
+
   return (
     <>
       <Head>

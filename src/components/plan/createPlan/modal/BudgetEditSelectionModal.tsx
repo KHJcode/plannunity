@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
-import { RootState } from "../../../../modules";
+import {RootState} from "../../../../modules";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
-import { setActive, unsetActive } from "../../../../modules/isActive";
-import { useEffect, useState } from "react";
-import { BudgetsState, clickBudget, deleteBudget } from "../../../../modules/budget";
+import {setActive, unsetActive} from "../../../../modules/isActive";
+import {useEffect, useState} from "react";
+import {clickBudget, deleteBudget} from "../../../../modules/budget";
 import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div<{ isActive: boolean }>`
@@ -94,68 +94,71 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function BudgetEditSelectionModal() {
-  const { budgetEdit } = useSelector((state: RootState) => state.isActive);
-  const budgets = useSelector((state: RootState) => state.budget);
-  const dispatch = useDispatch();
-  const [sum, setSum] = useState(0);
+    const {budgetEdit} = useSelector((state: RootState) => state.isActive);
+    const budgets = useSelector((state: RootState) => state.budget);
+    const dispatch = useDispatch();
+    const [sum, setSum] = useState(0);
 
-  const onClickDeleteButton = (id: number) => {
-    dispatch(deleteBudget(id));
-  }
+    const onClickDeleteButton = (id: number) => {
+        dispatch(deleteBudget(id));
+    }
 
-  const onClickCancelButton = () => {
-    dispatch(unsetActive("budgetEdit"));
-  };
+    const onClickCancelButton = () => {
+        dispatch(unsetActive("budgetEdit"));
+    };
 
-  const onClickSubmitButton = () => {
-    dispatch(unsetActive("budgetEdit"));
-  }
+    const onClickSubmitButton = () => {
+        dispatch(unsetActive("budgetEdit"));
+    }
 
-  const onClickBudget = (id: number) => {
-    dispatch(clickBudget(id));
-    dispatch(unsetActive("budgetEdit"));
-    dispatch(setActive("budgetEditOne"));
-  }
+    const onClickBudget = (id: number) => {
+        dispatch(clickBudget(id));
+        dispatch(unsetActive("budgetEdit"));
+        dispatch(setActive("budgetEditOne"));
+    }
 
-  useEffect(() => {
-    setSum(0);
-    setTimeout(() => budgets.map(budget => {setSum(sum => sum + budget.budget)}), 0);
-  }, [budgets.length]);
+    useEffect(() => {
+        let currentSum = 0;
+        budgets.map(budget => {
+            currentSum += sum + budget.budget;
+        });
+        setSum(currentSum);
+    }, [budgets.length]);
 
-  return (
-    <Container isActive={budgetEdit}>
-      <TopWrapper>
-        <MainText>플랜 예산안 수정</MainText>
-        <IconSVG
-          imageId="cancel"
-          width={24}
-          height={24}
-          onClick={onClickCancelButton}
-        />
-      </TopWrapper>
-      <SumWrapper>
-        <SubText>예산 총 금액</SubText>
-        <Sum>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Sum>
-        <Hr />
-      </SumWrapper>
-      <BudgetList>
-        {budgets.map(budget => (
-          <BudgetItem key={budget.id}>
-            <BudgetName onClick={() => onClickBudget(budget.id)}>{budget.title}</BudgetName>
-            <BudgetItemRightWrapper>
-              <Amount>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Amount>
-              <img src="images/cancel_gray.svg" onClick={() => onClickDeleteButton(budget.id)} />
-            </BudgetItemRightWrapper>
-          </BudgetItem>
-        ))}
-      </BudgetList>
-      <ButtonWrapper>
-        <EditAndCreateButton
-          text="수정 완료"
-          btnColor="orange"
-          onClick={onClickSubmitButton}
-        />
-      </ButtonWrapper>
-    </Container>
-  );
+    return (
+        <Container isActive={budgetEdit}>
+            <TopWrapper>
+                <MainText>플랜 예산안 수정</MainText>
+                <IconSVG
+                    imageId="cancel"
+                    width={24}
+                    height={24}
+                    onClick={onClickCancelButton}
+                />
+            </TopWrapper>
+            <SumWrapper>
+                <SubText>예산 총 금액</SubText>
+                <Sum>{sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Sum>
+                <Hr/>
+            </SumWrapper>
+            <BudgetList>
+                {budgets.map(budget => (
+                    <BudgetItem key={budget.id}>
+                        <BudgetName onClick={() => onClickBudget(budget.id)}>{budget.title}</BudgetName>
+                        <BudgetItemRightWrapper>
+                            <Amount>{budget.budget.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원</Amount>
+                            <img src="images/cancel_gray.svg" onClick={() => onClickDeleteButton(budget.id)}/>
+                        </BudgetItemRightWrapper>
+                    </BudgetItem>
+                ))}
+            </BudgetList>
+            <ButtonWrapper>
+                <EditAndCreateButton
+                    text="수정 완료"
+                    btnColor="orange"
+                    onClick={onClickSubmitButton}
+                />
+            </ButtonWrapper>
+        </Container>
+    );
 }

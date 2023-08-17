@@ -5,8 +5,8 @@ import { unsetActive } from "../../../modules/isActive";
 import PageTitle from "../../templates/PageTitle";
 import Dot from "../../../../public/images/Dot.svg";
 import PlanThumbnail from "../../templates/PlanThumbnail";
-import { useEffect, useState } from "react";
-import { getAllData } from "../../../firebase/database";
+// import { useEffect, useState } from "react";
+// import { getAllData } from "../../../firebase/database";
 import IconSVG from "../../templates/IconSVG";
 
 type MyAllPlan = {

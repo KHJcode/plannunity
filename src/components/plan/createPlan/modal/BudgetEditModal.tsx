@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
-import { RootState } from "../../../../modules";
+import {RootState} from "../../../../modules";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
-import { unsetActive } from "../../../../modules/isActive";
-import { useEffect, useState } from "react";
-import { updateBudget } from "../../../../modules/budget";
+import {unsetActive} from "../../../../modules/isActive";
+import {useEffect, useState} from "react";
+import {updateBudget} from "../../../../modules/budget";
 import IconSVG from "../../../templates/IconSVG";
 
 const Container = styled.div<{ isActive: boolean }>`
@@ -77,79 +77,77 @@ const ButtonWrapper = styled.div`
 `;
 
 export default function BudgetEditModal() {
-  const { budgetAdd } = useSelector((state: RootState) => state.isActive);
-  const selectedBudget = useSelector((state: RootState) => state.budget).filter(
-    (item) => item.isSelected
-  )[0];
-  const dispatch = useDispatch();
-  const [title, setTitle] = useState("");
-  const [budget, setBudget] = useState("");
+    const {budgetAdd} = useSelector((state: RootState) => state.isActive);
+    const selectedBudget = useSelector((state: RootState) => state.budget).filter(
+        (item) => item.isSelected
+    )[0];
+    const dispatch = useDispatch();
+    const [title, setTitle] = useState("");
+    const [budget, setBudget] = useState("");
 
-  const onClickCancelButton = () => {
-    dispatch(updateBudget(title, Number(budget), selectedBudget.id));
-    dispatch(unsetActive("budgetEditOne"));
-    setTitle("");
-    setBudget("");
-  };
+    const onClickCancelButton = () => {
+        dispatch(updateBudget(title, Number(budget), selectedBudget.id));
+        dispatch(unsetActive("budgetEditOne"));
+        setTitle("");
+        setBudget("");
+    };
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.currentTarget.id === "title") setTitle(e.target.value);
-    else if (e.currentTarget.id === "amount") setBudget(e.target.value);
-  };
+    const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.currentTarget.id === "title") setTitle(e.target.value);
+        else if (e.currentTarget.id === "amount") setBudget(e.target.value);
+    };
 
-  const onClickSubmitButton = () => {
-    dispatch(updateBudget(title, Number(budget), selectedBudget.id));
-    dispatch(unsetActive("budgetEditOne"));
-    setTitle("");
-    setBudget("");
-  };
+    const onClickSubmitButton = () => {
+        dispatch(updateBudget(title, Number(budget), selectedBudget.id));
+        dispatch(unsetActive("budgetEditOne"));
+        setTitle("");
+        setBudget("");
+    };
 
-  useEffect(() => {
-    if (selectedBudget) {
-      setTitle(selectedBudget.title);
-      setBudget(selectedBudget.budget.toString());
-    }
-  }, [selectedBudget]);
+    useEffect(() => {
+        if (selectedBudget) {
+            setTitle(selectedBudget.title);
+            setBudget(selectedBudget.budget.toString());
+        }
+    }, [selectedBudget]);
 
-  if (!selectedBudget) return <></>;
-
-  if (selectedBudget.title.length) {
     return (
-      <Container isActive={budgetAdd}>
-        <TopWrapper>
-          <MainText>추가된 예산안 수정</MainText>
-          <IconSVG
-            imageId="cancel"
-            width={24}
-            height={24}
-            onClick={onClickCancelButton}
-          />
-        </TopWrapper>
-        <SumWrapper>
-          <SubText>해당 예산안 금액</SubText>
-          <BudgetInput
-            placeholder="금액을 입력해주세요"
-            onChange={onChange}
-            id="amount"
-            value={budget}
-          />
-        </SumWrapper>
-        <Input
-          placeholder="예산안 제목을 입력해주세요"
-          onChange={onChange}
-          id="title"
-          value={title}
-        />
-        <ButtonWrapper>
-          <EditAndCreateButton
-            text="해당 추가 적용하기"
-            btnColor="orange"
-            onClick={onClickSubmitButton}
-          />
-        </ButtonWrapper>
-      </Container>
+        <>
+            {selectedBudget?.title?.length && (
+                <Container isActive={budgetAdd}>
+                    <TopWrapper>
+                        <MainText>추가된 예산안 수정</MainText>
+                        <IconSVG
+                            imageId="cancel"
+                            width={24}
+                            height={24}
+                            onClick={onClickCancelButton}
+                        />
+                    </TopWrapper>
+                    <SumWrapper>
+                        <SubText>해당 예산안 금액</SubText>
+                        <BudgetInput
+                            placeholder="금액을 입력해주세요"
+                            onChange={onChange}
+                            id="amount"
+                            value={budget}
+                        />
+                    </SumWrapper>
+                    <Input
+                        placeholder="예산안 제목을 입력해주세요"
+                        onChange={onChange}
+                        id="title"
+                        value={title}
+                    />
+                    <ButtonWrapper>
+                        <EditAndCreateButton
+                            text="해당 추가 적용하기"
+                            btnColor="orange"
+                            onClick={onClickSubmitButton}
+                        />
+                    </ButtonWrapper>
+                </Container>
+            )}
+        </>
     );
-  } else {
-    return <></>;
-  }
 }

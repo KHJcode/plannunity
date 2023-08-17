@@ -5,11 +5,13 @@ import LoginFormContainer from "../src/components/login_register/LoginFormContai
 
 export default function LoginPage() {
   const router = useRouter();
+
   useEffect(() => {
     if(localStorage.getItem("name")) {
       router.replace("/");
     }
   }, []);
+
   return (
     <>
       <Head>

@@ -6,9 +6,11 @@ import { setCurrentPage } from "../src/modules/currentPage";
 
 export default function PorfilePage() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(setCurrentPage("profile"));
   }, []);
+
   return (
     <>
       <Head>

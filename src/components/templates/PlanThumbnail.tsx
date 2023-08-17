@@ -99,15 +99,16 @@ export default function PlanThumbnail({
   };
 
   const onClick = () => {
-    console.log(deleteButtonClicked);
     if (!deleteButtonClicked) {
       router.push(planURL);
     }
   };
 
+  /*
   useEffect(() => {
     console.log(plan);
   }, []);
+   */
 
   return styleOption === "share" || styleOption === "friend" ? (
     <Conatiner

@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import ImageCarouselView from "./ImageCarouselView";
 import Dot from "../../../../public/images/dot_gray.svg";
-import Stars from "../../../../public/images/stars.svg";
+// import Stars from "../../../../public/images/stars.svg";
 import PlanDetailFooterBar from "./PlanDetailFooterBar";
 import SecTitle from "../../templates/SecTitle";
 import PlanSchduleList from "../PlanSchduleList";
 import { useRouter } from "next/router";
 import BudgetList from "../BudgetList";
 import InfoLinkList from "../InfoLinkList";
-import MapIcon from "../MapIcon";
-import { useEffect, useState } from "react";
+// import MapIcon from "../MapIcon";
+// import { useEffect, useState } from "react";
 import IconSVG from "../../templates/IconSVG";
 
 type PlanDetailContainerProps = {

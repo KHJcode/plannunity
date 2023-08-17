@@ -8,7 +8,7 @@ type InfoLinkProps = {
 };
 
 const Container = styled.div`
-  width 100%;
+  width: 100%;
   background: #F9F9F9;
   border: 1px solid #ededed;
   border-radius: 15px;

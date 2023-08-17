@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { RootState } from "../../../../modules";
 import EditAndCreateButton from "../../../templates/EditAndCreateButton";
 import { unsetActive } from "../../../../modules/isActive";
 import { useState } from "react";

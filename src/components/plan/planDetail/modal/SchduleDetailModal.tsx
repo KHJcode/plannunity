@@ -71,4 +71,3 @@ export default function SchduleDetailModal() {
     </Container>
   );
 }
-

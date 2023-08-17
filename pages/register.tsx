@@ -8,11 +8,13 @@ import RegisterAuthContainer from "../src/components/login_register/ReigsterAuth
 export default function RegisterPage() {
   const [visible, setVisible] = useState([false, false, false]);
   const router = useRouter();
+
   useEffect(() => {
     if(localStorage.getItem("name")) {
       router.replace("/");
     }
   }, []);
+
   return (
     <>
       <Head>

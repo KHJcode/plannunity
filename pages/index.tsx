@@ -24,7 +24,6 @@ export default function HomePage({ sharedPlan }: any) {
   const [logined, setLogined] = useState(false);
 
   useEffect(() => {
-    console.log(localStorage.getItem("name"))
     if(localStorage.getItem("name")) {
       setLogined(true);
     }

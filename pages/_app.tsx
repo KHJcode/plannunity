@@ -36,9 +36,11 @@ export default function App({ Component, pageProps }: AppProps) {
     });
   }, []);
 
+  /*
   useEffect(() => {
     // getLocal();
   }, []);
+   */
 
   const { store } = wrapper.useWrappedStore(pageProps);
   return (
