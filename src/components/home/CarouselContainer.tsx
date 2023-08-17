@@ -27,9 +27,11 @@ const BoldText = styled.span`
 export default function CarouselContainer() {
   // const { name } = useSelector((state: RootState) => state.userInfo);
   const [name, setName] = useState("");
+
   useEffect(() => {
     setName(localStorage.getItem("name")!);
-  });
+  }, []);
+
   return (
     <Container>
       <Text>환영합니다, <BoldText>{name} 회원님!</BoldText></Text>

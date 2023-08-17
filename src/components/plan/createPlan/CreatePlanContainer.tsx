@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Dot from "../../../../public/images/dot.svg"
@@ -127,7 +127,7 @@ export default function CreatePlanContainer() {
     setUsername(localStorage.getItem("name")!);
   }, []);
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   }
 
