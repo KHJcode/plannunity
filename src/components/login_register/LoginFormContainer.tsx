@@ -113,7 +113,7 @@ export default function LoginFormContainer() {
         } else {
             localStorage.setItem("name", data.displayName!);
             localStorage.setItem("email", data.email!);
-            localStorage.setItem("imgURL", (data.imgURL ? data.imgURL! : "https://cdn.pixabay.com/photo/2019/08/01/12/36/illustration-4377408_1280.png"));
+            localStorage.setItem("imgURL", data.imgURL || "illustration-4377408_1280.png");
             // dispatch(setLogin(data.displayName!, data.email!, data.photoURL!));
             router.push("/");
         }

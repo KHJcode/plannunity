@@ -7,6 +7,11 @@ import SecTitle from "../../templates/SecTitle";
 import {useSwipeable} from "react-swipeable";
 import {unsetActive} from "../../../modules/isActive";
 import IconSVG from "../../templates/IconSVG";
+import Image from "next/image";
+
+const profileImageLoader = ({src}: any) => {
+    return `https://cdn.pixabay.com/photo/2017/08/30/12/45/${src}`;
+};
 
 const Conatiner = styled.div<{ isActive: boolean }>`
   width: 100%;
@@ -105,10 +110,6 @@ const IsFriendButton = styled.button`
   align-items: center;
 `;
 
-const FriendIcon = styled.img`
-  margin-right: 10px;
-`;
-
 const BottomWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -150,7 +151,8 @@ export default function FriendDetailModal() {
         <Conatiner isActive={friendDetail} {...swipeHandler}>
             <TopWrapper>
                 <ProfileWrapper>
-                    <ProfileImg src="https://cdn.pixabay.com/photo/2017/08/30/12/45/girl-2696947_1280.jpg"/>
+                    <Image loader={profileImageLoader} src={"girl-2696947_1280.jpg"} alt={"profile"}
+                           width={110} height={110} style={{borderRadius: '50%'}}/>
                     <NameText>나제원</NameText>
                 </ProfileWrapper>
                 <InfoWrapper>

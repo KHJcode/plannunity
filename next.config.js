@@ -3,7 +3,11 @@ const isProduction = process.env.NODE_ENV === "production";
 const runtimeCaching = require("next-pwa/cache");
 const nextPwa = require("next-pwa");
 
-const config = {};
+const config = {
+    images: {
+        domains: ['cdn.pixabay.com']
+    }
+};
 
 const nextConfig = nextPwa({
     dest: "public",

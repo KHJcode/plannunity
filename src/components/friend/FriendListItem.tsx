@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { setActive } from "../../modules/isActive";
+import {setActive} from "../../modules/isActive";
 import CancelButton from "./CancelButton";
+import Image from "next/image";
 
 const Container = styled.div`
   height: 66px;
@@ -34,24 +34,33 @@ const NameText = styled.div`
   font-weight: 700;
 `
 
+const profileImageLoader = ({src}: any) => `https://cdn.pixabay.com/photo/2014/03/29/09/17/${src}`;
+
 export default function FriendListItem() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const onClick = () => {
-    dispatch(setActive("friendDetail"));
-  }
+    const onClick = () => {
+        dispatch(setActive("friendDetail"));
+    }
 
-  const onClickCancelButton = () => {
-    dispatch(setActive("deleteFriend"));
-  }
+    const onClickCancelButton = () => {
+        dispatch(setActive("deleteFriend"));
+    }
 
-  return (
-    <Container>
-      <LeftWrapper onClick={onClick}>
-        <ProfileImg src="https://cdn.pixabay.com/photo/2014/03/29/09/17/cat-300572_1280.jpg" />
-        <NameText>나제원</NameText>
-      </LeftWrapper>
-      <CancelButton onClick={onClickCancelButton} />
-    </Container>
-  );
+    return (
+        <Container>
+            <LeftWrapper onClick={onClick}>
+                <Image src={"cat-300572_1280.jpg"}
+                       alt={"나제원"}
+                       loader={profileImageLoader}
+                       width={40}
+                       height={40}
+                       loading={"eager"}
+                       style={{borderRadius: '50%'}}
+                />
+                <NameText>나제원</NameText>
+            </LeftWrapper>
+            <CancelButton onClick={onClickCancelButton}/>
+        </Container>
+    );
 }

@@ -1,9 +1,9 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import {useEffect, useState} from "react";
+// import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { logout } from "../../firebase/auth";
+import {logout} from "../../firebase/auth";
 import IconSVG from "../templates/IconSVG";
+import Image from "next/image";
 
 const Container = styled.div`
   padding: 10px 20px 0 20px;
@@ -20,12 +20,6 @@ const ProfileInfoWrapper = styled.div`
 const ProfileInfoLeftWrapper = styled.div`
   display: flex;
   gap: 10px;
-`;
-
-const ProfileImage = styled.img`
-  width: 71px;
-  height: 71px;
-  border-radius: 50%;
 `;
 
 const ProfileTextWrapper = styled.div`
@@ -97,83 +91,89 @@ const OptionItem = styled.div`
 const RedText = styled.div`
   color: #ff2525;
 `;
+
 interface UserInfo {
-  name: string | null;
-  email: string | null;
-  imgURL: string | null;
+    name: string | null;
+    email: string | null;
+    imgURL: string | null;
 }
 
+const profileImageLoader = ({src}: any) => `https://cdn.pixabay.com/photo/2019/08/01/12/36/${src}`;
+
 export default function ProfileInfoContainer() {
-  const router = useRouter();
-  const dispatch = useDispatch();
-  // const { name, email, imgURL } = useSelector((state: RootState) => state.userInfo);
-  const [{ name, email, imgURL }, setUserInfo] = useState<UserInfo>({
-    name: "",
-    email: "",
-    imgURL: "",
-  });
-
-  useEffect(() => {
-    console.log(localStorage.getItem("imgURL"));
-    setUserInfo({
-      name: localStorage.getItem("name"),
-      email: localStorage.getItem("email"),
-      imgURL: localStorage.getItem("imgURL"),
+    // const dispatch = useDispatch();
+    // const { name, email, imgURL } = useSelector((state: RootState) => state.userInfo);
+    const [{name, email, imgURL}, setUserInfo] = useState<UserInfo>({
+        name: "",
+        email: "",
+        imgURL: "",
     });
-  }, []);
 
-  const onClickLogoutButton = async () => {
-    localStorage.clear();
-    await logout();
-    // dispatch(setCurrentPage("home"));
-  };
+    useEffect(() => {
+        setUserInfo({
+            name: localStorage.getItem("name"),
+            email: localStorage.getItem("email"),
+            imgURL: localStorage.getItem("imgURL"),
+        });
+    }, []);
 
-  return (
-    <Container>
-      <ProfileInfoWrapper>
-        <ProfileInfoLeftWrapper>
-          <ProfileImage src={imgURL!} />
-          <ProfileTextWrapper>
-            <Name>{name}</Name>
-            <Email>{email}</Email>
-          </ProfileTextWrapper>
-        </ProfileInfoLeftWrapper>
-        <div style={{ display: "flex", alignItems: "center" }}>
-          <IconSVG
-            imageId="edit-3"
-            stroke="currentColor"
-            strokeWidth={2}
-            width={24}
-            height={24}
-          />
-        </div>
-      </ProfileInfoWrapper>
-      <StatInfoWrapper>
-        <StatInfoBox>
-          <Text>
-            현재 보유하신
-            <br />총 포인트 개수
-          </Text>
-          <Number>1,250P</Number>
-        </StatInfoBox>
-        <StatInfoBox>
-          <Text>
-            현재까지 받은
-            <br />
-            모든 추천 횟수
-          </Text>
-          <Number>25,680추천</Number>
-        </StatInfoBox>
-      </StatInfoWrapper>
-      <OptionWrapper>
-        <OptionItem>내가 만든 플랜 리스트 보기</OptionItem>
-        <OptionItem>내가 추천한 플랜 리스트 보기</OptionItem>
-        <OptionItem>내가 저장한 플랜 리스트 보기</OptionItem>
-        <OptionItem>계정 정보 설정 및 변경</OptionItem>
-        <OptionItem onClick={onClickLogoutButton}>
-          <RedText>로그아웃하기</RedText>
-        </OptionItem>
-      </OptionWrapper>
-    </Container>
-  );
+    const onClickLogoutButton = async () => {
+        localStorage.clear();
+        await logout();
+        // dispatch(setCurrentPage("home"));
+    };
+
+    return (
+        <Container>
+            {name && (
+                <>
+                    <ProfileInfoWrapper>
+                        <ProfileInfoLeftWrapper>
+                            <Image src={imgURL!} loader={profileImageLoader} alt={"profile"} width={71} height={71}
+                                   style={{borderRadius: '50%'}}/>
+                            <ProfileTextWrapper>
+                                <Name>{name}</Name>
+                                <Email>{email}</Email>
+                            </ProfileTextWrapper>
+                        </ProfileInfoLeftWrapper>
+                        <div style={{display: "flex", alignItems: "center"}}>
+                            <IconSVG
+                                imageId="edit-3"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                                width={24}
+                                height={24}
+                            />
+                        </div>
+                    </ProfileInfoWrapper>
+                    <StatInfoWrapper>
+                        <StatInfoBox>
+                            <Text>
+                                현재 보유하신
+                                <br/>총 포인트 개수
+                            </Text>
+                            <Number>1,250P</Number>
+                        </StatInfoBox>
+                        <StatInfoBox>
+                            <Text>
+                                현재까지 받은
+                                <br/>
+                                모든 추천 횟수
+                            </Text>
+                            <Number>25,680추천</Number>
+                        </StatInfoBox>
+                    </StatInfoWrapper>
+                    <OptionWrapper>
+                        <OptionItem>내가 만든 플랜 리스트 보기</OptionItem>
+                        <OptionItem>내가 추천한 플랜 리스트 보기</OptionItem>
+                        <OptionItem>내가 저장한 플랜 리스트 보기</OptionItem>
+                        <OptionItem>계정 정보 설정 및 변경</OptionItem>
+                        <OptionItem onClick={onClickLogoutButton}>
+                            <RedText>로그아웃하기</RedText>
+                        </OptionItem>
+                    </OptionWrapper>
+                </>
+            )}
+        </Container>
+    );
 }

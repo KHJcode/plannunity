@@ -1,6 +1,7 @@
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { setActive } from "../../modules/isActive";
+import {setActive} from "../../modules/isActive";
+import Image from "next/image";
 
 const Container = styled.div`
   display: flex;
@@ -17,12 +18,6 @@ const ProfileContainer = styled.div`
   position: relative;
 `
 
-const Profile = styled.img`
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-`
-
 const IsOnline = styled.img`
   position: absolute;
   bottom: 0;
@@ -37,20 +32,30 @@ const NameText = styled.div`
   color: #5B5B5B;
 `
 
+const profileImageLoader = ({src}: any) => `https://cdn.pixabay.com/photo/2017/10/26/19/45/${src}`;
+
 export default function OnlineFriendItem() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const onClick = () => {
-    dispatch(setActive("friendDetail"));
-  }
+    const onClick = () => {
+        dispatch(setActive("friendDetail"));
+    };
 
-  return (
-    <Container onClick={onClick}>
-      <ProfileContainer>
-        <Profile src="https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png" />
-        <IsOnline src="images/isOnline.svg" />
-      </ProfileContainer>
-      <NameText>나제원</NameText>
-    </Container>
-  );
+    return (
+        <Container onClick={onClick}>
+            <ProfileContainer>
+                <Image
+                    loading={"eager"}
+                    loader={profileImageLoader}
+                    src="red-2892235_1280.png"
+                    alt={"나제원"}
+                    height={60}
+                    width={60}
+                    style={{borderRadius: '50%'}}
+                />
+                <IsOnline src="images/isOnline.svg"/>
+            </ProfileContainer>
+            <NameText>나제원</NameText>
+        </Container>
+    );
 }

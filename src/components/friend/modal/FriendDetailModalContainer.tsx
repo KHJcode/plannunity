@@ -11,7 +11,7 @@ const Conatiner = styled.div<{ isActive: boolean, zIndex: boolean }>`
   width: 100%;
   background: rgba(40, 40, 40, 0.54);
   touch-action: none;
-  display: flex;
+  display: ${props => props.isActive || props.zIndex ? 'flex' : 'none'};
   justify-content: center;
   align-items: center;
   z-index: ${props => props.zIndex ? 1000 : -1};
