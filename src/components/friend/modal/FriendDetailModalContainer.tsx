@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import styled from "styled-components";
-import { RootState } from "../../../modules";
+import {RootState} from "../../../modules";
 import FriendDetailModal from "./FriendDetailModal";
 
 const Conatiner = styled.div<{ isActive: boolean, zIndex: boolean }>`
@@ -19,20 +19,21 @@ const Conatiner = styled.div<{ isActive: boolean, zIndex: boolean }>`
 `
 
 export default function FriendDetailModalContainer() {
-  const { friendDetail } = useSelector((state: RootState) => state.isActive);
-  const [zIndexDelay, setzIndexDelay] = useState(false);
+    const {friendDetail} = useSelector((state: RootState) => state.isActive);
+    const [zIndexDelay, setzIndexDelay] = useState(false);
 
-  useEffect(() => {
-    if(friendDetail) {
-      setzIndexDelay(friendDetail);
-    } else {
-      setTimeout(() => setzIndexDelay(friendDetail), 500);
-    }
-  }, [friendDetail]);
+    useEffect(() => {
+        if (friendDetail) {
+            setzIndexDelay(friendDetail);
+        } else {
+            const timeout = setTimeout(() => setzIndexDelay(friendDetail), 500);
+            return () => clearTimeout(timeout);
+        }
+    }, [friendDetail]);
 
-  return (
-    <Conatiner isActive={friendDetail} zIndex={zIndexDelay}>
-      <FriendDetailModal />
-    </Conatiner>
-  );
-}
+    return (
+        <Conatiner isActive={friendDetail} zIndex={zIndexDelay}>
+            <FriendDetailModal/>
+        </Conatiner>
+    );
+};

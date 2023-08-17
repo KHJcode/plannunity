@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import styled from "styled-components";
-import { RootState } from "../../../modules";
+import {RootState} from "../../../modules";
 
 type DeleteFriendModalType = {
-  onClick: () => void;
+    onClick: () => void;
 }
 
 const Container = styled.div`
@@ -36,26 +36,30 @@ const DeleteButton = styled.button`
   border: none;
 `
 
-export default function DeleteFriendModal({ onClick }: DeleteFriendModalType) {
-  const { deleteFriend } = useSelector((state: RootState) => state.isActive);
-  const [scrollLoc, setScrollLoc] = useState(0);
-  useEffect(() => {
-    if(deleteFriend) {
-      setScrollLoc(window.scrollY);
-      document.body.style.cssText = `
-      position: fixed; 
-      top: -${window.scrollY}px;
-      overflow-y: scroll;
-      width: 100%;`;
-    } else {
-      document.body.style.cssText = ``;
-      window.scrollTo(0, scrollLoc);
-    }
-  }, [deleteFriend]);
-  return (
-    <Container>
-      <Text>정말로 나제원님과의<br />친구 관계를 지우시겠어요?</Text>
-      <DeleteButton onClick={onClick}>친구 관계를 삭제할께요</DeleteButton>
-    </Container>
-  );
-}
+export default function DeleteFriendModal({onClick}: DeleteFriendModalType) {
+    const {deleteFriend} = useSelector((state: RootState) => state.isActive);
+    const [scrollLoc, setScrollLoc] = useState(0);
+
+    useEffect(() => {
+        if (deleteFriend) {
+            const scrollY = window.scrollY;
+            setScrollLoc(scrollY);
+            document.body.style.cssText = `
+              position: fixed; 
+              top: -${scrollY}px;
+              overflow-y: scroll;
+              width: 100%;
+            `;
+        } else {
+            document.body.style.cssText = ``;
+            window.scrollTo(0, scrollLoc);
+        }
+    }, [deleteFriend]);
+
+    return (
+        <Container>
+            <Text>정말로 나제원님과의<br/>친구 관계를 지우시겠어요?</Text>
+            <DeleteButton onClick={onClick}>친구 관계를 삭제할께요</DeleteButton>
+        </Container>
+    );
+};

@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import styled from "styled-components";
-import { setActive } from "../../modules/isActive";
+import {setActive} from "../../modules/isActive";
 import CancelButton from "./CancelButton";
 
 const Container = styled.div`
@@ -65,31 +64,31 @@ const AcceptButton = styled.button`
 `
 
 export default function FriendRequestItem() {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const onClick = (type: string) => {
-    if(type === "detail") {
-       dispatch(setActive("friendDetail"));
-    } else if(type === "accept") {
+    const handleClickDetailLink = () => {
+        dispatch(setActive("friendDetail"));
+    };
 
-    } else if(type === "cancel") {
+    const handleClickAcceptButton = () => {
+    };
 
-    }
-  }
+    const handleClickCancelButton = () => {
+    };
 
-  return (
-    <Container>
-      <LeftWrapper onClick={() => onClick("detail")}>
-        <ProfileImg src="https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png" />
-        <TextWrapper>
-          <NameText>나제원</NameText>
-          <DescText>친구 요청을 보냈어요</DescText>
-        </TextWrapper>
-      </LeftWrapper>
-      <ButtonWrapper>
-        <AcceptButton onClick={() => onClick("accept")}>수락하기</AcceptButton>
-        <CancelButton onClick={() => onClick("cancel")} />
-      </ButtonWrapper>
-    </Container>
-  );
-}
+    return (
+        <Container>
+            <LeftWrapper onClick={handleClickDetailLink}>
+                <ProfileImg src="https://cdn.pixabay.com/photo/2017/10/26/19/45/red-2892235_1280.png"/>
+                <TextWrapper>
+                    <NameText>나제원</NameText>
+                    <DescText>친구 요청을 보냈어요</DescText>
+                </TextWrapper>
+            </LeftWrapper>
+            <ButtonWrapper>
+                <AcceptButton onClick={handleClickAcceptButton}>수락하기</AcceptButton>
+                <CancelButton onClick={handleClickCancelButton}/>
+            </ButtonWrapper>
+        </Container>
+    );
+};

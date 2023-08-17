@@ -18,7 +18,6 @@ const Container = styled.div<{ visible: boolean }>`
   padding: 0 20px;
   height: 100vh;
   width: 100%;
-  height: 100vh;
   position: absolute;
   top: 0;
   background: #FFFFFF;

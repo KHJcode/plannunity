@@ -18,7 +18,6 @@ const Container = styled.div<{ visible: boolean }>`
   width: 100%;
   position: absolute;
   top: 0;
-  height: 100vh;
   z-index: 998;
   background: #FFFFFF;
   opacity: ${props => props.visible ? 1 : 0};

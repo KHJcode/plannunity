@@ -20,9 +20,9 @@ import SearchInfoEditSelectionModalContainer
 import SharePlanContainer from "../src/components/plan/sharePlan/SharePlanContainer";
 import CreatePlanContainer from "../src/components/plan/createPlan/CreatePlanContainer";
 import BudgetEditModalContainer from "../src/components/plan/createPlan/modal/BudgetEditModalContainer";
-import {GetServerSideProps, GetStaticProps} from "next";
+import {GetStaticProps} from "next";
 import SearchInfoEditModalContainer from "../src/components/plan/createPlan/modal/SearchInfoEditModalContainer";
-import {getAllData, getPlansByVisibility, planSort, searchPlans} from "../src/firebase/database";
+import {getPlansByVisibility, planSort, searchPlans} from "../src/firebase/database";
 import SearchPlaceModalContainer from "../src/components/plan/createPlan/modal/SearchPlaceModalContainer";
 import SearchBar from "../src/components/templates/SearchBar";
 import {useState} from "react";
