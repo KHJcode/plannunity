@@ -25,7 +25,7 @@ const ReplaceText = styled.div`
   font-size: 15px;
   line-height: 20px;
   color: #bfbfbf;
-  font-family: "SUIT-400";
+  font-weight: 400;
 `;
 
 export default function PlanSchduleList({ schduleData }: PlanSchduleListProps) {

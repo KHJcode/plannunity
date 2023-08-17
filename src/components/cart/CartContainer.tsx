@@ -40,7 +40,7 @@ const DotWrapper = styled.span`
 const MainText = styled.div`
   font-size: 20px;
   line-height: 35px;
-  font-family: 'SUIT-700';
+  font-weight: 700;
   margin-bottom: 20px;
 `
 

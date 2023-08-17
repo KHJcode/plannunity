@@ -25,7 +25,7 @@ const Button = styled.button<{ btnColor: string }>`
   width: 50%;
   border-radius: 15px;
   font-size: 16px;
-  font-family: 'SUIT-700';
+  font-weight: 700;
   border: ${props => props.btnColor === "white" ? "1px solid #EDEDED" : "none"};
   color: ${props => props.btnColor === "white" ? "#000000" : "#FF833E"};
   background: ${props => props.btnColor === "white" ? "#F9F9F9": "#FFDFCD"};

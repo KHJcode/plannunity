@@ -12,7 +12,7 @@ const Container = styled.div`
 `
 
 const Text = styled.div`
-  font-family: SUIT-500;
+  font-weight: 500;
   margin-left: 5px;
   font-size: 20px;
   margin-bottom: 20px;
@@ -21,7 +21,7 @@ const Text = styled.div`
 `
 
 const BoldText = styled.span`
-  font-family: SUIT-600;
+  font-weight: 600;
 `
 
 export default function CarouselContainer() {

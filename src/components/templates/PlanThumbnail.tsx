@@ -51,7 +51,7 @@ const SubText = styled.div`
   color: #ffffff;
   font-size: 12px;
   line-height: 15px;
-  font-family: "SUIT-500";
+  font-weight: 500;
   display: flex;
   align-items: center;
 `;
@@ -74,7 +74,7 @@ const ProfileImg = styled.img`
 const CancelButton = styled.button`
   border: none;
   background: #ffffff;
-  font-family: "SUIT-700";
+  font-weight: 700;
   font-size: 13px;
   line-height: 16px;
   text-align: center;

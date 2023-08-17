@@ -49,7 +49,7 @@ const Input = styled.input`
 
   &::placeholder {
     color: #BFBFBF;
-    font-family: 'SUIT-500';
+    font-weight: 500;
   }
 `
 

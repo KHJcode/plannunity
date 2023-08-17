@@ -10,7 +10,7 @@ const Container = styled.div`
 `
 
 const Desc = styled.div`
-  font-family: 'SUIT-500';
+  font-weight: 500;
   font-size: 12px;
   line-height: 15px;
   color: #B8B8B8;

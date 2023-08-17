@@ -48,7 +48,7 @@ const Input = styled.input`
 
   &::placeholder {
     color: #bfbfbf;
-    font-family: "SUIT-500";
+    font-weight: 500;
   }
 `;
 

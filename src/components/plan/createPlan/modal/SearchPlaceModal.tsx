@@ -73,12 +73,12 @@ const BeforeGrayText = styled.div`
   line-height: 30px;
   text-align: center;
   color: #B0B0B0;
-  font-family: 'SUIT-500';
+  font-weight: 500;
   text-align: center;
 `
 
 const BeforeGrayBoldText = styled.div`
-  font-family: 'SUIT-600';
+  font-weight: 600;
 `
 
 const SearchAfterWrapper = styled.div`
@@ -129,14 +129,14 @@ const AddressText = styled.div`
   font-size: 15px;
   line-height: 20px;
   color: #A0A0A0;
-  font-family: 'SUIT-500';
+  font-weight: 500;
 `
 
 const ButtonWrapper = styled.div`
   padding: 25px;
   width: 100%;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   left: 0;
   background: #FFFFFF;
 `;

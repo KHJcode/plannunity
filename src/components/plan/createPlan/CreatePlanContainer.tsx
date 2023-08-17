@@ -71,7 +71,7 @@ const Input = styled.input<{ type: string }>`
 
   &::placeholder {
     color: #bfbfbf;
-    font-family: "SUIT-500";
+    font-weight: 500;
   }
 `;
 

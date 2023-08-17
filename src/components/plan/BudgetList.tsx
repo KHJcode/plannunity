@@ -50,7 +50,7 @@ const GrayText = styled.div`
 const Sum = styled.div`
   font-size: 24px;
   line-height: 25px;
-  font-family: "SUIT-700";
+  font-weight: 700;
 `;
 
 const TextWrapper = styled.div`
@@ -74,7 +74,7 @@ const ReplaceText = styled.div`
   font-size: 15px;
   line-height: 20px;
   color: #bfbfbf;
-  font-family: "SUIT-400";
+  font-weight: 400;
 `;
 
 export default function BudgetList({ budgetData }: BudgetListProps) {

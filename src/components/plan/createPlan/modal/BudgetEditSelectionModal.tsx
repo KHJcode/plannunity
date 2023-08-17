@@ -46,7 +46,7 @@ const SubText = styled.div`
 const Sum = styled.div`
   font-size: 24px;
   line-height: 25px;
-  font-family: 'SUIT-700';
+  font-weight: 700;
   margin-bottom: 5px;
 `
 

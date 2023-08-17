@@ -48,7 +48,7 @@ const ProfileImg = styled.img`
 const NameText = styled.div`
   font-size: 25px;
   line-height: 31px;
-  font-family: "SUIT-700";
+  font-weight: 700;
   text-align: center;
 `;
 

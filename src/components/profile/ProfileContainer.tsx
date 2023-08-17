@@ -71,7 +71,7 @@ const Text = styled.div`
 
 const Number = styled.div`
   font-size: 24px;
-  font-family: "SUIT-700";
+  font-weight: 700;
   color: #ff833e;
   line-height: 20px;
 `;

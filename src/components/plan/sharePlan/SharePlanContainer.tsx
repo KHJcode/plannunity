@@ -107,7 +107,7 @@ const PlanDesc = styled.textarea`
 
   &::placeholder {
     color: #9A9A9A;
-    font-family: 'SUIT-500';
+    font-weight: 500;
   }
 `
 
@@ -123,7 +123,8 @@ const PlanIntro = styled.input`
 
   &::placeholder {
     color: #9A9A9A;
-    font-family: 'SUIT-500';
+    font-weight: 500;
+  }
 `
 
 // 플랜 선택 
@@ -131,7 +132,7 @@ const PlanIntro = styled.input`
 const MainText = styled.div`
   font-size: 20px;
   line-height: 35px;
-  font-family: 'SUIT-700';
+  font-weight: 700;
   margin-bottom: 20px;
 `
 

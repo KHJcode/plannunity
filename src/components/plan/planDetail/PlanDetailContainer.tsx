@@ -50,7 +50,7 @@ const Desc1Wrapper = styled.div`
 const Desc1 = styled.div`
   font-size: 15px;
   line-height: 19px;
-  font-family: "SUIT-500";
+  font-weight: 500;
   color: #939393;
 `;
 
@@ -70,7 +70,7 @@ const Desc2 = styled.div`
 const Title = styled.div`
   font-size: 22px;
   line-height: 27px;
-  font-family: "SUIT-700";
+  font-weight: 700;
   margin-bottom: 12px;
 `;
 

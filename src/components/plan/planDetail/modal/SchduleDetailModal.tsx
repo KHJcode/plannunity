@@ -37,7 +37,7 @@ const Address = styled.div`
   font-size: 15px;
   line-height: 20px;
   color: #939393;
-  font-family: 'SUIT-500';
+  font-weight: 500;
 `
 
 const Desc = styled.div`

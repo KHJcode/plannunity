@@ -35,13 +35,13 @@ const TextWrapper = styled.div`
 const NameText = styled.div`
   font-size: 18px;
   line-height: 20px;
-  font-family: 'SUIT-700';
+  font-weight: 700;
 `
 
 const DescText = styled.div`
   font-size: 13px;
   line-height: 15px;
-  font-family: 'SUIT-500';
+  font-weight: 500;
   color: #9D9D9D;
 `
 

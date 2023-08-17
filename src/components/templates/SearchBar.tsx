@@ -30,7 +30,7 @@ const Input = styled.input`
   font-size: 15px;
   background: transparent;
   border-radius: 6px;
-  font-family: "SUIT-500";
+  font-weight: 500;
 
   &::placeholder {
     color: #bfbfbf;

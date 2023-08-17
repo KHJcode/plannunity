@@ -8,7 +8,7 @@ type LoginMainTextType = {
 const Container = styled.div`
   font-size: 25px;
   line-height: 40px;
-  font-family: 'SUIT-700';
+  font-weight: 700;
 `
 
 export default function LoginMainText({ text1, text2 }: LoginMainTextType) {

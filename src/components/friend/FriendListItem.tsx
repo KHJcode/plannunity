@@ -31,7 +31,7 @@ const ProfileImg = styled.img`
 const NameText = styled.div`
   font-size: 18px;
   line-height: 20px;
-  font-family: 'SUIT-700';
+  font-weight: 700;
 `
 
 export default function FriendListItem() {

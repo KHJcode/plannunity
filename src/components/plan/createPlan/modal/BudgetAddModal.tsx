@@ -39,7 +39,7 @@ const SubText = styled.div`
 const BudgetInput = styled.input`
   font-size: 24px;
   line-height: 25px;
-  font-family: "SUIT-700";
+  font-weight: 700;
   margin-bottom: 5px;
   border: none;
   background: #ffffff;
@@ -48,7 +48,7 @@ const BudgetInput = styled.input`
 
   &::placeholder {
     color: #bfbfbf;
-    font-family: "SUIT-500";
+    font-weight: 500;
     font-size: 15px;
   }
 `;
@@ -66,7 +66,7 @@ const Input = styled.input`
 
   &::placeholder {
     color: #bfbfbf;
-    font-family: "SUIT-500";
+    font-weight: 500;
   }
 `;
 

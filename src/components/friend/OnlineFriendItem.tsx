@@ -31,12 +31,11 @@ const IsOnline = styled.img`
 
 const NameText = styled.div`
   font-size: 14px;
-  font-family: 'SUIT-500';
+  font-weight: 500;
   line-height: 18px;
   text-align: center;
   color: #5B5B5B;
 `
-
 
 export default function OnlineFriendItem() {
   const dispatch = useDispatch();

@@ -30,7 +30,7 @@ const SubText = styled.div`
   color: #818181;
   font-size: 10px;
   line-height: 15px;
-  font-family: 'SUIT-500';
+  font-weight: 500;
   margin-bottom: 5px;
 `
 

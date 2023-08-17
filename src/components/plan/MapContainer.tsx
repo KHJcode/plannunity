@@ -40,7 +40,7 @@ const OverLay = styled.div`
   color: #ff833e;
   font-size: 18px;
   line-height: 20px;
-  font-family: "SUIT-700";
+  font-weight: 700;
   background: #ffffff;
   position: absolute;
   top: -65px;

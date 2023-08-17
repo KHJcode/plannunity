@@ -34,7 +34,7 @@ const SubText = styled.div`
   font-size: 12px;
   line-height: 15px;
   margin-bottom: 5px;
-  font-family: 'SUIT-500';
+  font-weight: 500;
 `
 
 const MainText = styled.div`
